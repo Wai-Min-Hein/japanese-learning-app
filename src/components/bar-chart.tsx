@@ -8,8 +8,8 @@ export default function BarChart({ values }: BarChartProps) {
   const max = Math.max(...values, 1);
 
   return (
-    <View className="rounded-xl bg-white p-4">
-      <Text className="mb-3 text-sm font-medium text-slate-700">Weekly Study Minutes</Text>
+    <View className="rounded-xl bg-white p-4 dark:bg-slate-900">
+      <Text className="mb-3 text-sm font-medium text-slate-700 dark:text-slate-200">Weekly Study Minutes</Text>
       <View className="flex-row items-end gap-2">
         {values.map((value, index) => (
           <View

@@ -8,10 +8,10 @@ export default function EventsScreen() {
   const { events } = useAppState();
 
   return (
-    <ScrollView className="flex-1 bg-slate-100" contentContainerClassName="gap-4 p-5">
+    <ScrollView className="flex-1 bg-slate-100 dark:bg-slate-950" contentContainerClassName="gap-4 p-5">
       <View>
-        <Text className="text-2xl font-bold text-slate-900">Practice Schedule</Text>
-        <Text className="mt-1 text-sm text-slate-600">နေ့စဉ်လေ့ကျင့်ရန်အစီအစဉ်</Text>
+        <Text className="text-2xl font-bold text-slate-900 dark:text-slate-100">Practice Schedule</Text>
+        <Text className="mt-1 text-sm text-slate-600 dark:text-slate-300">နေ့စဉ်လေ့ကျင့်ရန်အစီအစဉ်</Text>
       </View>
 
       <SimpleTable

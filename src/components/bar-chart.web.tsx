@@ -8,8 +8,8 @@ export default function BarChartWeb({ values }: BarChartProps) {
   const max = Math.max(...values, 1);
 
   return (
-    <View className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-      <Text className="mb-3 text-sm font-medium text-slate-700">Weekly Study Minutes (Web)</Text>
+    <View className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+      <Text className="mb-3 text-sm font-medium text-slate-700 dark:text-slate-200">Weekly Study Minutes (Web)</Text>
       <View className="flex-row items-end gap-3">
         {values.map((value, index) => (
           <View key={`bar-web-${index}`} className="items-center">
@@ -17,7 +17,7 @@ export default function BarChartWeb({ values }: BarChartProps) {
               className="w-9 rounded-t-md bg-emerald-500"
               style={{ height: `${(value / max) * 120}%`, minHeight: 8 }}
             />
-            <Text className="mt-1 text-xs text-slate-500">D{index + 1}</Text>
+            <Text className="mt-1 text-xs text-slate-500 dark:text-slate-400">D{index + 1}</Text>
           </View>
         ))}
       </View>

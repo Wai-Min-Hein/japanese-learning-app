@@ -1,10 +1,14 @@
-import { styled } from '@gluestack-style/react';
+import type { ReactNode } from 'react';
 import { View } from 'react-native';
 
-export const GSCard = styled(View, {
-  backgroundColor: '#ffffff',
-  borderRadius: 14,
-  borderWidth: 1,
-  borderColor: '#e2e8f0',
-  padding: 16,
-});
+type GSCardProps = {
+  children: ReactNode;
+};
+
+export function GSCard({ children }: GSCardProps) {
+  return (
+    <View className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-900">
+      {children}
+    </View>
+  );
+}
