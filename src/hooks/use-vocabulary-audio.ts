@@ -3,6 +3,34 @@ import * as Speech from 'expo-speech';
 
 import type { VocabularyItem } from '@/server/db';
 
+function normalizeSpeechText(raw: string) {
+  const original = raw.trim();
+  if (!original) return original;
+
+  // Keep the primary term and drop parenthesized duplicates like:
+  // ききます (聞きます), トイレ (おてあらい) (お手洗い)
+  let text = original
+    .replace(/（[^）]*）/g, ' ')
+    .replace(/\([^)]*\)/g, ' ')
+    .replace(/\[[^\]]*]/g, ' ')
+    .replace(/【[^】]*】/g, ' ')
+    .split(/[／/]/)[0]
+    .replace(/\b[IVX]+\b/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  // Prefer Japanese script and punctuation only for speech.
+  const japaneseOnly = Array.from(text)
+    .filter((char) => /[\u3040-\u30ff\u3400-\u9fff\u3000-\u303fー々〆ヵヶ\s]/.test(char))
+    .join('')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (japaneseOnly) return japaneseOnly;
+  if (text) return text;
+  return original;
+}
+
 function speakOnce(text: string, language: string, rate = 0.9) {
   return new Promise<void>((resolve) => {
     Speech.speak(text, {
@@ -31,7 +59,7 @@ export function useVocabularyAudio() {
     Speech.stop();
     setIsPlaying(true);
 
-    await speakOnce(item.japanese, 'ja-JP');
+    await speakOnce(normalizeSpeechText(item.japanese), 'ja-JP');
     if (runId !== activeRunRef.current) return;
 
     if (runId === activeRunRef.current) {
@@ -45,7 +73,7 @@ export function useVocabularyAudio() {
     Speech.stop();
     setIsPlaying(true);
 
-    await speakOnce(text, 'ja-JP');
+    await speakOnce(normalizeSpeechText(text), 'ja-JP');
     if (runId !== activeRunRef.current) return;
 
     if (runId === activeRunRef.current) {
@@ -61,7 +89,7 @@ export function useVocabularyAudio() {
 
     for (const item of items) {
       if (runId !== activeRunRef.current) return;
-      await speakOnce(item.japanese, 'ja-JP');
+      await speakOnce(normalizeSpeechText(item.japanese), 'ja-JP');
     }
 
     if (runId === activeRunRef.current) {
