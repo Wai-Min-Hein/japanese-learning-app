@@ -27,15 +27,33 @@ export default function ChapterDetailScreen() {
         ) : null}
       </View>
 
-      <View className="rounded-2xl bg-white p-4">
-        <Text className="text-base font-semibold text-slate-900">Kana</Text>
-        <Text className="mt-2 text-xs text-slate-500">Hiragana</Text>
-        <Text className="text-sm text-slate-900">{chapter.kana.hiragana.join(' ・ ')}</Text>
-        <Text className="mt-2 text-xs text-slate-500">Katakana</Text>
-        <Text className="text-sm text-slate-900">{chapter.kana.katakana.join(' ・ ')}</Text>
-        <Text className="mt-2 text-xs text-slate-500">Romaji</Text>
-        <Text className="text-sm text-slate-700">{chapter.kana.romaji.join(' ・ ')}</Text>
-      </View>
+      {chapter.scriptTable?.length ? (
+        <View className="gap-2 rounded-2xl bg-white p-4">
+          <Text className="text-lg font-semibold text-slate-900">Hiragana / Katakana / Romaji</Text>
+          <View className="rounded-lg border border-slate-200">
+            <View className="flex-row border-b border-slate-200 bg-slate-50 px-2 py-2">
+              <Text className="flex-1 text-xs font-semibold text-slate-700">Hiragana</Text>
+              <Text className="flex-1 text-xs font-semibold text-slate-700">Katakana</Text>
+              <Text className="flex-1 text-xs font-semibold text-slate-700">Romaji</Text>
+            </View>
+            {chapter.scriptTable.map((row) => (
+              <View key={row.id} className="border-b border-slate-100 px-2 py-2">
+                <View className="flex-row">
+                  <Text className="flex-1 text-sm text-slate-900">{row.hiragana}</Text>
+                  <Text className="flex-1 text-sm text-slate-900">{row.katakana}</Text>
+                  <Text className="flex-1 text-sm text-slate-700">{row.romaji}</Text>
+                </View>
+                <Pressable
+                  className="mt-2 rounded-md border border-sakura-700 px-2 py-1"
+                  onPress={() => void playJapaneseText(row.hiragana)}
+                >
+                  <Text className="text-center text-xs font-semibold text-sakura-700">Play row</Text>
+                </Pressable>
+              </View>
+            ))}
+          </View>
+        </View>
+      ) : null}
 
       <View className="flex-row gap-3">
         <Pressable
@@ -86,6 +104,15 @@ export default function ChapterDetailScreen() {
               <Text className="text-sm font-semibold text-slate-900">{line.japanese}</Text>
               <Text className="text-xs text-slate-500">{line.romaji}</Text>
               <Text className="mt-1 text-sm text-slate-700">{line.burmese}</Text>
+              {line.beginnerTip ? (
+                <Text className="mt-1 text-xs text-emerald-700">Beginner note: {line.beginnerTip}</Text>
+              ) : null}
+              <Pressable
+                className="mt-2 rounded-lg border border-sakura-700 px-3 py-2"
+                onPress={() => void playJapaneseText(line.japanese)}
+              >
+                <Text className="text-center font-semibold text-sakura-700">Play translation audio</Text>
+              </Pressable>
             </View>
           ))}
         </View>
@@ -106,6 +133,42 @@ export default function ChapterDetailScreen() {
         <View className="gap-2 rounded-2xl bg-white p-4">
           <Text className="text-lg font-semibold text-slate-900">Grammar Explanation</Text>
           {chapter.grammarExplanation.map((note, index) => (
+            <Text key={`${index}-${note}`} className="text-sm text-slate-700">
+              {index + 1}. {note}
+            </Text>
+          ))}
+        </View>
+      ) : null}
+
+      {chapter.grammarUsage?.length ? (
+        <View className="gap-2 rounded-2xl bg-white p-4">
+          <Text className="text-lg font-semibold text-slate-900">Grammar Example Usage</Text>
+          {chapter.grammarUsage.map((usage) => (
+            <View key={usage.id} className="rounded-lg bg-slate-50 p-3">
+              <Text className="text-sm font-semibold text-slate-900">{usage.pattern}</Text>
+              <Text className="text-xs text-slate-500">{usage.meaning}</Text>
+              {usage.examples.map((example, index) => (
+                <View key={`${usage.id}-${index}`} className="mt-2 rounded-md border border-slate-200 p-2">
+                  <Text className="text-sm text-slate-900">{example.japanese}</Text>
+                  <Text className="text-xs text-slate-500">{example.romaji}</Text>
+                  <Text className="text-sm text-slate-700">{example.burmese}</Text>
+                  <Pressable
+                    className="mt-2 rounded-md border border-sakura-700 px-2 py-1"
+                    onPress={() => void playJapaneseText(example.japanese)}
+                  >
+                    <Text className="text-center text-xs font-semibold text-sakura-700">Play example</Text>
+                  </Pressable>
+                </View>
+              ))}
+            </View>
+          ))}
+        </View>
+      ) : null}
+
+      {chapter.grammarTeachingNotes?.length ? (
+        <View className="gap-2 rounded-2xl bg-white p-4">
+          <Text className="text-lg font-semibold text-slate-900">Essential Teaching Notes</Text>
+          {chapter.grammarTeachingNotes.map((note, index) => (
             <Text key={`${index}-${note}`} className="text-sm text-slate-700">
               • {note}
             </Text>

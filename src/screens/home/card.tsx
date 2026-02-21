@@ -14,12 +14,10 @@ export function ChapterCard({ chapter, onPress }: ChapterCardProps) {
       <Text className="text-sm text-slate-700">{chapter.focus}</Text>
 
       <View className="rounded-xl bg-slate-50 p-3">
-        <Text className="text-xs text-slate-500">Hiragana</Text>
-        <Text className="text-sm text-slate-900">{chapter.kana.hiragana.join(' ・ ')}</Text>
-        <Text className="mt-2 text-xs text-slate-500">Katakana</Text>
-        <Text className="text-sm text-slate-900">{chapter.kana.katakana.join(' ・ ')}</Text>
-        <Text className="mt-2 text-xs text-slate-500">Romaji</Text>
-        <Text className="text-sm text-slate-700">{chapter.kana.romaji.join(' ・ ')}</Text>
+        <Text className="text-xs text-slate-500">Lessons</Text>
+        <Text className="text-sm text-slate-900">{chapter.vocabulary.length} vocabulary items</Text>
+        <Text className="mt-2 text-xs text-slate-500">Focus</Text>
+        <Text className="text-sm text-slate-700">{chapter.textbookPageRange ?? 'Core concepts'}</Text>
       </View>
 
       <Text className="text-sm font-medium text-sakura-700">Open chapter vocabulary →</Text>

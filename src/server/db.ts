@@ -13,20 +13,27 @@ export type Chapter = {
   title: string;
   focus: string;
   textbookPageRange?: string;
-  kana: {
-    hiragana: string[];
-    katakana: string[];
-    romaji: string[];
-  };
   vocabulary: VocabularyItem[];
   translations?: {
     id: string;
     japanese: string;
     romaji: string;
     burmese: string;
+    beginnerTip?: string;
   }[];
   referenceAndExplanation?: string[];
   grammarExplanation?: string[];
+  grammarTeachingNotes?: string[];
+  grammarUsage?: {
+    id: string;
+    pattern: string;
+    meaning: string;
+    examples: {
+      japanese: string;
+      romaji: string;
+      burmese: string;
+    }[];
+  }[];
   greetingPhrases?: {
     id: string;
     japanese: string;
@@ -38,6 +45,12 @@ export type Chapter = {
     country: string;
     people: string;
     language: string;
+  }[];
+  scriptTable?: {
+    id: string;
+    hiragana: string;
+    katakana: string;
+    romaji: string;
   }[];
   practice?: string[];
   sourceText?: string;
@@ -52,15 +65,113 @@ export type LearningEvent = {
 
 const CHAPTERS: Chapter[] = [
   {
+    id: 'chapter-0',
+    title: 'Introduction - Absolute Beginner Essentials',
+    focus: 'Chapter 1 မတိုင်ခင် မဖြစ်မနေသိရမယ့် ဂျပန်အသံထွက်နှင့် အခြေခံမှတ်ချက်များ',
+    textbookPageRange: 'Pre-study',
+    vocabulary: [
+      { id: 'c0-v1', japanese: 'っ', hiragana: 'っ', romaji: '(small tsu)', burmesePronunciation: '', meaning: 'double consonant (ရပ်ပြီး ထပ်သံထွက်)' },
+      { id: 'c0-v2', japanese: 'ん', hiragana: 'ん', romaji: 'n', burmesePronunciation: '', meaning: 'moraic n (နောက်အသံအလိုက် n/m/ŋ သဘောထွက်နိုင်)' },
+      { id: 'c0-v3', japanese: 'ー', hiragana: 'ー', romaji: 'long vowel mark', burmesePronunciation: '', meaning: 'long vowel (အသံရှည်ဖတ်)' },
+      { id: 'c0-v4', japanese: 'きゃ / きゅ / きょ', hiragana: 'きゃ / きゅ / きょ', romaji: 'kya / kyu / kyo', burmesePronunciation: '', meaning: 'combined sounds (yoon သံတွဲ)' },
+      { id: 'c0-v5', japanese: 'は / へ / を', hiragana: 'は / へ / を', romaji: 'wa / e / o', burmesePronunciation: '', meaning: 'particle pronunciation (ရေးသလိုမဖတ်တဲ့နေရာ)' },
+    ],
+    translations: [
+      {
+        id: 'c0-t1',
+        japanese: 'きって',
+        romaji: 'kitte',
+        burmese: 'っ ကြောင့် ki + te မဟုတ်ဘဲ ရပ်ပြီး \"ကိတ္တေ\" လို ထွက်သံပြောင်းတယ်',
+      },
+      {
+        id: 'c0-t2',
+        japanese: 'がっこう',
+        romaji: 'gakko',
+        burmese: 'っ + こう ကြောင့် \"ဂတ်ကိုး\" လို consonant တစ်ချက်ရပ်သံပါမယ်',
+      },
+      {
+        id: 'c0-t3',
+        japanese: 'おばさん / おばあさん',
+        romaji: 'obasan / obaasan',
+        burmese: 'vowel length မတူလို့ အဓိပ္ပါယ်မတူနိုင်တယ် (ရှည်သံအရေးကြီး)',
+      },
+      {
+        id: 'c0-t4',
+        japanese: 'わたしは ミラーです。',
+        romaji: 'Watashi wa Mira desu.',
+        burmese: 'は ကို particle အနေဖြင့် \"wa\" လို့ဖတ်ရတယ်',
+      },
+    ],
+    referenceAndExplanation: [
+      'ဂျပန်စာမှာ mora timing အရေးကြီးတယ်။ っ / ん / ရှည်သံ(ー) ကို ကျော်ဖတ်ရင် အဓိပ္ပါယ်လွဲနိုင်တယ်။',
+      'Katakana words (loanwords) မှာ long vowel mark ー ကို အသံရှည်ဖတ်ပါ။',
+      'Chapter 1 ထဲက self-introduction pattern မသွားခင် particle pronunciation ကိုသေချာထားပါ။',
+    ],
+    grammarExplanation: [
+      'Small っ (sokuon): နောက် consonant မထွက်ခင် တစ်ချက်ရပ်ပြီးဖတ်ရတယ်။',
+      'ん: နောက်ကအသံအလိုက် n/m/ŋ သဘောထွက်နိုင်ပေမယ့် အမြဲ mora တစ်ခုစာတွက်ရတယ်။',
+      'Long vowels: おばさん vs おばあさん လို မရှည်/ရှည်က အဓိပ္ပါယ်ပြောင်းနိုင်တယ်။',
+      'Particles: は→wa, へ→e, を→o လို့ beginner level မှာမှတ်ထားရမယ်။',
+    ],
+    grammarUsage: [
+      {
+        id: 'c0-gm-1',
+        pattern: 'っ (double consonant)',
+        meaning: 'ရပ်သံ + နောက် consonant ထပ်သံ',
+        examples: [
+          { japanese: 'きって', romaji: 'kitte', burmese: 'တံဆိပ် (ရပ်သံပါ)' },
+          { japanese: 'ざっし', romaji: 'zasshi', burmese: 'မဂ္ဂဇင်း (sshi သံ)' },
+        ],
+      },
+      {
+        id: 'c0-gm-2',
+        pattern: 'Particle pronunciation',
+        meaning: 'ရေးသလိုမဖတ်သည့် particle များ',
+        examples: [
+          { japanese: 'わたしは がくせいです。', romaji: 'Watashi wa gakusei desu.', burmese: 'は ကို wa လို့ဖတ်' },
+          { japanese: 'にほんへ いきます。', romaji: 'Nihon e ikimasu.', burmese: 'へ ကို e လို့ဖတ်' },
+        ],
+      },
+    ],
+    scriptTable: [
+      { id: 'c0-s1', hiragana: 'あ い う え お', katakana: 'ア イ ウ エ オ', romaji: 'a i u e o' },
+      { id: 'c0-s2', hiragana: 'か き く け こ', katakana: 'カ キ ク ケ コ', romaji: 'ka ki ku ke ko' },
+      { id: 'c0-s3', hiragana: 'さ し す せ そ', katakana: 'サ シ ス セ ソ', romaji: 'sa shi su se so' },
+      { id: 'c0-s4', hiragana: 'た ち つ て と', katakana: 'タ チ ツ テ ト', romaji: 'ta chi tsu te to' },
+      { id: 'c0-s5', hiragana: 'な に ぬ ね の', katakana: 'ナ ニ ヌ ネ ノ', romaji: 'na ni nu ne no' },
+      { id: 'c0-s6', hiragana: 'は ひ ふ へ ほ', katakana: 'ハ ヒ フ ヘ ホ', romaji: 'ha hi fu he ho' },
+      { id: 'c0-s7', hiragana: 'ま み む め も', katakana: 'マ ミ ム メ モ', romaji: 'ma mi mu me mo' },
+      { id: 'c0-s8', hiragana: 'や ゆ よ', katakana: 'ヤ ユ ヨ', romaji: 'ya yu yo' },
+      { id: 'c0-s9', hiragana: 'ら り る れ ろ', katakana: 'ラ リ ル レ ロ', romaji: 'ra ri ru re ro' },
+      { id: 'c0-s10', hiragana: 'わ を ん', katakana: 'ワ ヲ ン', romaji: 'wa o n' },
+      { id: 'c0-s11', hiragana: 'が ぎ ぐ げ ご', katakana: 'ガ ギ グ ゲ ゴ', romaji: 'ga gi gu ge go' },
+      { id: 'c0-s12', hiragana: 'ざ じ ず ぜ ぞ', katakana: 'ザ ジ ズ ゼ ゾ', romaji: 'za ji zu ze zo' },
+      { id: 'c0-s13', hiragana: 'だ ぢ づ で ど', katakana: 'ダ ヂ ヅ デ ド', romaji: 'da ji zu de do' },
+      { id: 'c0-s14', hiragana: 'ば び ぶ べ ぼ', katakana: 'バ ビ ブ ベ ボ', romaji: 'ba bi bu be bo' },
+      { id: 'c0-s15', hiragana: 'ぱ ぴ ぷ ぺ ぽ', katakana: 'パ ピ プ ペ ポ', romaji: 'pa pi pu pe po' },
+      { id: 'c0-s16', hiragana: 'きゃ きゅ きょ', katakana: 'キャ キュ キョ', romaji: 'kya kyu kyo' },
+      { id: 'c0-s17', hiragana: 'あん いん うん えん おん', katakana: 'アン イン ウン エン オン', romaji: 'an in un en on (ん)' },
+      { id: 'c0-s18', hiragana: 'かん きん くん けん こん', katakana: 'カン キン クン ケン コン', romaji: 'kan kin kun ken kon' },
+      { id: 'c0-s19', hiragana: 'さん しん すん せん そん', katakana: 'サン シン スン セン ソン', romaji: 'san shin sun sen son' },
+      { id: 'c0-s20', hiragana: 'たん ちん つん てん とん', katakana: 'タン チン ツン テン トン', romaji: 'tan chin tsun ten ton' },
+      { id: 'c0-s21', hiragana: 'なん にん ぬん ねん のん', katakana: 'ナン ニン ヌン ネン ノン', romaji: 'nan nin nun nen non' },
+      { id: 'c0-s22', hiragana: 'はん ひん ふん へん ほん', katakana: 'ハン ヒン フン ヘン ホン', romaji: 'han hin fun hen hon' },
+      { id: 'c0-s23', hiragana: 'まん みん むん めん もん', katakana: 'マン ミン ムン メン モン', romaji: 'man min mun men mon' },
+      { id: 'c0-s24', hiragana: 'やん ゆん よん', katakana: 'ヤン ユン ヨン', romaji: 'yan yun yon' },
+      { id: 'c0-s25', hiragana: 'らん りん るん れん ろん', katakana: 'ラン リン ルン レン ロン', romaji: 'ran rin run ren ron' },
+      { id: 'c0-s26', hiragana: 'がん ぎん ぐん げん ごん', katakana: 'ガン ギン グン ゲン ゴン', romaji: 'gan gin gun gen gon' },
+      { id: 'c0-s27', hiragana: 'ざん じん ずん ぜん ぞん', katakana: 'ザン ジン ズン ゼン ゾン', romaji: 'zan jin zun zen zon' },
+      { id: 'c0-s28', hiragana: 'だん ぢん づん でん どん', katakana: 'ダン ヂン ヅン デン ドン', romaji: 'dan jin zun den don' },
+      { id: 'c0-s29', hiragana: 'ばん びん ぶん べん ぼん', katakana: 'バン ビン ブン ベン ボン', romaji: 'ban bin bun ben bon' },
+      { id: 'c0-s30', hiragana: 'ぱん ぴん ぷん ぺん ぽん', katakana: 'パン ピン プン ペン ポン', romaji: 'pan pin pun pen pon' },
+    ],
+    sourceText: 'Introduction chapter added for absolute beginners before Chapter 1.',
+  },
+  {
     id: 'chapter-1',
     title: 'Chapter 1 - Self Introduction',
     focus: 'မိတ်ဆက်ခြင်း၊ နိုင်ငံနှင့် အလုပ်အကိုင်',
     textbookPageRange: '10-15',
-    kana: {
-      hiragana: ['わ', 'た', 'し', 'で', 'す', 'は'],
-      katakana: ['ワ', 'タ', 'シ', 'デ', 'ス', 'ハ'],
-      romaji: ['wa', 'ta', 'shi', 'de', 'su', 'ha'],
-    },
     vocabulary: [
       { id: 'c1-v1', japanese: 'わたし', hiragana: 'わたし', romaji: 'watashi', burmesePronunciation: '', meaning: 'ကျွန်ုပ်၊ ကျွန်တော်/ကျွန်မ' },
       { id: 'c1-v2', japanese: 'あなた', hiragana: 'あなた', romaji: 'anata', burmesePronunciation: '', meaning: 'သင်၊ ခင်ဗျား၊ ရှင်' },
@@ -100,36 +211,67 @@ const CHAPTERS: Chapter[] = [
         japanese: 'わたしは マイクミラー です。',
         romaji: 'Watashi wa Maiku Mira desu.',
         burmese: 'ကျွန်တော်က မိုက်မီလာ ပါ။',
+        beginnerTip: 'Self-introduction အတွက် အလွယ်ဆုံး pattern: \"わたしは + နာမည် + です\"',
       },
       {
         id: 'c1-t-pattern-2',
         japanese: 'サントスさん は がくせい じゃありません。',
         romaji: 'Santos-san wa gakusei ja arimasen.',
         burmese: 'မစ္စတာဆန်းတိုးစုက ကျောင်းသား မဟုတ်ပါဘူး။',
+        beginnerTip: 'Noun negative form: \"〜じゃありません\" = \"မဟုတ်ပါဘူး\"',
       },
       {
         id: 'c1-t-pattern-3',
         japanese: 'ミラーさん は かいしゃいん ですか。',
         romaji: 'Mira-san wa kaishain desu ka?',
         burmese: 'မစ္စတာမီလာက ကုမ္ပဏီဝန်ထမ်းလား။',
+        beginnerTip: 'Question လုပ်ချင်ရင် ဝါကျအဆုံးမှာ \"か\" ထည့်ပါ',
       },
       {
         id: 'c1-t-pattern-4',
         japanese: 'サントスさん も かいしゃいん です。',
         romaji: 'Santos-san mo kaishain desu.',
         burmese: 'မစ္စတာဆန်းတိုးစုလည်း ကုမ္ပဏီဝန်ထမ်းပါ။',
+        beginnerTip: '\"も\" = \"လည်း\"',
       },
       {
         id: 'c1-t-example-1',
-        japanese: 'あのひと は だれですか。...ワットさん です。',
-        romaji: 'Ano hito wa dare desu ka? ... Watto-san desu.',
-        burmese: 'ဟိုပုဂ္ဂိုလ်က ဘယ်သူပါလဲ။ ... မစ္စတာဝပ် ပါ။',
+        japanese: 'マイク・ミラーさん ですか。...はい、マイク・ミラーです。',
+        romaji: 'Maiku Mira-san desu ka? ... Hai, Maiku Mira desu.',
+        burmese: 'သင်က မိုက်မီလာ ပါလား။ ... ဟုတ်ကဲ့၊ [ကျွန်တော်က] မိုက်မီလာ ပါ။',
+        beginnerTip: 'Yes-answer pattern: はい、〜です',
       },
       {
         id: 'c1-t-example-2',
-        japanese: 'テレサちゃん は なんさい ですか。...きゅうさい です。',
-        romaji: 'Teresa-chan wa nansai desu ka? ... kyusai desu.',
-        burmese: 'တဲလဲဆလေးက ဘယ်နှနှစ်လဲ။ ... ၉နှစ်ပါ။',
+        japanese: 'ミラーさんは がくせいですか。...いいえ、がくせいじゃありません。',
+        romaji: 'Mira-san wa gakusei desu ka? ... Iie, gakusei ja arimasen.',
+        burmese: 'မစ္စတာမီလာက ကျောင်းသားပါလား။ ... ဟင့်အင်း၊ ကျောင်းသား မဟုတ်ပါဘူး။',
+        beginnerTip: 'No-answer pattern: いいえ、〜じゃありません',
+      },
+      {
+        id: 'c1-t-example-3',
+        japanese: 'ワンさんは ぎんこういんですか。...いいえ、いしゃです。',
+        romaji: 'Wan-san wa ginkoin desu ka? ... Iie, isha desu.',
+        burmese: 'မစ္စတာဝမ်းက ဘဏ်ဝန်ထမ်းပါလား။ ... ဟင့်အင်း၊ ဆရာဝန်ပါ။',
+      },
+      {
+        id: 'c1-t-example-4',
+        japanese: 'あのかたは どなたですか。...ワットさんです。さくらだいがくの きょうしです。',
+        romaji: 'Ano kata wa donata desu ka? ... Watto-san desu. Sakura daigaku no kyoshi desu.',
+        burmese: 'ဟိုပုဂ္ဂိုလ်က ဘယ်သူပါလဲ။ ... မစ္စတာဝပ် ပါ။ ဆာကူရာတက္ကသိုလ်က ဆရာပါ။',
+      },
+      {
+        id: 'c1-t-example-5',
+        japanese: 'テレサちゃんは なんさいですか。...きゅうさいです。',
+        romaji: 'Teresa-chan wa nansai desu ka? ... Kyusai desu.',
+        burmese: 'တဲလဲဆလေးက ဘယ်နှနှစ်လဲ။ ... ၉ နှစ်ပါ။',
+      },
+      {
+        id: 'c1-t-dialog-1',
+        japanese: 'はじめまして。マイク・ミラーです。アメリカからきました。どうぞよろしくおねがいします。',
+        romaji: 'Hajimemashite. Maiku Mira desu. Amerika kara kimashita. Dozo yoroshiku onegaishimasu.',
+        burmese: 'တွေ့ရတာဝမ်းသာပါတယ်။ မိုက်မီလာပါ။ အမေရိကက လာပါတယ်။ ရင်းရင်းနှီးနှီး ဆက်ဆံပါရစေ။',
+        beginnerTip: 'ပထမမိတ်ဆက်စကားကို တစ်ကြောင်းတည်းနဲ့ လေ့ကျင့်ပြောနိုင်တဲ့ set phrase ဖြစ်တယ်',
       },
     ],
     referenceAndExplanation: [
@@ -138,15 +280,86 @@ const CHAPTERS: Chapter[] = [
       '「さん」ကို တခြားသူနာမည်နောက်တွင် သုံးပြီး ကိုယ့်နာမည်နောက် မသုံးရ။',
     ],
     grammarExplanation: [
-      'N1 は N2 です : ယဉ်ကျေးသော သဘောထားဖြင့် "သည်/ပါ" ကိုပြသည်။',
-      'N1 は N2 じゃ(では)ありません : အငြင်းဝါကျ "မဟုတ်ပါဘူး"။',
-      'N1 は N2 ですか : ဝါကျအဆုံး か ဖြင့် အမေးဝါကျ တည်ဆောက်သည်။',
-      'N も : "လည်း" ဟု အဓိပ္ပာယ်ရပြီး ရှေ့အကြောင်းအရာနှင့် တူညီသည့်အခါ သုံးသည်။',
-      'N1 の N2 : の သည် ပိုင်ဆိုင်မှု/ဆက်စပ်မှု ပြသသည်။ ဥပမာ IMC の 社員。',
-      'は (wa) သည် topic marker ဖြစ်ပြီး ဝါကျအဓိကအကြောင်းအရာကို ညွှန်းသည်။',
-      'です သည် polite sentence ending ဖြစ်ပြီး beginner lesson 1 တွင် အခြေခံဖြစ်သည်။',
+      'ဝိဘတ် は သည် topic marker ဖြစ်ပြီး \"wa\" လို့ဖတ်သည်။',
+      'です သည် noun sentence ကို polite ဖြစ်စေသောအဆုံးသတ်ပါ။',
       'じゃありません / ではありません သည် noun sentence negative form ဖြစ်သည်။',
-      'ですか အမေးဝါကျတွင် အဖြေကို はい / いいえ ဖြင့် စတင်ဖြေဆိုနိုင်သည်။',
+      'ですか သည် yes/no question marker ဖြစ်ပြီး အဖြေမှာ はい/いいえ ကိုအသုံးများသည်။',
+      'အမေးစကားလုံး (だれ/どなた/なんさい) ပါဝင်သည့်အခါလည်း ဝါကျအဆုံး か လိုသည်။',
+      'も သည် \"လည်း\" အဓိပ္ပာယ်ဖြင့် は ကိုအစားထိုးအသုံးပြုသည်။',
+      'の သည် noun-noun ချိတ်ဆက်ပြီး ဆက်စပ်မှု/ပိုင်ဆိုင်မှု ပြသည်။',
+      '〜さん ကို ကိုယ့်နာမည်နောက် မထည့်ရ; တခြားသူနာမည်နောက်သာ ထည့်သုံးရ။',
+    ],
+    grammarUsage: [
+      {
+        id: 'c1-gm-1',
+        pattern: 'N1 は N2 です',
+        meaning: 'N1 သည် N2 ဖြစ်သည် (polite)',
+        examples: [
+          {
+            japanese: 'わたしは マイク・ミラーです。',
+            romaji: 'Watashi wa Maiku Mira desu.',
+            burmese: 'ကျွန်တော်က မိုက်မီလာ ပါ။',
+          },
+          {
+            japanese: 'わたしは かいしゃいんです。',
+            romaji: 'Watashi wa kaishain desu.',
+            burmese: 'ကျွန်တော်က ကုမ္ပဏီဝန်ထမ်းပါ။',
+          },
+        ],
+      },
+      {
+        id: 'c1-gm-2',
+        pattern: 'N1 は N2 じゃありません',
+        meaning: 'N1 သည် N2 မဟုတ်ပါ',
+        examples: [
+          {
+            japanese: 'サントスさんは がくせいじゃありません。',
+            romaji: 'Santos-san wa gakusei ja arimasen.',
+            burmese: 'မစ္စတာဆန်းတိုးစုက ကျောင်းသား မဟုတ်ပါဘူး။',
+          },
+        ],
+      },
+      {
+        id: 'c1-gm-3',
+        pattern: 'N1 は N2 ですか',
+        meaning: 'N1 သည် N2 ဖြစ်ပါသလား',
+        examples: [
+          {
+            japanese: 'ミラーさんは アメリカじんですか。',
+            romaji: 'Mira-san wa Amerika-jin desu ka?',
+            burmese: 'မစ္စတာမီလာက အမေရိကန်လူမျိုးလား။',
+          },
+          {
+            japanese: '...はい、アメリカじんです。',
+            romaji: '...Hai, Amerika-jin desu.',
+            burmese: '...ဟုတ်ကဲ့၊ အမေရိကန်လူမျိုးပါ။',
+          },
+        ],
+      },
+      {
+        id: 'c1-gm-4',
+        pattern: 'N も',
+        meaning: 'N လည်း',
+        examples: [
+          {
+            japanese: 'ミラーさんは かいしゃいんです。グプタさんも かいしゃいんです。',
+            romaji: 'Mira-san wa kaishain desu. Gupta-san mo kaishain desu.',
+            burmese: 'မီလာက ကုမ္ပဏီဝန်ထမ်းပါ။ ဂုပုတလည်း ကုမ္ပဏီဝန်ထမ်းပါ။',
+          },
+        ],
+      },
+      {
+        id: 'c1-gm-5',
+        pattern: 'N1 の N2',
+        meaning: 'N1 ၏ N2 / N1 က N2',
+        examples: [
+          {
+            japanese: 'ミラーさんは IMCの しゃいんです。',
+            romaji: 'Mira-san wa IMC no shain desu.',
+            burmese: 'မီလာက IMC ဝန်ထမ်းပါ။',
+          },
+        ],
+      },
     ],
     greetingPhrases: [
       {
@@ -264,31 +477,324 @@ const CHAPTERS: Chapter[] = [
   },
   {
     id: 'chapter-2',
-    title: 'Chapter 2 - This/That',
-    focus: 'ပစ္စည်းများကို ညွှန်ပြခြင်းနှင့် မေးခြင်း',
-    kana: {
-      hiragana: ['こ', 'そ', 'あ', 'れ', 'ど', 'の'],
-      katakana: ['コ', 'ソ', 'ア', 'レ', 'ド', 'ノ'],
-      romaji: ['ko', 'so', 'a', 're', 'do', 'no'],
-    },
+    title: 'Chapter 2 - これ/それ/あれ',
+    focus: 'အရာဝတ္ထုညွှန်ပြခြင်း၊ ပိုင်ရှင်မေးခြင်း၊ အမည်မေးခြင်း',
+    textbookPageRange: '16-21',
     vocabulary: [
-      { id: 'c2-v1', japanese: 'これ', hiragana: 'これ', romaji: 'kore', burmesePronunciation: 'ကိုရေး', meaning: 'ဒီဟာ' },
-      { id: 'c2-v2', japanese: 'それ', hiragana: 'それ', romaji: 'sore', burmesePronunciation: 'ဆိုရေး', meaning: 'အဲဒီဟာ' },
-      { id: 'c2-v3', japanese: 'あれ', hiragana: 'あれ', romaji: 'are', burmesePronunciation: 'အာရေး', meaning: 'ဟိုဟာ' },
-      { id: 'c2-v4', japanese: 'ほん', hiragana: 'ほん', romaji: 'hon', burmesePronunciation: 'ဟွန်း', meaning: 'စာအုပ်' },
-      { id: 'c2-v5', japanese: 'じしょ', hiragana: 'じしょ', romaji: 'jisho', burmesePronunciation: 'ဂျိရှိော', meaning: 'အဘိဓာန်' },
-      { id: 'c2-v6', japanese: 'カメラ', hiragana: 'かめら', katakana: 'カメラ', romaji: 'kamera', burmesePronunciation: 'ကာမဲရာ', meaning: 'ကင်မရာ' },
+      { id: 'c2-v1', japanese: 'これ', hiragana: 'これ', romaji: 'kore', burmesePronunciation: '', meaning: 'ဒါ (ပြောသူအနီး)' },
+      { id: 'c2-v2', japanese: 'それ', hiragana: 'それ', romaji: 'sore', burmesePronunciation: '', meaning: 'အဲဒါ (နားထောင်သူအနီး)' },
+      { id: 'c2-v3', japanese: 'あれ', hiragana: 'あれ', romaji: 'are', burmesePronunciation: '', meaning: 'ဟိုဟာ (နှစ်ဦးလုံးကွာ)' },
+      { id: 'c2-v4', japanese: 'この', hiragana: 'この', romaji: 'kono', burmesePronunciation: '', meaning: 'ဒီ~ (နာမ်ရှေ့)' },
+      { id: 'c2-v5', japanese: 'その', hiragana: 'その', romaji: 'sono', burmesePronunciation: '', meaning: 'အဲဒီ~ (နာမ်ရှေ့)' },
+      { id: 'c2-v6', japanese: 'あの', hiragana: 'あの', romaji: 'ano', burmesePronunciation: '', meaning: 'ဟို~ (နာမ်ရှေ့)' },
+      { id: 'c2-v7', japanese: 'ほん', hiragana: 'ほん', romaji: 'hon', burmesePronunciation: '', meaning: 'စာအုပ်' },
+      { id: 'c2-v8', japanese: 'じしょ', hiragana: 'じしょ', romaji: 'jisho', burmesePronunciation: '', meaning: 'အဘိဓာန်' },
+      { id: 'c2-v9', japanese: 'さっし', hiragana: 'さっし', romaji: 'sasshi', burmesePronunciation: '', meaning: 'မဂ္ဂဇင်း' },
+      { id: 'c2-v10', japanese: 'しんぶん', hiragana: 'しんぶん', romaji: 'shinbun', burmesePronunciation: '', meaning: 'သတင်းစာ' },
+      { id: 'c2-v11', japanese: 'ノート', hiragana: 'のーと', katakana: 'ノート', romaji: 'noto', burmesePronunciation: '', meaning: 'ဗလာစာအုပ်/မှတ်စုစာအုပ်' },
+      { id: 'c2-v12', japanese: 'てちょう', hiragana: 'てちょう', romaji: 'techo', burmesePronunciation: '', meaning: 'အိတ်ဆောင်မှတ်စု' },
+      { id: 'c2-v13', japanese: 'めいし', hiragana: 'めいし', romaji: 'meishi', burmesePronunciation: '', meaning: 'လိပ်စာကတ်' },
+      { id: 'c2-v14', japanese: 'カード', hiragana: 'かーど', katakana: 'カード', romaji: 'kado', burmesePronunciation: '', meaning: 'ကတ်' },
+      { id: 'c2-v15', japanese: 'えんぴつ', hiragana: 'えんぴつ', romaji: 'enpitsu', burmesePronunciation: '', meaning: 'ခဲတံ' },
+      { id: 'c2-v16', japanese: 'ボールペン', hiragana: 'ぼーるぺん', katakana: 'ボールペン', romaji: 'borupen', burmesePronunciation: '', meaning: 'ဘောပင်' },
+      { id: 'c2-v17', japanese: 'シャープペンシル', hiragana: 'しゃーぷぺんしる', katakana: 'シャープペンシル', romaji: 'shapupenshiru', burmesePronunciation: '', meaning: 'ခဲဆံဘောပင်' },
+      { id: 'c2-v18', japanese: 'かぎ', hiragana: 'かぎ', romaji: 'kagi', burmesePronunciation: '', meaning: 'သော့' },
+      { id: 'c2-v19', japanese: 'とけい', hiragana: 'とけい', romaji: 'tokei', burmesePronunciation: '', meaning: 'နာရီ' },
+      { id: 'c2-v20', japanese: 'かさ', hiragana: 'かさ', romaji: 'kasa', burmesePronunciation: '', meaning: 'ထီး' },
+      { id: 'c2-v21', japanese: 'かばん', hiragana: 'かばん', romaji: 'kaban', burmesePronunciation: '', meaning: 'အိတ်' },
+      { id: 'c2-v22', japanese: 'CD', hiragana: 'しーでぃー', romaji: 'shidi', burmesePronunciation: '', meaning: 'စီဒီ' },
+      { id: 'c2-v23', japanese: 'テレビ', hiragana: 'てれび', katakana: 'テレビ', romaji: 'terebi', burmesePronunciation: '', meaning: 'တီဗီ' },
+      { id: 'c2-v24', japanese: 'ラジオ', hiragana: 'らじお', katakana: 'ラジオ', romaji: 'rajio', burmesePronunciation: '', meaning: 'ရေဒီယို' },
+      { id: 'c2-v25', japanese: 'カメラ', hiragana: 'かめら', katakana: 'カメラ', romaji: 'kamera', burmesePronunciation: '', meaning: 'ကင်မရာ' },
+      { id: 'c2-v26', japanese: 'コンピューター', hiragana: 'こんぴゅーたー', katakana: 'コンピューター', romaji: 'konpyuta', burmesePronunciation: '', meaning: 'ကွန်ပျူတာ' },
+      { id: 'c2-v27', japanese: 'くるま', hiragana: 'くるま', romaji: 'kuruma', burmesePronunciation: '', meaning: 'ကား' },
+      { id: 'c2-v28', japanese: 'つくえ', hiragana: 'つくえ', romaji: 'tsukue', burmesePronunciation: '', meaning: 'စာရေးခုံ' },
+      { id: 'c2-v29', japanese: 'いす', hiragana: 'いす', romaji: 'isu', burmesePronunciation: '', meaning: 'ထိုင်ခုံ' },
+      { id: 'c2-v30', japanese: 'チョコレート', hiragana: 'ちょこれーと', katakana: 'チョコレート', romaji: 'chokoreto', burmesePronunciation: '', meaning: 'ချော့ကလက်' },
+      { id: 'c2-v31', japanese: 'コーヒー', hiragana: 'こーひー', katakana: 'コーヒー', romaji: 'kohi', burmesePronunciation: '', meaning: 'ကော်ဖီ' },
+      { id: 'c2-v32', japanese: 'おみやげ', hiragana: 'おみやげ', romaji: 'omiyage', burmesePronunciation: '', meaning: 'အမှတ်တရလက်ဆောင်' },
+      { id: 'c2-v33', japanese: 'えいご', hiragana: 'えいご', romaji: 'eigo', burmesePronunciation: '', meaning: 'အင်္ဂလိပ်စာ' },
+      { id: 'c2-v34', japanese: 'にほんご', hiragana: 'にほんご', romaji: 'nihongo', burmesePronunciation: '', meaning: 'ဂျပန်စာ' },
+      { id: 'c2-v35', japanese: '〜ご', hiragana: 'ご', romaji: 'go', burmesePronunciation: '', meaning: '~ဘာသာစကား' },
+      { id: 'c2-v36', japanese: 'なん', hiragana: 'なん', romaji: 'nan', burmesePronunciation: '', meaning: 'ဘာ/ဘယ်ဟာ' },
+      { id: 'c2-v37', japanese: 'そう', hiragana: 'そう', romaji: 'so', burmesePronunciation: '', meaning: 'အဲဒီလို' },
     ],
+    translations: [
+      {
+        id: 'c2-t1',
+        japanese: 'これは じしょです。',
+        romaji: 'Kore wa jisho desu.',
+        burmese: 'ဒါ အဘိဓာန်ပါ။',
+      },
+      {
+        id: 'c2-t2',
+        japanese: 'それは わたしの かさです。',
+        romaji: 'Sore wa watashi no kasa desu.',
+        burmese: 'အဲဒါ ကျွန်တော့်ထီးပါ။',
+      },
+      {
+        id: 'c2-t3',
+        japanese: 'この ほんは わたしのです。',
+        romaji: 'Kono hon wa watashi no desu.',
+        burmese: 'ဒီ စာအုပ်က ကျွန်တော့်ဟာပါ။',
+      },
+      {
+        id: 'c2-t4',
+        japanese: 'これは ボールペンですか。...はい、そうです。',
+        romaji: 'Kore wa borupen desu ka? ... Hai, so desu.',
+        burmese: 'ဒါ ဘောပင်ပါလား။ ... ဟုတ်ကဲ့၊ ဟုတ်ပါတယ်။',
+      },
+      {
+        id: 'c2-t5',
+        japanese: 'それは ノートですか。...いいえ、てちょうです。',
+        romaji: 'Sore wa noto desu ka? ... Iie, techo desu.',
+        burmese: 'အဲဒါ ဗလာစာအုပ်ပါလား။ ... ဟင့်အင်း၊ အိတ်ဆောင်မှတ်စုပါ။',
+      },
+      {
+        id: 'c2-t6',
+        japanese: 'あれは だれの かばんですか。...さとうさんの かばんです。',
+        romaji: 'Are wa dare no kaban desu ka? ... Sato-san no kaban desu.',
+        burmese: 'ဟိုဟာ ဘယ်သူ့အိတ်ပါလဲ။ ... စတို၏အိတ်ပါ။',
+      },
+      {
+        id: 'c2-t7',
+        japanese: 'この かぎは だれのですか。...わたしのです。',
+        romaji: 'Kono kagi wa dare no desu ka? ... Watashi no desu.',
+        burmese: 'ဒီသော့က ဘယ်သူ့ဟာပါလဲ။ ... ကျွန်တော့်ဟာပါ။',
+      },
+    ],
+    referenceAndExplanation: [
+      'လေ့ကျင့်ခန်း C အသုံးများ: はじめまして / どうぞ / ありがとうございます / これからおせわになります / こちらこそよろしく。',
+      'Chapter-2 softcopy ထဲက surname list (佐藤、鈴木、高橋...) ကို reading practice အဖြစ်သုံးနိုင်သည်။',
+      'Loanwords (katakana) အများကြီးရှိသော chapter ဖြစ်လို့ katakana reading ကိုအတူလေ့ကျင့်ပါ။',
+    ],
+    grammarExplanation: [
+      'これ・それ・あれ သည် အရာဝတ္ထုကိုညွှန်ပြသောစကားလုံးဖြစ်ပြီး နာမ်အဖြစ်ရပ်တည်သည်။',
+      'これ ကို ပြောသူ၏အနီးတွင်ရှိသောအရာကို ညွှန်ပြရာတွင်အသုံးပြုသည်။',
+      'それ ကို နာသူ၏အနီးတွင်ရှိသောအရာကို ညွှန်ပြရာတွင်အသုံးပြုသည်။',
+      'あれ ကို ပြောသူ၊နာသူနှစ်ဦးစလုံးမှ ဝေးကွာသောအရာကို ညွှန်ပြရာတွင်အသုံးပြုသည်။',
+      'このN / そのN / あのN သည် နာမ်ကိုအထူးပြုသောပုံစံဖြစ်ပြီး နောက်တွင်နာမ်လိုအပ်သည်။',
+      'そうです သည် yes-confirmation အဖြေအဖြစ်အသုံးပြုသည် (はい、そうです)。',
+      'negative question အဖြေတွင် いいえ、ちがいます သို့မဟုတ် いいえ、〜です (correct answer) ကိုသုံးရသည်။',
+      '〜か、〜か သည် ရွေးချယ်မှုအမေးဝါကျဖြစ်ပြီး အဖြေတွင် ရွေးချယ်ချက်ကို တိုက်ရိုက်ပြောရသည်။',
+      'N1のN2 သည် N1 နှင့်ပတ်သက်သော N2 ကိုဖော်ပြသည် (အမျိုးအစား/ဆက်စပ်မှု/ပိုင်ဆိုင်မှု)။',
+      'の ကို noun အစားအဖြစ်အသုံးပြုနိုင်သည် (わたしのです) သို့သော် လူပုဂ္ဂိုလ်အစားထိုးအဖြစ် မသုံးရ။',
+      'お〜 prefix သည် ယဉ်ကျေးပျူငှာမှုဖော်ပြရာတွင် သုံးသည် (おみやげ, おさけ)။',
+      'そうですか သည် သတင်းအချက်အလက်အသစ်ရလာသောအခါ နားလည်ကြောင်းဖော်ပြရာတွင် အသုံးပြုသည်။',
+    ],
+    grammarTeachingNotes: [
+      'Teaching order (recommended): これ/それ/あれ -> このN/そのN/あのN -> だれの -> そうです/ちがいます.',
+      'Board drill: teacher desk ပေါ်ပစ္စည်း ၃ ခုထားပြီး kore/sore/are distance concept ကို gesture နဲ့သင်။',
+      'Common mistake #1: \"このです\" လို့ပြောတာမှား; この နောက်မှာ noun မဖြစ်မနေလိုတယ်။',
+      'Common mistake #2: negative answer တွင် \"いいえ、そうです\" မသုံးရ; \"いいえ、ちがいます\" သို့မဟုတ် correct noun ဖြေ။',
+      'Common mistake #3: possessive တွင် \"だれのかばんですか\" နှင့် \"このかばんはだれのですか\" ကိုမခွဲနိုင်ခြင်း။',
+      'Practice pattern: Recognition -> Production -> Mini roleplay (shop/office introduction).',
+      'Pronunciation focus: katakana loanwords (カード、コーヒー、コンピューター) ကို long vowel stretch နဲ့ဖတ်ခိုင်း။',
+      'Assessment idea: picture cards 10 ခုကို 30 စက္ကန့် quick-response Q&A လုပ်ပြီး automaticity စစ်။',
+    ],
+    grammarUsage: [
+      {
+        id: 'c2-gm-1',
+        pattern: '1) これ / それ / あれ',
+        meaning: 'object demonstratives',
+        examples: [
+          {
+            japanese: 'それは じしょですか。',
+            romaji: 'Sore wa jisho desu ka?',
+            burmese: 'အဲဒါ အဘိဓာန်ပါလား။',
+          },
+          {
+            japanese: 'これは だれの かさですか。',
+            romaji: 'Kore wa dare no kasa desu ka?',
+            burmese: 'ဒါက ဘယ်သူ့ထီးပါလဲ။',
+          },
+          {
+            japanese: 'あれは テレビです。',
+            romaji: 'Are wa terebi desu.',
+            burmese: 'ဟိုဟာ တီဗီပါ။',
+          },
+        ],
+      },
+      {
+        id: 'c2-gm-2',
+        pattern: '2) このN / そのN / あのN',
+        meaning: 'modifier + noun',
+        examples: [
+          {
+            japanese: 'この ほんは わたしのです。',
+            romaji: 'Kono hon wa watashi no desu.',
+            burmese: 'ဒီစာအုပ်က ကျွန်တော့်ဟာပါ။',
+          },
+          {
+            japanese: 'あの かたは どなたですか。',
+            romaji: 'Ano kata wa donata desu ka?',
+            burmese: 'ဟိုပုဂ္ဂိုလ်က ဘယ်သူပါလဲ။',
+          },
+          {
+            japanese: 'その かばんは だれのですか。',
+            romaji: 'Sono kaban wa dare no desu ka?',
+            burmese: 'အဲဒီအိတ်က ဘယ်သူ့ဟာပါလဲ။',
+          },
+        ],
+      },
+      {
+        id: 'c2-gm-3',
+        pattern: '3) そうです / ちがいます',
+        meaning: 'confirmation and correction',
+        examples: [
+          {
+            japanese: 'それは じしょですか。...はい、そうです。',
+            romaji: 'Sore wa jisho desu ka? ... Hai, so desu.',
+            burmese: 'အဲဒါ အဘိဓာန်ပါလား။ ... ဟုတ်ကဲ့၊ ဟုတ်ပါတယ်။',
+          },
+          {
+            japanese: 'それは ミラーさんのですか。...いいえ、ちがいます。',
+            romaji: 'Sore wa Mira-san no desu ka? ... Iie, chigaimasu.',
+            burmese: 'အဲဒါ မီလာရဲ့ဟာပါလား။ ... ဟင့်အင်း၊ မဟုတ်ပါ။',
+          },
+          {
+            japanese: 'それは ノートですか。...いいえ、てちょうです。',
+            romaji: 'Sore wa noto desu ka? ... Iie, techo desu.',
+            burmese: 'အဲဒါ ဗလာစာအုပ်လား။ ... ဟင့်အင်း၊ အိတ်ဆောင်မှတ်စုပါ။',
+          },
+        ],
+      },
+      {
+        id: 'c2-gm-4',
+        pattern: '4) 〜か、〜か',
+        meaning: 'choice question',
+        examples: [
+          {
+            japanese: 'これは 「9」 ですか、「7」 ですか。...「9」 です。',
+            romaji: 'Kore wa kyu desu ka, nana desu ka? ... Kyu desu.',
+            burmese: 'ဒါက “၉” လား “၇” လား။ ... “၉” ပါ။',
+          },
+        ],
+      },
+      {
+        id: 'c2-gm-5',
+        pattern: '5) N1 の N2',
+        meaning: 'N1-related N2 / possessive relation',
+        examples: [
+          {
+            japanese: 'これは コンピューターの ほんです。',
+            romaji: 'Kore wa konpyuta no hon desu.',
+            burmese: 'ဒါက ကွန်ပျူတာ စာအုပ်ပါ။',
+          },
+          {
+            japanese: 'これは わたしの ほんです。',
+            romaji: 'Kore wa watashi no hon desu.',
+            burmese: 'ဒါက ကျွန်တော့်စာအုပ်ပါ။',
+          },
+        ],
+      },
+      {
+        id: 'c2-gm-6',
+        pattern: '6) Noun replacement の',
+        meaning: 'object replacement with の',
+        examples: [
+          {
+            japanese: 'あれは だれの かばんですか。...さとうさんのです。',
+            romaji: 'Are wa dare no kaban desu ka? ... Sato-san no desu.',
+            burmese: 'ဟိုဟာ ဘယ်သူ့အိတ်ပါလဲ။ ... ဆတိုးရဲ့ဟာပါ။',
+          },
+          {
+            japanese: 'この かばんは あなたのですか。...いいえ、わたしのじゃありません。',
+            romaji: 'Kono kaban wa anata no desu ka? ... Iie, watashi no ja arimasen.',
+            burmese: 'ဒီအိတ်က သင့်ဟာပါလား။ ... ဟင့်အင်း၊ ကျွန်တော့်ဟာမဟုတ်ပါ။',
+          },
+          {
+            japanese: 'ミラーさんは IMCの しゃいんですか。...はい、IMCの しゃいんです。',
+            romaji: 'Mira-san wa IMC no shain desu ka? ... Hai, IMC no shain desu.',
+            burmese: 'မီလာက IMC ဝန်ထမ်းလား။ ... ဟုတ်ကဲ့၊ IMC ဝန်ထမ်းပါ။',
+          },
+        ],
+      },
+      {
+        id: 'c2-gm-7',
+        pattern: '7) なんの + N / 8) そうですか',
+        meaning: 'classification question and acknowledgement',
+        examples: [
+          {
+            japanese: 'それは なんの ざっしですか。',
+            romaji: 'Sore wa nan no zasshi desu ka?',
+            burmese: 'အဲဒါ ဘာမဂ္ဂဇင်းပါလဲ။',
+          },
+          {
+            japanese: 'コンピューターの ざっしです。',
+            romaji: 'Konpyuta no zasshi desu.',
+            burmese: 'ကွန်ပျူတာ မဂ္ဂဇင်းပါ။',
+          },
+          {
+            japanese: 'この かさは あなたのですか。...いいえ、ちがいます。シュミットさんのです。そうですか。',
+            romaji: 'Kono kasa wa anata no desu ka? ... Iie, chigaimasu. Shumitto-san no desu. So desu ka.',
+            burmese: 'ဒီထီးက သင့်ဟာပါလား။ ... ဟင့်အင်း၊ မဟုတ်ပါ။ ရှမစ်တိုရဲ့ဟာပါ။ ဟုတ်လား။',
+          },
+        ],
+      },
+    ],
+    greetingPhrases: [
+      {
+        id: 'c2-g1',
+        japanese: 'あのう。',
+        romaji: 'Ano.',
+        burmese: 'အဲ...ဟို... (အားနာ/ချီတုံချတုံ)',
+      },
+      {
+        id: 'c2-g1b',
+        japanese: 'えっ',
+        romaji: 'E?',
+        burmese: 'ဟင် (မထင်မှတ်ထားသောအရာကိုကြားလိုက်ရသောအခါ)',
+      },
+      {
+        id: 'c2-g2',
+        japanese: 'どうぞ。',
+        romaji: 'Dozo.',
+        burmese: 'ယူပါ/လက်ခံပါ',
+      },
+      {
+        id: 'c2-g3',
+        japanese: 'どうも ありがとうございます。',
+        romaji: 'Domo arigato gozaimasu.',
+        burmese: 'ကျေးဇူးအများကြီးတင်ပါတယ်',
+      },
+      {
+        id: 'c2-g4',
+        japanese: 'そうですか。',
+        romaji: 'So desu ka.',
+        burmese: 'ဟုတ်လား။',
+      },
+      {
+        id: 'c2-g5',
+        japanese: 'ちがいます。',
+        romaji: 'Chigaimasu.',
+        burmese: 'မဟုတ်ပါ/လွဲပါတယ်။',
+      },
+      {
+        id: 'c2-g6',
+        japanese: 'あ。',
+        romaji: 'A.',
+        burmese: 'အယ် (ရုတ်တရက်သတိပြုမိသောအခါ)',
+      },
+      {
+        id: 'c2-g7',
+        japanese: 'これから おせわに なります。',
+        romaji: 'Kore kara osewa ni narimasu.',
+        burmese: 'အခုချိန်ကစပြီး အကူအညီရယူပါရစေ',
+      },
+      {
+        id: 'c2-g8',
+        japanese: 'こちらこそ どうぞ よろしく おねがいします。',
+        romaji: 'Kochira koso dozo yoroshiku onegaishimasu.',
+        burmese: 'ကျွန်တော့်ဘက်ကလည်း ရင်းရင်းနှီးနှီးရှိချင်ပါတယ်',
+      },
+    ],
+    sourceText: `Updated from /pdf-text/chapter-2.txt with vocabulary, translation, reference, and grammar content.`,
   },
   {
     id: 'chapter-3',
     title: 'Chapter 3 - Places',
     focus: 'နေရာမေးခြင်း၊ ဘယ်မှာလဲ',
-    kana: {
-      hiragana: ['こ', 'ち', 'ら', 'ど', 'こ', 'え'],
-      katakana: ['コ', 'チ', 'ラ', 'ド', 'コ', 'エ'],
-      romaji: ['ko', 'chi', 'ra', 'do', 'ko', 'e'],
-    },
     vocabulary: [
       { id: 'c3-v1', japanese: 'ここ', hiragana: 'ここ', romaji: 'koko', burmesePronunciation: 'ကိုကို', meaning: 'ဒီနေရာ' },
       { id: 'c3-v2', japanese: 'そこ', hiragana: 'そこ', romaji: 'soko', burmesePronunciation: 'ဆိုကို', meaning: 'အဲဒီနေရာ' },
@@ -302,11 +808,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-4',
     title: 'Chapter 4 - Time & Schedule',
     focus: 'အချိန်၊ နေ့စဉ် လုပ်ရိုးလုပ်စဉ်',
-    kana: {
-      hiragana: ['い', 'ま', 'じ', 'ふん', 'はん', 'ご'],
-      katakana: ['イ', 'マ', 'ジ', 'フン', 'ハン', 'ゴ'],
-      romaji: ['i', 'ma', 'ji', 'fun', 'han', 'go'],
-    },
     vocabulary: [
       { id: 'c4-v1', japanese: 'いま', hiragana: 'いま', romaji: 'ima', burmesePronunciation: 'အိမာ', meaning: 'အခု' },
       { id: 'c4-v2', japanese: 'じ', hiragana: 'じ', romaji: 'ji', burmesePronunciation: 'ဂျိ', meaning: 'နာရီ' },
@@ -320,11 +821,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-5',
     title: 'Chapter 5 - Go/Come/Return',
     focus: 'သွားသည်၊ လာသည်၊ ပြန်သည်',
-    kana: {
-      hiragana: ['い', 'き', 'ま', 'す', 'き', 'ま', 'す'],
-      katakana: ['イ', 'キ', 'マ', 'ス', 'キ', 'マ', 'ス'],
-      romaji: ['i', 'ki', 'ma', 'su', 'ki', 'ma', 'su'],
-    },
     vocabulary: [
       { id: 'c5-v1', japanese: 'いきます', hiragana: 'いきます', romaji: 'ikimasu', burmesePronunciation: 'အိခိမတ်စ', meaning: 'သွားသည်' },
       { id: 'c5-v2', japanese: 'きます', hiragana: 'きます', romaji: 'kimasu', burmesePronunciation: 'ခိမတ်စ', meaning: 'လာသည်' },
@@ -338,11 +834,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-6',
     title: 'Chapter 6 - Eating & Drinking',
     focus: 'စားသောက်ခြင်း',
-    kana: {
-      hiragana: ['た', 'べ', 'ま', 'す', 'の', 'み'],
-      katakana: ['タ', 'ベ', 'マ', 'ス', 'ノ', 'ミ'],
-      romaji: ['ta', 'be', 'ma', 'su', 'no', 'mi'],
-    },
     vocabulary: [
       { id: 'c6-v1', japanese: 'たべます', hiragana: 'たべます', romaji: 'tabemasu', burmesePronunciation: 'တာဘဲမတ်စ', meaning: 'စားသည်' },
       { id: 'c6-v2', japanese: 'のみます', hiragana: 'のみます', romaji: 'nomimasu', burmesePronunciation: 'နိုမိမတ်စ', meaning: 'သောက်သည်' },
@@ -356,11 +847,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-7',
     title: 'Chapter 7 - Give & Receive',
     focus: 'ပေးခြင်း၊ လက်ခံခြင်း',
-    kana: {
-      hiragana: ['あ', 'げ', 'ま', 'す', 'も', 'ら'],
-      katakana: ['ア', 'ゲ', 'マ', 'ス', 'モ', 'ラ'],
-      romaji: ['a', 'ge', 'ma', 'su', 'mo', 'ra'],
-    },
     vocabulary: [
       { id: 'c7-v1', japanese: 'あげます', hiragana: 'あげます', romaji: 'agemasu', burmesePronunciation: 'အဂဲမတ်စ', meaning: 'ပေးသည်' },
       { id: 'c7-v2', japanese: 'もらいます', hiragana: 'もらいます', romaji: 'moraimasu', burmesePronunciation: 'မိုလိုင်မတ်စ', meaning: 'ရယူသည်' },
@@ -374,11 +860,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-8',
     title: 'Chapter 8 - Adjectives',
     focus: 'အရည်အသွေးဖော်ပြခြင်း',
-    kana: {
-      hiragana: ['お', 'お', 'き', 'い', 'ち', 'い', 'さ'],
-      katakana: ['オ', 'オ', 'キ', 'イ', 'チ', 'イ', 'サ'],
-      romaji: ['o', 'o', 'ki', 'i', 'chi', 'i', 'sa'],
-    },
     vocabulary: [
       { id: 'c8-v1', japanese: 'おおきい', hiragana: 'おおきい', romaji: 'okii', burmesePronunciation: 'အိုးခီး', meaning: 'ကြီးသည်' },
       { id: 'c8-v2', japanese: 'ちいさい', hiragana: 'ちいさい', romaji: 'chiisai', burmesePronunciation: 'ချီးစိုင်', meaning: 'သေးသည်' },
@@ -392,11 +873,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-9',
     title: 'Chapter 9 - Likes & Skills',
     focus: 'ကြိုက်နှစ်သက်မှု၊ ကျွမ်းကျင်မှု',
-    kana: {
-      hiragana: ['す', 'き', 'き', 'ら', 'い', 'じ', 'ょ'],
-      katakana: ['ス', 'キ', 'キ', 'ラ', 'イ', 'ジョ'],
-      romaji: ['su', 'ki', 'ki', 'ra', 'i', 'jo'],
-    },
     vocabulary: [
       { id: 'c9-v1', japanese: 'すき', hiragana: 'すき', romaji: 'suki', burmesePronunciation: 'စုခိ', meaning: 'ကြိုက်သည်' },
       { id: 'c9-v2', japanese: 'きらい', hiragana: 'きらい', romaji: 'kirai', burmesePronunciation: 'ခိလိုင်', meaning: 'မကြိုက်' },
@@ -410,11 +886,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-10',
     title: 'Chapter 10 - Location of Things',
     focus: 'ရှိနေရာဖော်ပြခြင်း',
-    kana: {
-      hiragana: ['う', 'え', 'し', 'た', 'な', 'か'],
-      katakana: ['ウ', 'エ', 'シ', 'タ', 'ナ', 'カ'],
-      romaji: ['u', 'e', 'shi', 'ta', 'na', 'ka'],
-    },
     vocabulary: [
       { id: 'c10-v1', japanese: 'うえ', hiragana: 'うえ', romaji: 'ue', burmesePronunciation: 'ဦအဲ', meaning: 'အပေါ်' },
       { id: 'c10-v2', japanese: 'した', hiragana: 'した', romaji: 'shita', burmesePronunciation: 'ရှိတာ', meaning: 'အောက်' },
@@ -428,11 +899,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-11',
     title: 'Chapter 11 - Quantity & Counting',
     focus: 'ရေတွက်ပုံနှင့် အရေအတွက်',
-    kana: {
-      hiragana: ['ひ', 'と', 'つ', 'ふ', 'た', 'つ'],
-      katakana: ['ヒ', 'ト', 'ツ', 'フ', 'タ', 'ツ'],
-      romaji: ['hi', 'to', 'tsu', 'fu', 'ta', 'tsu'],
-    },
     vocabulary: [
       { id: 'c11-v1', japanese: 'ひとつ', hiragana: 'ひとつ', romaji: 'hitotsu', burmesePronunciation: 'ဟိတိုဆု', meaning: 'တစ်ခု' },
       { id: 'c11-v2', japanese: 'ふたつ', hiragana: 'ふたつ', romaji: 'futatsu', burmesePronunciation: 'ဖုတာဆု', meaning: 'နှစ်ခု' },
@@ -446,11 +912,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-12',
     title: 'Chapter 12 - Past Tense',
     focus: 'ပြီးခဲ့သော လုပ်ရပ်များ',
-    kana: {
-      hiragana: ['き', 'の', 'う', 'きょ', 'う', 'あ', 'し'],
-      katakana: ['キ', 'ノ', 'ウ', 'キョ', 'ウ', 'ア', 'シ'],
-      romaji: ['ki', 'no', 'u', 'kyo', 'u', 'a', 'shi'],
-    },
     vocabulary: [
       { id: 'c12-v1', japanese: 'きのう', hiragana: 'きのう', romaji: 'kino', burmesePronunciation: 'ခိနို', meaning: 'မနေ့က' },
       { id: 'c12-v2', japanese: 'きょう', hiragana: 'きょう', romaji: 'kyo', burmesePronunciation: 'ကျိုး', meaning: 'ဒီနေ့' },
@@ -464,11 +925,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-13',
     title: 'Chapter 13 - Want to',
     focus: 'လုပ်ချင်သည်',
-    kana: {
-      hiragana: ['た', 'い', 'で', 'す', 'な', 'に'],
-      katakana: ['タ', 'イ', 'デ', 'ス', 'ナ', 'ニ'],
-      romaji: ['ta', 'i', 'de', 'su', 'na', 'ni'],
-    },
     vocabulary: [
       { id: 'c13-v1', japanese: 'いきたいです', hiragana: 'いきたいです', romaji: 'ikitai desu', burmesePronunciation: 'အိခိတိုင်းဒဲစု', meaning: 'သွားချင်တယ်' },
       { id: 'c13-v2', japanese: 'たべたいです', hiragana: 'たべたいです', romaji: 'tabetai desu', burmesePronunciation: 'တာဘဲတိုင်းဒဲစု', meaning: 'စားချင်တယ်' },
@@ -482,11 +938,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-14',
     title: 'Chapter 14 - Te-form (Requests/Sequence)',
     focus: 'တေ-ပုံစံ၊ အမိန့်ပျော့နှင့် လုပ်ဆောင်မှုအစဉ်',
-    kana: {
-      hiragana: ['て', 'く', 'だ', 'さ', 'い', 'ま'],
-      katakana: ['テ', 'ク', 'ダ', 'サ', 'イ', 'マ'],
-      romaji: ['te', 'ku', 'da', 'sa', 'i', 'ma'],
-    },
     vocabulary: [
       { id: 'c14-v1', japanese: 'みてください', hiragana: 'みてください', romaji: 'mite kudasai', burmesePronunciation: 'မိတဲ ခုဒါဆိုင်း', meaning: 'ကြည့်ပါ' },
       { id: 'c14-v2', japanese: 'よんでください', hiragana: 'よんでください', romaji: 'yonde kudasai', burmesePronunciation: 'ယွန်ဒဲ ခုဒါဆိုင်း', meaning: 'ဖတ်ပါ' },
@@ -500,11 +951,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-15',
     title: 'Chapter 15 - Progressive Form',
     focus: 'လုပ်နေသည် (〜ています)',
-    kana: {
-      hiragana: ['て', 'い', 'ま', 'す', 'い', 'ま'],
-      katakana: ['テ', 'イ', 'マ', 'ス', 'イ', 'マ'],
-      romaji: ['te', 'i', 'ma', 'su', 'i', 'ma'],
-    },
     vocabulary: [
       { id: 'c15-v1', japanese: 'たべています', hiragana: 'たべています', romaji: 'tabeteimasu', burmesePronunciation: 'တာဘဲတဲအိမတ်စ', meaning: 'စားနေသည်' },
       { id: 'c15-v2', japanese: 'べんきょうしています', hiragana: 'べんきょうしています', romaji: 'benkyoshiteimasu', burmesePronunciation: 'ဘဲန်ကျိုးရှိတဲအိမတ်စ', meaning: 'လေ့လာနေသည်' },
@@ -518,11 +964,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-16',
     title: 'Chapter 16 - Connect Sentences',
     focus: 'ဝါကျဆက်ခြင်း (〜て、〜て)',
-    kana: {
-      hiragana: ['て', 'そ', 'れ', 'か', 'ら', 'に'],
-      katakana: ['テ', 'ソ', 'レ', 'カ', 'ラ', 'ニ'],
-      romaji: ['te', 'so', 're', 'ka', 'ra', 'ni'],
-    },
     vocabulary: [
       { id: 'c16-v1', japanese: 'おきて、あさごはんをたべます', hiragana: 'おきて、あさごはんをたべます', romaji: 'okite, asagohan o tabemasu', burmesePronunciation: 'အိုခိတဲ ...', meaning: 'နိုးပြီး မနက်စာစားသည်' },
       { id: 'c16-v2', japanese: 'それから', hiragana: 'それから', romaji: 'sorekara', burmesePronunciation: 'ဆိုရေးကရာ', meaning: 'ပြီးတော့' },
@@ -536,11 +977,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-17',
     title: 'Chapter 17 - Permission / Prohibition',
     focus: 'လုပ်လို့ရ/မရ',
-    kana: {
-      hiragana: ['て', 'も', 'い', 'い', 'で', 'す'],
-      katakana: ['テ', 'モ', 'イ', 'イ', 'デ', 'ス'],
-      romaji: ['te', 'mo', 'i', 'i', 'de', 'su'],
-    },
     vocabulary: [
       { id: 'c17-v1', japanese: 'はいってもいいです', hiragana: 'はいってもいいです', romaji: 'haittemo ii desu', burmesePronunciation: 'ဟိုက်တဲမို အီးဒဲစု', meaning: 'ဝင်လို့ရတယ်' },
       { id: 'c17-v2', japanese: 'たばこをすってはいけません', hiragana: 'たばこをすってはいけません', romaji: 'tabako o sutte wa ikemasen', burmesePronunciation: 'တဘာကို ...', meaning: 'ဆေးလိပ်မသောက်ရ' },
@@ -554,11 +990,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-18',
     title: 'Chapter 18 - Ability',
     focus: 'လုပ်နိုင်စွမ်း',
-    kana: {
-      hiragana: ['で', 'き', 'ま', 'す', 'う', 'た'],
-      katakana: ['デ', 'キ', 'マ', 'ス', 'ウ', 'タ'],
-      romaji: ['de', 'ki', 'ma', 'su', 'u', 'ta'],
-    },
     vocabulary: [
       { id: 'c18-v1', japanese: 'できます', hiragana: 'できます', romaji: 'dekimasu', burmesePronunciation: 'ဒဲခိမတ်စ', meaning: 'လုပ်နိုင်သည်' },
       { id: 'c18-v2', japanese: 'にほんごができます', hiragana: 'にほんごができます', romaji: 'nihongo ga dekimasu', burmesePronunciation: 'နိဟွန်ဂိုဂ ဒဲခိမတ်စ', meaning: 'ဂျပန်စာပြောနိုင်သည်' },
@@ -572,11 +1003,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-19',
     title: 'Chapter 19 - Plain Form',
     focus: 'ရိုးရိုးပုံစံ (dictionary/plain)',
-    kana: {
-      hiragana: ['い', 'く', 'た', 'べ', 'る', 'み'],
-      katakana: ['イ', 'ク', 'タ', 'ベ', 'ル', 'ミ'],
-      romaji: ['i', 'ku', 'ta', 'be', 'ru', 'mi'],
-    },
     vocabulary: [
       { id: 'c19-v1', japanese: 'いく', hiragana: 'いく', romaji: 'iku', burmesePronunciation: 'အိခု', meaning: 'သွားသည် (plain)' },
       { id: 'c19-v2', japanese: 'たべる', hiragana: 'たべる', romaji: 'taberu', burmesePronunciation: 'တာဘဲရု', meaning: 'စားသည် (plain)' },
@@ -590,11 +1016,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-20',
     title: 'Chapter 20 - Casual Style',
     focus: 'မိတ်ဆွေစကားပုံစံ',
-    kana: {
-      hiragana: ['な', 'い', 'い', 'く', 'よ', 'ね'],
-      katakana: ['ナ', 'イ', 'イ', 'ク', 'ヨ', 'ネ'],
-      romaji: ['na', 'i', 'i', 'ku', 'yo', 'ne'],
-    },
     vocabulary: [
       { id: 'c20-v1', japanese: 'いかない', hiragana: 'いかない', romaji: 'ikanai', burmesePronunciation: 'အိခနိုင်း', meaning: 'မသွားဘူး (casual)' },
       { id: 'c20-v2', japanese: 'たべない', hiragana: 'たべない', romaji: 'tabenai', burmesePronunciation: 'တာဘဲနိုင်း', meaning: 'မစားဘူး (casual)' },
@@ -608,11 +1029,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-21',
     title: 'Chapter 21 - Thoughts & Opinions',
     focus: 'ထင်မြင်ချက်ပြောခြင်း',
-    kana: {
-      hiragana: ['と', 'お', 'も', 'い', 'ま', 'す'],
-      katakana: ['ト', 'オ', 'モ', 'イ', 'マ', 'ス'],
-      romaji: ['to', 'o', 'mo', 'i', 'ma', 'su'],
-    },
     vocabulary: [
       { id: 'c21-v1', japanese: 'おもいます', hiragana: 'おもいます', romaji: 'omoimasu', burmesePronunciation: 'အိုမိုင်းမတ်စ', meaning: 'ထင်သည်' },
       { id: 'c21-v2', japanese: 'いいます', hiragana: 'いいます', romaji: 'iimasu', burmesePronunciation: 'အီးမတ်စ', meaning: 'ပြောသည်' },
@@ -626,11 +1042,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-22',
     title: 'Chapter 22 - Relative Clauses',
     focus: 'နာမ်ကို ပြန်ဖော်ပြသော ဝါကျ',
-    kana: {
-      hiragana: ['こ', 'の', 'ひ', 'と', 'は', 'だ'],
-      katakana: ['コ', 'ノ', 'ヒ', 'ト', 'ハ', 'ダ'],
-      romaji: ['ko', 'no', 'hi', 'to', 'wa', 'da'],
-    },
     vocabulary: [
       { id: 'c22-v1', japanese: 'わたしがかったほん', hiragana: 'わたしがかったほん', romaji: 'watashi ga katta hon', burmesePronunciation: 'ဝတရှိဂ ...', meaning: 'ကျွန်တော်ဝယ်ခဲ့သော စာအုပ်' },
       { id: 'c22-v2', japanese: 'にほんでとったしゃしん', hiragana: 'にほんでとったしゃしん', romaji: 'nihon de totta shashin', burmesePronunciation: 'နိဟွန်ဒဲ ...', meaning: 'ဂျပန်မှာ ရိုက်ခဲ့သော ဓာတ်ပုံ' },
@@ -644,11 +1055,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-23',
     title: 'Chapter 23 - Conditionals (When/If)',
     focus: 'အခြေအနေပြဝါကျ',
-    kana: {
-      hiragana: ['と', 'き', 'あ', 'め', 'ふ', 'る'],
-      katakana: ['ト', 'キ', 'ア', 'メ', 'フ', 'ル'],
-      romaji: ['to', 'ki', 'a', 'me', 'fu', 'ru'],
-    },
     vocabulary: [
       { id: 'c23-v1', japanese: 'とき', hiragana: 'とき', romaji: 'toki', burmesePronunciation: 'တိုခိ', meaning: 'အချိန်' },
       { id: 'c23-v2', japanese: 'あめがふる', hiragana: 'あめがふる', romaji: 'ame ga furu', burmesePronunciation: 'အမဲဂ ဖုရု', meaning: 'မိုးရွာသည်' },
@@ -662,11 +1068,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-24',
     title: 'Chapter 24 - Giving/Receiving Actions',
     focus: 'လုပ်ပေးခြင်း၊ လုပ်ယူခြင်း',
-    kana: {
-      hiragana: ['く', 'れ', 'る', 'あ', 'げ', 'る'],
-      katakana: ['ク', 'レ', 'ル', 'ア', 'ゲ', 'ル'],
-      romaji: ['ku', 're', 'ru', 'a', 'ge', 'ru'],
-    },
     vocabulary: [
       { id: 'c24-v1', japanese: 'くれます', hiragana: 'くれます', romaji: 'kuremasu', burmesePronunciation: 'ခုရဲမတ်စ', meaning: 'ပေးပါသည် (to me/us)' },
       { id: 'c24-v2', japanese: 'あげます', hiragana: 'あげます', romaji: 'agemasu', burmesePronunciation: 'အဂဲမတ်စ', meaning: 'ပေးပါသည်' },
@@ -680,11 +1081,6 @@ const CHAPTERS: Chapter[] = [
     id: 'chapter-25',
     title: 'Chapter 25 - Potential/Assumptions',
     focus: 'ဖြစ်နိုင်ခြင်း၊ အယူအဆ',
-    kana: {
-      hiragana: ['か', 'も', 'し', 'れ', 'ま', 'せ'],
-      katakana: ['カ', 'モ', 'シ', 'レ', 'マ', 'セ'],
-      romaji: ['ka', 'mo', 'shi', 're', 'ma', 'se'],
-    },
     vocabulary: [
       { id: 'c25-v1', japanese: 'かもしれません', hiragana: 'かもしれません', romaji: 'kamoshiremasen', burmesePronunciation: 'ခမိုရှိရဲမဆဲန်', meaning: 'ဖြစ်နိုင်ပါသည်' },
       { id: 'c25-v2', japanese: 'たぶん', hiragana: 'たぶん', romaji: 'tabun', burmesePronunciation: 'တာဘွန်း', meaning: 'ဖြစ်ကောင်းဖြစ်နိုင်' },
