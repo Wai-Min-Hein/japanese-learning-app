@@ -77,11 +77,14 @@ export default function HomeScreen() {
               All Chapters
             </Text>
           </Pressable>
-          <View className="rounded-2xl border border-slate-300 px-4 py-4 dark:border-slate-700">
-            <Text className="text-base font-semibold text-slate-500 dark:text-slate-400">
-              Kanji (Unavilable)
+          <Pressable
+            className="rounded-2xl border border-sakura-700 px-4 py-4"
+            onPress={() => router.push("/kanji")}
+          >
+            <Text className="text-base font-semibold text-sakura-700">
+              N5 Kanji
             </Text>
-          </View>
+          </Pressable>
         </View>
       ) : null}
 
