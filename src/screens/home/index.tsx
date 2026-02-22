@@ -85,6 +85,14 @@ export default function HomeScreen() {
               N5 Kanji
             </Text>
           </Pressable>
+          <Pressable
+            className="rounded-2xl border border-emerald-700 px-4 py-4"
+            onPress={() => router.push("/grammar")}
+          >
+            <Text className="text-base font-semibold text-emerald-700">
+              Grammar
+            </Text>
+          </Pressable>
         </View>
       ) : null}
 

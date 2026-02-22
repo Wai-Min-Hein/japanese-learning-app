@@ -131,53 +131,6 @@ export default function ChapterDetailScreen() {
         </View>
       ) : null}
 
-      {chapter.grammarExplanation?.length ? (
-        <View className="gap-2 rounded-2xl bg-white dark:bg-slate-900 p-4">
-          <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">Grammar Explanation</Text>
-          {chapter.grammarExplanation.map((note, index) => (
-            <Text key={`${index}-${note}`} className="text-sm text-slate-700 dark:text-slate-300">
-              {index + 1}. {note}
-            </Text>
-          ))}
-        </View>
-      ) : null}
-
-      {chapter.grammarUsage?.length ? (
-        <View className="gap-2 rounded-2xl bg-white dark:bg-slate-900 p-4">
-          <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">Grammar Example Usage</Text>
-          {chapter.grammarUsage.map((usage) => (
-            <View key={usage.id} className="rounded-lg bg-slate-50 dark:bg-slate-800 p-3">
-              <Text className="text-sm font-semibold text-slate-900 dark:text-slate-100">{usage.pattern}</Text>
-              <Text className="text-xs text-slate-500 dark:text-slate-400">{usage.meaning}</Text>
-              {usage.examples.map((example, index) => (
-                <View key={`${usage.id}-${index}`} className="mt-2 rounded-md border border-slate-200 dark:border-slate-700 p-2">
-                  <Text className="text-sm text-slate-900 dark:text-slate-100">{example.japanese}</Text>
-                  <Text className="text-xs text-slate-500 dark:text-slate-400">{example.romaji}</Text>
-                  <Text className="text-sm text-slate-700 dark:text-slate-300">{example.burmese}</Text>
-                  <Pressable
-                    className="mt-2 rounded-md border border-sakura-700 px-2 py-1"
-                    onPress={() => void playJapaneseText(example.japanese)}
-                  >
-                    <Text className="text-center text-xs font-semibold text-sakura-700">Play example</Text>
-                  </Pressable>
-                </View>
-              ))}
-            </View>
-          ))}
-        </View>
-      ) : null}
-
-      {chapter.grammarTeachingNotes?.length ? (
-        <View className="gap-2 rounded-2xl bg-white dark:bg-slate-900 p-4">
-          <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">Essential Teaching Notes</Text>
-          {chapter.grammarTeachingNotes.map((note, index) => (
-            <Text key={`${index}-${note}`} className="text-sm text-slate-700 dark:text-slate-300">
-              • {note}
-            </Text>
-          ))}
-        </View>
-      ) : null}
-
       {chapter.greetingPhrases?.length ? (
         <View className="gap-2 rounded-2xl bg-white dark:bg-slate-900 p-4">
           <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">Greeting & Intro Phrases</Text>
