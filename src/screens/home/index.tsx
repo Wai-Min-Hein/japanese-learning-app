@@ -12,7 +12,7 @@ export default function HomeScreen() {
   const { isPlaying, playAllVocabulary, stop } = useVocabularyAudio();
   const router = useRouter();
   const [homeStep, setHomeStep] = useState<
-    "levels" | "n5-categories" | "n5-chapters"
+    "levels" | "n5-categories" | "n5-chapters" | "n3-categories"
   >("levels");
 
   const n5Chapters = useMemo(() => chapters, [chapters]);
@@ -56,6 +56,12 @@ export default function HomeScreen() {
               N4 (Unavilable)
             </Text>
           </View>
+          <Pressable
+            className="rounded-2xl border border-emerald-700 px-4 py-4"
+            onPress={() => setHomeStep("n3-categories")}
+          >
+            <Text className="text-base font-semibold text-emerald-700">N3</Text>
+          </Pressable>
         </View>
       ) : null}
 
@@ -129,6 +135,21 @@ export default function HomeScreen() {
                 ? "Stop Global Vocabulary Audio"
                 : "Play All Vocabulary (All Chapters)"}
             </Text>
+          </Pressable>
+        </View>
+      ) : null}
+
+      {homeStep === "n3-categories" ? (
+        <View className="gap-3">
+          <Pressable onPress={() => setHomeStep("levels")}>
+            <Text className="text-sm font-semibold text-sakura-700">← Back</Text>
+          </Pressable>
+          <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">N3</Text>
+          <Pressable
+            className="rounded-2xl bg-emerald-700 px-4 py-4"
+            onPress={() => router.push("/n3" as any)}
+          >
+            <Text className="text-base font-semibold text-white">All Units</Text>
           </Pressable>
         </View>
       ) : null}

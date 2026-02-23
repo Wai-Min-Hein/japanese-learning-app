@@ -43,12 +43,19 @@ export default function GrammarChapterDetailScreen() {
       {chapter.points.length ? (
         chapter.points.map((point) => (
           <View key={point.id} className="gap-2 rounded-2xl bg-white p-4 dark:bg-slate-900">
-            <Text className="text-base font-semibold text-slate-900 dark:text-slate-100">{point.title}</Text>
-            <Text className="text-sm text-slate-700 dark:text-slate-300">{point.detailNote}</Text>
+            <View className="rounded-lg bg-emerald-50 px-3 py-2 dark:bg-emerald-900/30">
+              <Text className="text-xs font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">Grammar Pattern</Text>
+              <Text className="text-base font-semibold text-emerald-900 dark:text-emerald-100">{point.title}</Text>
+            </View>
+            <View className="rounded-lg bg-sky-50 px-3 py-2 dark:bg-sky-900/30">
+              <Text className="text-xs font-semibold uppercase tracking-wide text-sky-700 dark:text-sky-300">Meaning / Note</Text>
+              <Text className="text-sm leading-6 text-sky-900 dark:text-sky-100">{point.detailNote}</Text>
+            </View>
 
             {point.usages.map((usage, index) => (
-              <View key={`${point.id}-${index}`} className="rounded-lg bg-slate-50 p-3 dark:bg-slate-800">
-                <Text className="text-sm font-semibold text-slate-900 dark:text-slate-100">{usage.japanese}</Text>
+              <View key={`${point.id}-${index}`} className="rounded-lg border-l-4 border-amber-500 bg-amber-50 p-3 dark:bg-amber-900/20">
+                <Text className="text-xs font-semibold uppercase tracking-wide text-amber-700 dark:text-amber-300">Usage</Text>
+                <Text className="mt-1 text-sm font-semibold text-slate-900 dark:text-slate-100">{usage.japanese}</Text>
                 {usage.romaji ? (
                   <Text className="text-xs text-slate-500 dark:text-slate-400">{usage.romaji}</Text>
                 ) : null}

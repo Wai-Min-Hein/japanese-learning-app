@@ -16,6 +16,7 @@ export type GrammarPoint = {
 export type GrammarChapter = {
   chapterId: number;
   title: string;
+  context: string[];
   points: GrammarPoint[];
 };
 
@@ -117,6 +118,7 @@ export function getGrammarChapters(): GrammarChapter[] {
     chapterMap.set(i, {
       chapterId: i,
       title: `Chapter ${i}`,
+      context: [],
       points: [],
     });
   }
@@ -131,6 +133,7 @@ export function getGrammarChapters(): GrammarChapter[] {
     }
 
     slot.title = chapter.chapterTitle;
+    slot.context = [...(slot.context ?? []), ...chapter.context.filter(Boolean)];
     const chapterContext = firstBurmeseText(chapter.context);
 
     chapter.points.forEach((usage) => {
