@@ -52,17 +52,9 @@ export default function KanjiDetailScreen() {
         )}
       </View>
 
-      <View className="flex-row gap-3">
-        <Pressable className="flex-1 rounded-xl border border-sakura-700 px-4 py-3" onPress={() => router.back()}>
-          <Text className="text-center font-semibold text-sakura-700">Back to Kanji List</Text>
-        </Pressable>
-        <Pressable
-          className="flex-1 rounded-xl bg-sakura-700 px-4 py-3"
-          onPress={() => router.push('/kanji/compounds')}
-        >
-          <Text className="text-center font-semibold text-white">Open Compounds</Text>
-        </Pressable>
-      </View>
+      <Pressable className="rounded-xl border border-sakura-700 px-4 py-3" onPress={() => router.back()}>
+        <Text className="text-center font-semibold text-sakura-700">Back to Kanji List</Text>
+      </Pressable>
     </ScrollView>
   );
 }

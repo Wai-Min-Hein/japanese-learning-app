@@ -9,7 +9,7 @@ export default function N3UnitDetailScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
   const unit = useMemo(() => getN3UnitById(id ?? ''), [id]);
-  const { isPlaying, playAllVocabulary, playVocabulary, stop } = useVocabularyAudio();
+  const { isPlaying, playTextSequence, stop } = useVocabularyAudio();
 
   if (!unit) {
     return (
@@ -38,7 +38,11 @@ export default function N3UnitDetailScreen() {
               stop();
               return;
             }
-            void playAllVocabulary(unit.vocabulary);
+            const segments = unit.vocabulary.flatMap((item) => {
+              const japaneseToPlay = item.hiragana?.trim() ? item.hiragana : item.japanese;
+              return [{ text: japaneseToPlay, language: 'ja-JP', rate: 0.9 }];
+            });
+            void playTextSequence(segments);
           }}
         >
           <Text className="text-center font-semibold text-white">{isPlaying ? 'Stop Playing' : 'Play All Vocabulary'}</Text>
@@ -55,7 +59,14 @@ export default function N3UnitDetailScreen() {
           {item.hiragana ? <Text className="text-sm text-slate-700 dark:text-slate-300">Hiragana: {item.hiragana}</Text> : null}
           <Text className="text-sm text-slate-700 dark:text-slate-300">Meaning: {item.meaning}</Text>
 
-          <Pressable className="mt-1 rounded-lg border border-sakura-700 px-3 py-2" onPress={() => void playVocabulary(item)}>
+          <Pressable
+            className="mt-1 rounded-lg border border-sakura-700 px-3 py-2"
+            onPress={() =>
+              void playTextSequence([
+                { text: item.hiragana?.trim() ? item.hiragana : item.japanese, language: 'ja-JP', rate: 0.9 },
+              ])
+            }
+          >
             <Text className="text-center font-semibold text-sakura-700">Play {item.japanese}</Text>
           </Pressable>
         </View>

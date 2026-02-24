@@ -42,17 +42,9 @@ export default function KanjiListScreen() {
           placeholderTextColor="#94a3b8"
           className="rounded-xl border border-slate-300 px-3 py-2 text-slate-900 dark:border-slate-700 dark:text-slate-100"
         />
-        <View className="flex-row gap-3">
-          <Pressable className="flex-1 rounded-xl border border-sakura-700 px-4 py-3" onPress={() => router.back()}>
-            <Text className="text-center font-semibold text-sakura-700">Back</Text>
-          </Pressable>
-          <Pressable
-            className="flex-1 rounded-xl bg-sakura-700 px-4 py-3"
-            onPress={() => router.push('/kanji/compounds')}
-          >
-            <Text className="text-center font-semibold text-white">Kanji Compounds</Text>
-          </Pressable>
-        </View>
+        <Pressable className="rounded-xl border border-sakura-700 px-4 py-3" onPress={() => router.back()}>
+          <Text className="text-center font-semibold text-sakura-700">Back</Text>
+        </Pressable>
       </View>
 
       <View className="gap-3">

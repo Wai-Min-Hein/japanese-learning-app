@@ -1,25 +1,82 @@
 import { useRouter } from "expo-router";
 import { useMemo, useState } from "react";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
 
 import BarChart from "@/components/bar-chart";
 import { useAppState } from "@/hooks/use-app-state";
 import { useVocabularyAudio } from "@/hooks/use-vocabulary-audio";
 import { ChapterCard } from "@/screens/home/card";
+import { getN3Units } from "@/server/n3-units-db";
 
 export default function HomeScreen() {
   const { chapters, streakDays } = useAppState();
   const { isPlaying, playAllVocabulary, stop } = useVocabularyAudio();
   const router = useRouter();
+  const [allLevelsQuery, setAllLevelsQuery] = useState("");
+  const [n5Query, setN5Query] = useState("");
   const [homeStep, setHomeStep] = useState<
     "levels" | "n5-categories" | "n5-chapters" | "n3-categories"
   >("levels");
 
   const n5Chapters = useMemo(() => chapters, [chapters]);
+  const n3Units = useMemo(() => getN3Units(), []);
+  const n5VocabItems = useMemo(
+    () =>
+      n5Chapters.flatMap((chapter) =>
+        chapter.vocabulary.map((item) => ({
+          ...item,
+          source: chapter.title,
+        })),
+      ),
+    [n5Chapters],
+  );
   const allVocab = useMemo(
     () => n5Chapters.flatMap((chapter) => chapter.vocabulary),
     [n5Chapters],
   );
+  const allLevelsVocab = useMemo(
+    () => [
+      ...n5Chapters.flatMap((chapter) =>
+        chapter.vocabulary.map((item) => ({
+          ...item,
+          level: "N5",
+          source: chapter.title,
+        })),
+      ),
+      ...n3Units.flatMap((unit) =>
+        unit.vocabulary.map((item) => ({
+          ...item,
+          level: "N3",
+          source: unit.title,
+        })),
+      ),
+    ],
+    [n5Chapters, n3Units],
+  );
+  const filteredAllLevels = useMemo(() => {
+    const q = allLevelsQuery.trim().toLowerCase();
+    if (!q) return [];
+    return allLevelsVocab
+      .filter(
+        (item) =>
+          item.japanese.toLowerCase().includes(q) ||
+          item.hiragana.toLowerCase().includes(q) ||
+          item.meaning.toLowerCase().includes(q),
+      )
+      .slice(0, 80);
+  }, [allLevelsQuery, allLevelsVocab]);
+  const filteredN5Vocab = useMemo(() => {
+    const q = n5Query.trim().toLowerCase();
+    if (!q) return [];
+    return n5VocabItems
+      .filter(
+        (item) =>
+          item.japanese.toLowerCase().includes(q) ||
+          item.hiragana.toLowerCase().includes(q) ||
+          item.meaning.toLowerCase().includes(q),
+      )
+      .slice(0, 80);
+  }, [n5Query, n5VocabItems]);
 
   return (
     <ScrollView
@@ -39,6 +96,29 @@ export default function HomeScreen() {
       </View>
 
       <BarChart values={[15, 30, 20, 40, 25, 10, 35]} />
+
+      {homeStep === "levels" ? (
+        <View className="gap-2 rounded-2xl border border-blue-700 bg-white p-4 dark:bg-slate-900">
+          <Text className="text-sm font-semibold text-blue-700">
+            All Levels Vocab Search
+          </Text>
+          <TextInput
+            value={allLevelsQuery}
+            onChangeText={setAllLevelsQuery}
+            placeholder="Search by kanji / hiragana / burmese"
+            placeholderTextColor="#94a3b8"
+            className="rounded-xl border border-slate-300 px-3 py-2 text-slate-900 dark:border-slate-700 dark:text-slate-100"
+          />
+          {filteredAllLevels.map((item) => (
+            <View key={`${item.level}-${item.id}`} className="rounded-lg bg-slate-50 px-3 py-2 dark:bg-slate-800">
+              <Text className="text-xs font-semibold text-emerald-700">{item.level} · {item.source}</Text>
+              <Text className="text-sm font-semibold text-slate-900 dark:text-slate-100">{item.japanese}</Text>
+              <Text className="text-xs text-slate-600 dark:text-slate-300">{item.hiragana}</Text>
+              <Text className="text-xs text-slate-700 dark:text-slate-200">{item.meaning}</Text>
+            </View>
+          ))}
+        </View>
+      ) : null}
 
       {homeStep === "levels" ? (
         <View className="gap-3">
@@ -88,7 +168,7 @@ export default function HomeScreen() {
             onPress={() => router.push("/kanji")}
           >
             <Text className="text-base font-semibold text-sakura-700">
-              N5 Kanji
+              Kanji
             </Text>
           </Pressable>
           <Pressable
@@ -112,6 +192,26 @@ export default function HomeScreen() {
           <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">
             N5 Chapters
           </Text>
+          <View className="gap-2 rounded-2xl border border-blue-700 bg-white p-4 dark:bg-slate-900">
+            <Text className="text-sm font-semibold text-blue-700">
+              N5 Vocab Search
+            </Text>
+            <TextInput
+              value={n5Query}
+              onChangeText={setN5Query}
+              placeholder="Search by kanji / hiragana / burmese"
+              placeholderTextColor="#94a3b8"
+              className="rounded-xl border border-slate-300 px-3 py-2 text-slate-900 dark:border-slate-700 dark:text-slate-100"
+            />
+            {filteredN5Vocab.map((item) => (
+              <View key={item.id} className="rounded-lg bg-slate-50 px-3 py-2 dark:bg-slate-800">
+                <Text className="text-xs font-semibold text-emerald-700">{item.source}</Text>
+                <Text className="text-sm font-semibold text-slate-900 dark:text-slate-100">{item.japanese}</Text>
+                <Text className="text-xs text-slate-600 dark:text-slate-300">{item.hiragana}</Text>
+                <Text className="text-xs text-slate-700 dark:text-slate-200">{item.meaning}</Text>
+              </View>
+            ))}
+          </View>
           {n5Chapters.map((chapter) => (
             <ChapterCard
               key={chapter.id}

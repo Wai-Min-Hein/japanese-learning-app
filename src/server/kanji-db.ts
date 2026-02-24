@@ -1,4 +1,4 @@
-import { GENERATED_N5_KANJI, GENERATED_N5_KANJI_COMPOUNDS } from './generated-kanji';
+import { GENERATED_N5_KANJI } from './generated-kanji';
 
 export type N5KanjiCompound = {
   id: string;
@@ -30,21 +30,10 @@ const N5_KANJI: N5Kanji[] = GENERATED_N5_KANJI.map((item) => ({
   })),
 }));
 
-const N5_KANJI_COMPOUNDS: N5KanjiCompound[] = GENERATED_N5_KANJI_COMPOUNDS.map((entry) => ({
-  id: entry.id,
-  compound: entry.compound,
-  reading: entry.reading,
-  meaning: entry.meaning,
-}));
-
 export function getN5KanjiList(): N5Kanji[] {
   return N5_KANJI;
 }
 
 export function getN5KanjiById(id: string): N5Kanji | undefined {
   return N5_KANJI.find((item) => item.id === id);
-}
-
-export function getN5KanjiCompounds(): N5KanjiCompound[] {
-  return N5_KANJI_COMPOUNDS;
 }
