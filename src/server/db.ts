@@ -194,9 +194,9 @@ const CHAPTERS: Chapter[] = [
       { id: 'c1-v18', japanese: 'どなた', hiragana: 'どなた', romaji: 'donata', burmesePronunciation: '', meaning: 'ဘယ်သူ (ယဉ်ကျေး)' },
       { id: 'c1-v19', japanese: '～さい', hiragana: 'さい', romaji: 'sai', burmesePronunciation: '', meaning: 'အသက် -နှစ်' },
       { id: 'c1-v20', japanese: 'なんさい', hiragana: 'なんさい', romaji: 'nansai', burmesePronunciation: '', meaning: 'အသက် ဘယ်နှနှစ်' },
+      { id: 'c1-v21', japanese: 'おいくつ', hiragana: 'おいくつ', romaji: 'oikutsu', burmesePronunciation: '', meaning: 'အသက် ဘယ်နှနှစ် (ယဉ်ကျေး)' },
       { id: 'c1-v22', japanese: 'はい', hiragana: 'はい', romaji: 'hai', burmesePronunciation: '', meaning: 'ဟုတ်ကဲ့' },
       { id: 'c1-v23', japanese: 'いいえ', hiragana: 'いいえ', romaji: 'iie', burmesePronunciation: '', meaning: 'ဟင့်အင်း' },
-      { id: 'c1-v24', japanese: 'おいくつ', hiragana: 'おいくつ', romaji: 'oikutsu', burmesePronunciation: '', meaning: 'အသက် ဘယ်နှနှစ် (ယဉ်ကျေး)' },
       { id: 'c1-v25', japanese: 'はじめまして', hiragana: 'はじめまして', romaji: 'hajimemashite', burmesePronunciation: '', meaning: 'တွေ့ရတာ ဝမ်းသာပါတယ်' },
       { id: 'c1-v26', japanese: '～からきました', hiragana: 'からきました', romaji: 'kara kimashita', burmesePronunciation: '', meaning: '~က/မှ လာပါတယ်' },
       { id: 'c1-v27', japanese: 'どうぞよろしくおねがいします', hiragana: 'どうぞよろしくおねがいします', romaji: 'dozo yoroshiku onegaishimasu', burmesePronunciation: '', meaning: 'ရင်းရင်းနှီးနှီး ဆက်ဆံပါ' },
@@ -504,6 +504,62 @@ const CHAPTERS: Chapter[] = [
       { id: 'c2-v36', japanese: 'なん', hiragana: 'なん', romaji: 'nan', burmesePronunciation: '', meaning: 'ဘာ/ဘယ်ဟာ' },
       { id: 'c2-v37', japanese: 'そう', hiragana: 'そう', romaji: 'so', burmesePronunciation: '', meaning: 'အဲဒီလို' },
     ],
+    greetingPhrases: [
+      {
+        id: 'c2-g1',
+        japanese: 'あのう。',
+        romaji: 'Ano.',
+        burmese: 'အဲ...ဟို... (အားနာ/ချီတုံချတုံ)',
+      },
+      {
+        id: 'c2-g1b',
+        japanese: 'えっ',
+        romaji: 'E?',
+        burmese: 'ဟင် (မထင်မှတ်ထားသောအရာကိုကြားလိုက်ရသောအခါ)',
+      },
+      {
+        id: 'c2-g2',
+        japanese: 'どうぞ。',
+        romaji: 'Dozo.',
+        burmese: 'ယူပါ/လက်ခံပါ (ပစ္စည်းတစ်စုံတစ်ခုကို လက်ခံယူစေလိုသောအခါမျိုးတွင် အသုံးပြုသည်။)',
+      },
+      {
+        id: 'c2-g3',
+        japanese: 'どうも ありがとうございます。',
+        romaji: 'Domo arigato gozaimasu.',
+        burmese: 'ကျေးဇူးအများကြီးတင်ပါတယ်',
+      },
+      {
+        id: 'c2-g4',
+        japanese: 'そうですか。',
+        romaji: 'So desu ka.',
+        burmese: 'ဟုတ်လား။',
+      },
+      {
+        id: 'c2-g5',
+        japanese: 'ちがいます。',
+        romaji: 'Chigaimasu.',
+        burmese: 'မဟုတ်ပါ/လွဲပါတယ်။',
+      },
+      {
+        id: 'c2-g6',
+        japanese: 'あ。',
+        romaji: 'A.',
+        burmese: 'အယ် (ရုတ်တရက်သတိပြုမိသောအခါ)',
+      },
+      {
+        id: 'c2-g7',
+        japanese: 'これから おせわに なります。',
+        romaji: 'Kore kara osewa ni narimasu.',
+        burmese: 'အခုချိန်ကစပြီး အကူအညီရယူပါရစေ ',
+      },
+      {
+        id: 'c2-g8',
+        japanese: 'こちらこそ どうぞ よろしく おねがいします。',
+        romaji: 'Kochira koso dozo yoroshiku onegaishimasu.',
+        burmese: 'ကျွန်တော့်ဘက်ကလည်း ရင်းရင်းနှီးနှီးရှိချင်ပါတယ်.   ([どうぞ] よろしく [おねがいします]。ကိုပြန်၍တုံ့ပြန်ခြင်း)',
+      },
+    ],
     translations: [
       {
         id: 'c2-t1',
@@ -718,62 +774,7 @@ const CHAPTERS: Chapter[] = [
         ],
       },
     ],
-    greetingPhrases: [
-      {
-        id: 'c2-g1',
-        japanese: 'あのう。',
-        romaji: 'Ano.',
-        burmese: 'အဲ...ဟို... (အားနာ/ချီတုံချတုံ)',
-      },
-      {
-        id: 'c2-g1b',
-        japanese: 'えっ',
-        romaji: 'E?',
-        burmese: 'ဟင် (မထင်မှတ်ထားသောအရာကိုကြားလိုက်ရသောအခါ)',
-      },
-      {
-        id: 'c2-g2',
-        japanese: 'どうぞ。',
-        romaji: 'Dozo.',
-        burmese: 'ယူပါ/လက်ခံပါ',
-      },
-      {
-        id: 'c2-g3',
-        japanese: 'どうも ありがとうございます。',
-        romaji: 'Domo arigato gozaimasu.',
-        burmese: 'ကျေးဇူးအများကြီးတင်ပါတယ်',
-      },
-      {
-        id: 'c2-g4',
-        japanese: 'そうですか。',
-        romaji: 'So desu ka.',
-        burmese: 'ဟုတ်လား။',
-      },
-      {
-        id: 'c2-g5',
-        japanese: 'ちがいます。',
-        romaji: 'Chigaimasu.',
-        burmese: 'မဟုတ်ပါ/လွဲပါတယ်။',
-      },
-      {
-        id: 'c2-g6',
-        japanese: 'あ。',
-        romaji: 'A.',
-        burmese: 'အယ် (ရုတ်တရက်သတိပြုမိသောအခါ)',
-      },
-      {
-        id: 'c2-g7',
-        japanese: 'これから おせわに なります。',
-        romaji: 'Kore kara osewa ni narimasu.',
-        burmese: 'အခုချိန်ကစပြီး အကူအညီရယူပါရစေ',
-      },
-      {
-        id: 'c2-g8',
-        japanese: 'こちらこそ どうぞ よろしく おねがいします。',
-        romaji: 'Kochira koso dozo yoroshiku onegaishimasu.',
-        burmese: 'ကျွန်တော့်ဘက်ကလည်း ရင်းရင်းနှီးနှီးရှိချင်ပါတယ်',
-      },
-    ],
+    
     // sourceText: `Updated from /pdf-text/chapter-2.txt with vocabulary, translation, reference, and grammar content.`,
   },
   {
