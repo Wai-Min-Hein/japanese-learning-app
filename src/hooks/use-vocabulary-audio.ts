@@ -63,6 +63,12 @@ function speakOnce(text: string, language: string, rate = 0.9) {
   });
 }
 
+function wait(ms: number) {
+  return new Promise<void>((resolve) => {
+    setTimeout(() => resolve(), ms);
+  });
+}
+
 type SpeechSegment = {
   text: string;
   language: string;
@@ -113,9 +119,15 @@ export function useVocabularyAudio() {
     Speech.stop();
     setIsPlaying(true);
 
-    for (const item of items) {
+    for (let index = 0; index < items.length; index += 1) {
       if (runId !== activeRunRef.current) return;
-      await speakOnce(normalizeSpeechText(item.japanese), 'ja-JP');
+      await speakOnce(normalizeSpeechText(items[index].japanese), 'ja-JP');
+      if (runId !== activeRunRef.current) return;
+
+      const hasNextItem = index < items.length - 1;
+      if (hasNextItem) {
+        await wait(1000);
+      }
     }
 
     if (runId === activeRunRef.current) {
@@ -129,11 +141,18 @@ export function useVocabularyAudio() {
     Speech.stop();
     setIsPlaying(true);
 
-    for (const segment of segments) {
+    for (let index = 0; index < segments.length; index += 1) {
       if (runId !== activeRunRef.current) return;
+      const segment = segments[index];
       const normalized = normalizeSpeechTextByLanguage(segment.text, segment.language);
       if (!normalized) continue;
       await speakOnce(normalized, segment.language, segment.rate ?? 0.9);
+      if (runId !== activeRunRef.current) return;
+
+      const hasNextSegment = index < segments.length - 1;
+      if (hasNextSegment) {
+        await wait(1000);
+      }
     }
 
     if (runId === activeRunRef.current) {

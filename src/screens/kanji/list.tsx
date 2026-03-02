@@ -26,6 +26,18 @@ export default function KanjiListScreen() {
 
   return (
     <ScrollView className="flex-1 bg-slate-100 dark:bg-slate-950" contentContainerClassName="gap-4 p-5">
+      <View className="flex-row flex-wrap items-center gap-1 pt-10">
+        <Pressable onPress={() => router.push('/')}>
+          <Text className="text-base font-semibold text-sakura-700">Home</Text>
+        </Pressable>
+        <Text className="text-base text-slate-500">›</Text>
+        <Pressable onPress={() => router.back()}>
+          <Text className="text-base font-semibold text-sakura-700">N5</Text>
+        </Pressable>
+        <Text className="text-base text-slate-500">›</Text>
+        <Text className="text-base font-semibold text-slate-700 dark:text-slate-300">Kanji</Text>
+      </View>
+
       <View className="rounded-2xl bg-sakura-700 p-5">
         <Text className="text-2xl font-bold text-white">N5 Kanji List</Text>
         <Text className="mt-1 text-sm text-rose-100">
@@ -42,9 +54,6 @@ export default function KanjiListScreen() {
           placeholderTextColor="#94a3b8"
           className="rounded-xl border border-slate-300 px-3 py-2 text-slate-900 dark:border-slate-700 dark:text-slate-100"
         />
-        <Pressable className="rounded-xl border border-sakura-700 px-4 py-3" onPress={() => router.back()}>
-          <Text className="text-center font-semibold text-sakura-700">Back</Text>
-        </Pressable>
       </View>
 
       <View className="gap-3">

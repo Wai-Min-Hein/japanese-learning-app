@@ -85,17 +85,14 @@ export default function HomeScreen() {
     >
       <View className="rounded-2xl bg-sakura-700 p-5">
         <Text className="text-2xl font-bold text-white">
-          ဂျပန်စာ Chapter Navigator
+          Japanese
         </Text>
         <Text className="mt-1 text-sm text-rose-100">
-          Burmese absolute beginners အတွက်
-        </Text>
-        <Text className="mt-3 text-sm font-semibold text-white">
-          Streak: {streakDays} days
+          For Burmese Learners
         </Text>
       </View>
 
-      <BarChart values={[15, 30, 20, 40, 25, 10, 35]} />
+      {/* <BarChart values={[15, 30, 20, 40, 25, 10, 35]} /> */}
 
       {homeStep === "levels" ? (
         <View className="gap-2 rounded-2xl border border-blue-700 bg-white p-4 dark:bg-slate-900">
@@ -147,11 +144,13 @@ export default function HomeScreen() {
 
       {homeStep === "n5-categories" ? (
         <View className="gap-3">
-          <Pressable onPress={() => setHomeStep("levels")}>
-            <Text className="text-sm font-semibold text-sakura-700">
-              ← Back
-            </Text>
-          </Pressable>
+          <View className="flex-row flex-wrap items-center gap-1">
+            <Pressable onPress={() => setHomeStep("levels")}>
+              <Text className="text-base font-semibold text-sakura-700">Levels</Text>
+            </Pressable>
+            <Text className="text-base text-slate-500">›</Text>
+            <Text className="text-base font-semibold text-slate-700 dark:text-slate-300">N5</Text>
+          </View>
           <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">
             N5
           </Text>
@@ -184,11 +183,17 @@ export default function HomeScreen() {
 
       {homeStep === "n5-chapters" ? (
         <View className="gap-3">
-          <Pressable onPress={() => setHomeStep("n5-categories")}>
-            <Text className="text-sm font-semibold text-sakura-700">
-              ← Back
-            </Text>
-          </Pressable>
+          <View className="flex-row flex-wrap items-center gap-1">
+            <Pressable onPress={() => setHomeStep("levels")}>
+              <Text className="text-base font-semibold text-sakura-700">Levels</Text>
+            </Pressable>
+            <Text className="text-base text-slate-500">›</Text>
+            <Pressable onPress={() => setHomeStep("n5-categories")}>
+              <Text className="text-base font-semibold text-sakura-700">N5</Text>
+            </Pressable>
+            <Text className="text-base text-slate-500">›</Text>
+            <Text className="text-base font-semibold text-slate-700 dark:text-slate-300">All Chapters</Text>
+          </View>
           <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">
             N5 Chapters
           </Text>
@@ -241,9 +246,13 @@ export default function HomeScreen() {
 
       {homeStep === "n3-categories" ? (
         <View className="gap-3">
-          <Pressable onPress={() => setHomeStep("levels")}>
-            <Text className="text-sm font-semibold text-sakura-700">← Back</Text>
-          </Pressable>
+          <View className="flex-row flex-wrap items-center gap-1">
+            <Pressable onPress={() => setHomeStep("levels")}>
+              <Text className="text-base font-semibold text-sakura-700">Levels</Text>
+            </Pressable>
+            <Text className="text-base text-slate-500">›</Text>
+            <Text className="text-base font-semibold text-slate-700 dark:text-slate-300">N3</Text>
+          </View>
           <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">N3</Text>
           <Pressable
             className="rounded-2xl bg-emerald-700 px-4 py-4"
