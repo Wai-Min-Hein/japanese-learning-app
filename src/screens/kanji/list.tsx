@@ -1,12 +1,12 @@
-import { useMemo, useState } from 'react';
-import { useRouter } from 'expo-router';
-import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { useRouter } from "expo-router";
+import { useMemo, useState } from "react";
+import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
 
-import { getN5KanjiList } from '@/server/kanji-db';
+import { getN5KanjiList } from "@/server/kanji-db";
 
 export default function KanjiListScreen() {
   const router = useRouter();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const kanjiList = useMemo(() => getN5KanjiList(), []);
 
   const filtered = useMemo(() => {
@@ -25,17 +25,22 @@ export default function KanjiListScreen() {
   }, [kanjiList, query]);
 
   return (
-    <ScrollView className="flex-1 bg-slate-100 dark:bg-slate-950" contentContainerClassName="gap-4 p-5">
-      <View className="flex-row flex-wrap items-center gap-1 pt-10">
-        <Pressable onPress={() => router.push('/')}>
+    <ScrollView
+      className="flex-1 bg-slate-100 dark:bg-slate-950"
+      contentContainerClassName="gap-4 p-5"
+    >
+      <View className="flex-row flex-wrap items-center gap-1 pt-6">
+        <Pressable onPress={() => router.push("/")}>
           <Text className="text-base font-semibold text-sakura-700">Home</Text>
         </Pressable>
         <Text className="text-base text-slate-500">›</Text>
-        <Pressable onPress={() => router.back()}>
+        <Pressable onPress={() => router.push("/")}>
           <Text className="text-base font-semibold text-sakura-700">N5</Text>
         </Pressable>
         <Text className="text-base text-slate-500">›</Text>
-        <Text className="text-base font-semibold text-slate-700 dark:text-slate-300">Kanji</Text>
+        <Text className="text-base font-semibold text-slate-700 dark:text-slate-300">
+          Kanji
+        </Text>
       </View>
 
       <View className="rounded-2xl bg-sakura-700 p-5">
@@ -46,7 +51,9 @@ export default function KanjiListScreen() {
       </View>
 
       <View className="gap-3 rounded-2xl bg-white p-4 dark:bg-slate-900">
-        <Text className="text-sm font-semibold text-slate-900 dark:text-slate-100">Search kanji / reading / meaning</Text>
+        <Text className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+          Search kanji / reading / meaning
+        </Text>
         <TextInput
           value={query}
           onChangeText={setQuery}
@@ -68,9 +75,15 @@ export default function KanjiListScreen() {
                 <Text className="text-3xl text-white">{item.kanji}</Text>
               </View>
               <View className="flex-1">
-                <Text className="text-sm text-slate-500 dark:text-slate-400">No. {item.index}</Text>
-                <Text className="text-base font-semibold text-slate-900 dark:text-slate-100">{item.readings}</Text>
-                <Text className="text-sm text-slate-700 dark:text-slate-300">{item.meaning}</Text>
+                <Text className="text-sm text-slate-500 dark:text-slate-400">
+                  No. {item.index}
+                </Text>
+                <Text className="text-base font-semibold text-slate-900 dark:text-slate-100">
+                  {item.readings}
+                </Text>
+                <Text className="text-sm text-slate-700 dark:text-slate-300">
+                  {item.meaning}
+                </Text>
               </View>
               <Text className="text-xl text-sakura-700">›</Text>
             </View>

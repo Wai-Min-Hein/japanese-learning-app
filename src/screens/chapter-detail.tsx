@@ -69,17 +69,17 @@ export default function ChapterDetailScreen() {
   }
 
   return (
-    <ScrollView className="flex-1 bg-slate-100 dark:bg-slate-950" contentContainerClassName="gap-4 px-5 pb-5 pt-10">
-      <View className="flex-row flex-wrap items-center gap-1 pt-10">
+    <ScrollView className="flex-1 bg-slate-100 dark:bg-slate-950" contentContainerClassName="gap-4 px-5 pb-5 pt-6">
+      <View className="flex-row flex-wrap items-center gap-1 pt-6">
         <Pressable onPress={() => router.push('/')}>
           <Text className="text-base font-semibold text-sakura-700">Home</Text>
         </Pressable>
         <Text className="text-base text-slate-500">›</Text>
-        <Pressable onPress={() => router.back()}>
+        <Pressable onPress={() => router.push('/')}>
           <Text className="text-base font-semibold text-sakura-700">N5</Text>
         </Pressable>
         <Text className="text-base text-slate-500">›</Text>
-        <Pressable onPress={() => router.back()}>
+        <Pressable onPress={() => router.push('/')}>
           <Text className="text-base font-semibold text-sakura-700">All Chapters</Text>
         </Pressable>
         <Text className="text-base text-slate-500">›</Text>
