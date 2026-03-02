@@ -31,7 +31,10 @@ export default function HomeScreen() {
     [n5Chapters],
   );
   const allVocab = useMemo(
-    () => n5Chapters.flatMap((chapter) => chapter.vocabulary),
+    () =>
+      n5Chapters
+        .filter((chapter) => chapter.id !== "chapter-0")
+        .flatMap((chapter) => chapter.vocabulary),
     [n5Chapters],
   );
   const allLevelsVocab = useMemo(
