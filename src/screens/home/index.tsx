@@ -333,9 +333,9 @@ function SearchPanel({
           placeholderTextColor="#93a1b8"
           style={styles.searchInput}
         />
-        <Pressable style={styles.searchButton}>
+        {/* <Pressable style={styles.searchButton}>
           <Text style={styles.searchButtonText}>Search</Text>
-        </Pressable>
+        </Pressable> */}
       </View>
       {results.length ? (
         <View style={styles.resultsPanel}>
