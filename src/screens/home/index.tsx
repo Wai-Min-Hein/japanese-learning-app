@@ -1,6 +1,6 @@
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
-import { useMemo, useState } from "react";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { useEffect, useMemo, useState } from "react";
 import {
   Pressable,
   ScrollView,
@@ -32,12 +32,24 @@ export default function HomeScreen() {
   const { chapters } = useAppState();
   const { isPlaying, playAllVocabulary, stop } = useVocabularyAudio();
   const router = useRouter();
+  const { step } = useLocalSearchParams<{ step?: string }>();
   const [allLevelsQuery, setAllLevelsQuery] = useState("");
   const [n5Query, setN5Query] = useState("");
   const [homeStep, setHomeStep] = useState<HomeStep>("levels");
 
   const n5Chapters = useMemo(() => chapters, [chapters]);
   const n3Units = useMemo(() => getN3Units(), []);
+
+  useEffect(() => {
+    if (
+      step === "levels" ||
+      step === "n5-categories" ||
+      step === "n5-chapters" ||
+      step === "n3-categories"
+    ) {
+      setHomeStep(step);
+    }
+  }, [step]);
   const n5VocabItems = useMemo(
     () =>
       n5Chapters.flatMap((chapter) =>
@@ -158,36 +170,12 @@ export default function HomeScreen() {
               />
             </View>
 
-            {/* <Text style={[styles.sectionTitle, styles.quickTitle]}>
-              Quick Actions
-            </Text>
-            <View style={styles.quickGrid}>
-              <QuickAction
-                label="Vocabulary"
-                icon="book"
-                color="#ff5f8d"
-                onPress={() => setHomeStep("n5-chapters")}
-              />
-              <QuickAction label="Hiragana" icon="language" color="#5f94ff" />
-              <QuickAction
-                label="Kanji"
-                icon="kanji"
-                color="#5ce3bd"
-                onPress={() => router.push("/kanji")}
-              />
-              <QuickAction label="Saved" icon="bookmark" color="#9a73ff" />
-            </View> */}
           </>
         ) : null}
 
         {homeStep === "n5-categories" ? (
           <View style={styles.innerPage}>
-            <Breadcrumb
-              items={[
-                { label: "Home", onPress: () => setHomeStep("levels") },
-                { label: "N5" },
-              ]}
-            />
+            <BackButton label="Back to Home" onPress={() => setHomeStep("levels")} />
             <Text style={styles.pageTitle}>N5 Beginner</Text>
             <Text style={styles.pageSubtitle}>
               Pick a study path for vocabulary, kanji, or grammar.
@@ -215,13 +203,7 @@ export default function HomeScreen() {
 
         {homeStep === "n5-chapters" ? (
           <View style={styles.innerPage}>
-            <Breadcrumb
-              items={[
-                { label: "Home", onPress: () => setHomeStep("levels") },
-                { label: "N5", onPress: () => setHomeStep("n5-categories") },
-                { label: "All Chapters" },
-              ]}
-            />
+            <BackButton label="Back to N5" onPress={() => setHomeStep("n5-categories")} />
             <Text style={styles.pageTitle}>N5 Chapters</Text>
             <View style={styles.compactSearch}>
               <Ionicons name="search" size={18} color="#dbe6ff" />
@@ -258,12 +240,7 @@ export default function HomeScreen() {
 
         {homeStep === "n3-categories" ? (
           <View style={styles.innerPage}>
-            <Breadcrumb
-              items={[
-                { label: "Home", onPress: () => setHomeStep("levels") },
-                { label: "N3" },
-              ]}
-            />
+            <BackButton label="Back to Home" onPress={() => setHomeStep("levels")} />
             <Text style={styles.pageTitle}>N3 Intermediate</Text>
             <Text style={styles.pageSubtitle}>
               Continue with N3 units and advanced vocabulary.
@@ -419,31 +396,6 @@ function LevelCard({
   );
 }
 
-function QuickAction({
-  label,
-  icon,
-  color,
-  onPress,
-}: {
-  label: string;
-  icon: "book" | "language" | "kanji" | "bookmark";
-  color: string;
-  onPress?: () => void;
-}) {
-  return (
-    <Pressable style={styles.quickAction} onPress={onPress}>
-      {icon === "kanji" ? (
-        <Text style={[styles.kanjiIcon, { color }]}>漢</Text>
-      ) : icon === "language" ? (
-        <Text style={[styles.kanjiIcon, { color }]}>あ</Text>
-      ) : (
-        <Ionicons name={icon} size={28} color={color} />
-      )}
-      <Text style={styles.quickLabel}>{label}</Text>
-    </Pressable>
-  );
-}
-
 function MenuCard({
   title,
   subtitle,
@@ -469,28 +421,12 @@ function MenuCard({
   );
 }
 
-function Breadcrumb({
-  items,
-}: {
-  items: { label: string; onPress?: () => void }[];
-}) {
+function BackButton({ label, onPress }: { label: string; onPress: () => void }) {
   return (
-    <View style={styles.breadcrumb}>
-      {items.map((item, index) => (
-        <View key={`${item.label}-${index}`} style={styles.breadcrumbItem}>
-          {item.onPress ? (
-            <Pressable onPress={item.onPress}>
-              <Text style={styles.breadcrumbLink}>{item.label}</Text>
-            </Pressable>
-          ) : (
-            <Text style={styles.breadcrumbCurrent}>{item.label}</Text>
-          )}
-          {index < items.length - 1 ? (
-            <Text style={styles.breadcrumbSeparator}>›</Text>
-          ) : null}
-        </View>
-      ))}
-    </View>
+    <Pressable style={styles.backButton} onPress={onPress}>
+      <Ionicons name="chevron-back" size={18} color="#ff6d96" />
+      <Text style={styles.backButtonText}>{label}</Text>
+    </Pressable>
   );
 }
 
@@ -869,61 +805,25 @@ const styles = StyleSheet.create({
     width: "56%",
     height: "100%",
   },
-  quickTitle: {
-    marginTop: 14,
-  },
-  quickGrid: {
-    flexDirection: "row",
-    gap: 10,
-  },
-  quickAction: {
-    flex: 1,
-    minHeight: 78,
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 5,
-    borderWidth: 1,
-    borderColor: "rgba(170, 194, 235, 0.25)",
-    borderRadius: 14,
-    backgroundColor: "rgba(25, 48, 82, 0.92)",
-  },
-  quickLabel: {
-    color: "#fff",
-    fontSize: 12,
-    fontWeight: "800",
-  },
-  kanjiIcon: {
-    fontSize: 30,
-    fontWeight: "900",
-    lineHeight: 34,
-  },
   innerPage: {
     gap: 14,
     paddingTop: 8,
   },
-  breadcrumb: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "center",
-  },
-  breadcrumbItem: {
+  backButton: {
+    alignSelf: "flex-start",
     flexDirection: "row",
     alignItems: "center",
+    gap: 6,
+    borderWidth: 1,
+    borderColor: "rgba(255, 109, 150, 0.28)",
+    borderRadius: 999,
+    backgroundColor: "rgba(25, 48, 82, 0.92)",
+    paddingHorizontal: 12,
+    paddingVertical: 8,
   },
-  breadcrumbLink: {
+  backButtonText: {
     color: "#ff6d96",
     fontSize: 14,
-    fontWeight: "800",
-  },
-  breadcrumbCurrent: {
-    color: "#d6e1f5",
-    fontSize: 14,
-    fontWeight: "800",
-  },
-  breadcrumbSeparator: {
-    paddingHorizontal: 6,
-    color: "#7f90ad",
-    fontSize: 17,
     fontWeight: "800",
   },
   pageTitle: {

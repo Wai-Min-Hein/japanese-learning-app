@@ -1,3 +1,4 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useMemo } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
@@ -28,19 +29,15 @@ export default function KanjiDetailScreen() {
       className="flex-1 bg-slate-100 dark:bg-slate-950"
       contentContainerClassName="gap-4 p-5"
     >
-      <View className="flex-row flex-wrap items-center gap-1 pt-6">
-        <Pressable onPress={() => router.push("/")}>
-          <Text className="text-base font-semibold text-sakura-700">Home</Text>
-        </Pressable>
-        <Text className="text-base text-slate-500">›</Text>
-        <Pressable onPress={() => router.push("/kanji")}>
-          <Text className="text-base font-semibold text-sakura-700">Kanji</Text>
-        </Pressable>
-        <Text className="text-base text-slate-500">›</Text>
-        <Text className="text-base font-semibold text-slate-700 dark:text-slate-300">
-          {kanji.kanji}
+      <Pressable
+        className="mt-6 w-36 flex-row items-center gap-2 rounded-full bg-white px-3 py-2 dark:bg-slate-900"
+        onPress={() => router.push("/kanji")}
+      >
+        <Ionicons name="chevron-back" size={18} color="#b52049" />
+        <Text className="text-sm font-semibold text-sakura-700">
+          Back to Kanji
         </Text>
-      </View>
+      </Pressable>
 
       <View className="rounded-2xl bg-slate-950 p-5">
         <Text className="text-sm text-emerald-300">
