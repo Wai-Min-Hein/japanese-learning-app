@@ -165,7 +165,7 @@ export default function HomeScreen() {
                 level="N3"
                 title="Intermediate"
                 description="Take your Japanese to the next level."
-                accent="green"
+                accent="pink"
                 onPress={() => setHomeStep("n3-categories")}
               />
             </View>

@@ -76,8 +76,8 @@ export default function N3UnitsScreen() {
         </Text>
       </View>
 
-      <View className="gap-2 rounded-2xl border border-blue-700 bg-white p-4 dark:bg-slate-900">
-        <Text className="text-sm font-semibold text-blue-700">
+      <View className="gap-2 rounded-2xl border border-sakura-700 bg-white p-4 dark:bg-slate-900">
+        <Text className="text-sm font-semibold text-sakura-700">
           N3 Vocab Search
         </Text>
         <TextInput
@@ -92,7 +92,7 @@ export default function N3UnitsScreen() {
             key={item.id}
             className="rounded-lg bg-slate-50 px-3 py-2 dark:bg-slate-800"
           >
-            <Text className="text-xs font-semibold text-emerald-700">
+            <Text className="text-xs font-semibold text-sakura-700">
               {item.source}
             </Text>
             <Text className="text-sm font-semibold text-slate-900 dark:text-slate-100">
@@ -112,7 +112,7 @@ export default function N3UnitsScreen() {
         {units.map((unit) => (
           <Pressable
             key={unit.id}
-            className="rounded-2xl border border-emerald-700 bg-white p-4 dark:bg-slate-900"
+            className="rounded-2xl border border-sakura-700 bg-white p-4 dark:bg-slate-900"
             onPress={() =>
               router.push({
                 pathname: "/n3/unit/[id]",
@@ -120,7 +120,7 @@ export default function N3UnitsScreen() {
               } as any)
             }
           >
-            <Text className="text-base font-semibold text-emerald-700">
+            <Text className="text-base font-semibold text-sakura-700">
               {unit.title}
             </Text>
             <Text className="mt-1 text-sm text-slate-700 dark:text-slate-300">
@@ -134,7 +134,7 @@ export default function N3UnitsScreen() {
       </View>
       <View className="flex-row gap-3">
         <Pressable
-          className="flex-1 rounded-2xl bg-emerald-700 px-4 py-4"
+          className="flex-1 rounded-2xl bg-sakura-700 px-4 py-4"
           onPress={() => {
             if (isPlaying) {
               stop();

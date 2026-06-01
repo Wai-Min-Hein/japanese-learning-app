@@ -26,7 +26,7 @@ export default function N3KanjiDetailScreen() {
           Kanji not found
         </Text>
         <Pressable className="mt-3" onPress={() => router.replace("/n3/kanji" as never)}>
-          <Text className="font-semibold text-emerald-700">N3 Kanji List</Text>
+          <Text className="font-semibold text-sakura-700">N3 Kanji List</Text>
         </Pressable>
       </View>
     );
@@ -41,14 +41,14 @@ export default function N3KanjiDetailScreen() {
         className="mt-6 w-40 flex-row items-center gap-2 rounded-full bg-white px-3 py-2 dark:bg-slate-900"
         onPress={handleBackToKanji}
       >
-        <Ionicons name="chevron-back" size={18} color="#047857" />
-        <Text className="text-sm font-semibold text-emerald-700">
+        <Ionicons name="chevron-back" size={18} color="#b52049" />
+        <Text className="text-sm font-semibold text-sakura-700">
           Back to N3 Kanji
         </Text>
       </Pressable>
 
       <View className="rounded-2xl bg-slate-950 p-5">
-        <Text className="text-sm text-emerald-300">
+        <Text className="text-sm text-rose-300">
           N3 Kanji No. {kanji.index}
         </Text>
         <Text className="mt-1 text-7xl text-white">{kanji.kanji}</Text>
@@ -106,7 +106,7 @@ function ReadingLine({ label, value }: { label: string; value: string }) {
 
   return (
     <View>
-      <Text className="text-xs font-semibold uppercase text-emerald-300">
+      <Text className="text-xs font-semibold uppercase text-rose-300">
         {label}
       </Text>
       <Text className="text-base font-semibold text-slate-100">{value}</Text>

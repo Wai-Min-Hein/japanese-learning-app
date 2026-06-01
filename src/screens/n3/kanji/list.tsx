@@ -89,15 +89,15 @@ export default function N3KanjiListScreen() {
         className="mt-6 w-32 flex-row items-center gap-2 rounded-full bg-white px-3 py-2 dark:bg-slate-900"
         onPress={handleBackToN3}
       >
-        <Ionicons name="chevron-back" size={18} color="#047857" />
-        <Text className="text-sm font-semibold text-emerald-700">
+        <Ionicons name="chevron-back" size={18} color="#b52049" />
+        <Text className="text-sm font-semibold text-sakura-700">
           Back to N3
         </Text>
       </Pressable>
 
-      <View className="rounded-2xl bg-emerald-700 p-5">
+      <View className="rounded-2xl bg-sakura-700 p-5">
         <Text className="text-2xl font-bold text-white">N3 Kanji List</Text>
-        <Text className="mt-1 text-sm text-emerald-100">
+        <Text className="mt-1 text-sm text-rose-100">
           Total {kanjiList.length} kanji
         </Text>
       </View>
@@ -109,7 +109,7 @@ export default function N3KanjiListScreen() {
           </Text>
           <Pressable
             className={`h-10 w-10 items-center justify-center rounded-full ${
-              showDetails ? "bg-emerald-700" : "bg-slate-200 dark:bg-slate-800"
+              showDetails ? "bg-sakura-700" : "bg-slate-200 dark:bg-slate-800"
             }`}
             onPress={toggleShowDetails}
           >
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     borderWidth: 1,
-    borderColor: "#134e4a",
+    borderColor: "#334155",
     borderRadius: 16,
     backgroundColor: "#0f172a",
     padding: 12,
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
   },
   indexLabel: {
     alignSelf: "flex-start",
-    color: "#99f6e4",
+    color: "#94a3b8",
     fontSize: 12,
     fontWeight: "700",
   },
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
   },
   reading: {
     marginTop: 10,
-    color: "#5eead4",
+    color: "#ff6d96",
     fontSize: 14,
     fontWeight: "800",
     textAlign: "center",
