@@ -251,6 +251,12 @@ export default function HomeScreen() {
               icon="layers"
               onPress={() => router.push("/n3" as never)}
             />
+            <MenuCard
+              title="Kanji"
+              subtitle="Characters, readings, meanings, and vocab"
+              icon="translate"
+              onPress={() => router.push("/n3/kanji" as never)}
+            />
           </View>
         ) : null}
       </ScrollView>

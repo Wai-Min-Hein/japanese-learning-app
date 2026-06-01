@@ -17,6 +17,8 @@ export default function RootLayout() {
         <Stack.Screen name="grammar/index" />
         <Stack.Screen name="grammar/chapter/[chapterId]" />
         <Stack.Screen name="n3/index" />
+        <Stack.Screen name="n3/kanji/index" />
+        <Stack.Screen name="n3/kanji/[id]" />
         <Stack.Screen name="n3/unit/[id]" />
         <Stack.Screen name="events" />
         <Stack.Screen name="settings" />
