@@ -39,7 +39,7 @@ export default function N3UnitDetailScreen() {
         <Text className="text-2xl font-bold text-slate-900 dark:text-slate-100">
           {unit.title}
         </Text>
-        <Text className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+        <Text className="mt-1 text-base text-slate-600 dark:text-slate-300">
           {unit.focus}
         </Text>
       </View>
@@ -73,7 +73,7 @@ export default function N3UnitDetailScreen() {
         </Pressable>
       </View>
 
-      <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">
+      <Text className="text-xl font-semibold text-slate-900 dark:text-slate-100">
         Vocabulary
       </Text>
       {unit.vocabulary.map((item) => (
@@ -81,15 +81,15 @@ export default function N3UnitDetailScreen() {
           key={item.id}
           className="gap-2 rounded-2xl bg-white p-4 dark:bg-slate-900"
         >
-          <Text className="text-xl font-bold text-slate-900 dark:text-slate-100">
+          <Text className="text-2xl font-bold text-slate-900 dark:text-slate-100">
             {item.japanese}
           </Text>
           {item.hiragana ? (
-            <Text className="text-sm text-slate-700 dark:text-slate-300">
+            <Text className="text-base text-slate-700 dark:text-slate-300">
               Hiragana: {item.hiragana}
             </Text>
           ) : null}
-          <Text className="text-sm text-slate-700 dark:text-slate-300">
+          <Text className="text-lg text-slate-700 dark:text-slate-300">
             Meaning: {item.meaning}
           </Text>
 

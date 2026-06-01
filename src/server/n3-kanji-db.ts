@@ -4,6 +4,7 @@ export type N3KanjiVocab = {
   word: string;
   reading: string;
   meaning: string;
+  burmeseMeaning?: string;
 };
 
 export type N3Kanji = {
@@ -13,6 +14,7 @@ export type N3Kanji = {
   onyomi: string;
   kunyomi: string;
   meanings: string[];
+  burmeseMeanings?: string[];
   vocab: N3KanjiVocab[];
 };
 
@@ -26,6 +28,7 @@ const N3_KANJI: N3Kanji[] = (n3KanjiSource as N3KanjiSourceItem[]).map(
     onyomi: item.onyomi,
     kunyomi: item.kunyomi,
     meanings: item.meanings,
+    burmeseMeanings: item.burmeseMeanings,
     vocab: item.vocab,
   }),
 );

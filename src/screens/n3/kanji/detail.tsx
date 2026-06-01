@@ -48,28 +48,33 @@ export default function N3KanjiDetailScreen() {
       </Pressable>
 
       <View className="rounded-2xl bg-slate-950 p-5">
-        <Text className="text-sm text-rose-300">
+        <Text className="text-base text-rose-300">
           N3 Kanji No. {kanji.index}
         </Text>
-        <Text className="mt-1 text-7xl text-white">{kanji.kanji}</Text>
+        <Text className="mt-1 text-8xl text-white">{kanji.kanji}</Text>
         <View className="mt-3 gap-2">
           <ReadingLine label="Onyomi" value={kanji.onyomi} />
           <ReadingLine label="Kunyomi" value={kanji.kunyomi} />
         </View>
-        <Text className="mt-3 text-sm text-slate-300">
+        <Text className="mt-3 text-base text-slate-300">
           {kanji.meanings.join(", ")}
         </Text>
+        {kanji.burmeseMeanings?.length ? (
+          <Text className="mt-2 text-lg font-semibold text-white">
+            {kanji.burmeseMeanings.join(", ")}
+          </Text>
+        ) : null}
       </View>
 
       <View className="gap-3 rounded-2xl bg-white p-4 dark:bg-slate-900">
-        <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">
+        <Text className="text-xl font-semibold text-slate-900 dark:text-slate-100">
           Stroke Order
         </Text>
         <KanjiStrokeOrderGrid kanji={kanji.kanji} />
       </View>
 
       <View className="gap-2 rounded-2xl bg-white p-4 dark:bg-slate-900">
-        <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">
+        <Text className="text-xl font-semibold text-slate-900 dark:text-slate-100">
           Vocab using {kanji.kanji}
         </Text>
         {kanji.vocab.length ? (
@@ -78,15 +83,20 @@ export default function N3KanjiDetailScreen() {
               key={`${entry.word}-${entry.reading}-${index}`}
               className="rounded-xl bg-slate-50 p-3 dark:bg-slate-800"
             >
-              <Text className="text-lg font-bold text-slate-900 dark:text-slate-100">
+              <Text className="text-2xl font-bold text-slate-900 dark:text-slate-100">
                 {entry.word}
               </Text>
-              <Text className="text-sm text-slate-600 dark:text-slate-300">
+              <Text className="text-base text-slate-600 dark:text-slate-300">
                 {entry.reading}
               </Text>
-              <Text className="text-sm text-slate-700 dark:text-slate-200">
+              <Text className="text-base text-slate-700 dark:text-slate-200">
                 {entry.meaning}
               </Text>
+              {entry.burmeseMeaning ? (
+                <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">
+                  {entry.burmeseMeaning}
+                </Text>
+              ) : null}
             </View>
           ))
         ) : (
@@ -106,10 +116,10 @@ function ReadingLine({ label, value }: { label: string; value: string }) {
 
   return (
     <View>
-      <Text className="text-xs font-semibold uppercase text-rose-300">
+      <Text className="text-sm font-semibold uppercase text-rose-300">
         {label}
       </Text>
-      <Text className="text-base font-semibold text-slate-100">{value}</Text>
+      <Text className="text-lg font-semibold text-slate-100">{value}</Text>
     </View>
   );
 }

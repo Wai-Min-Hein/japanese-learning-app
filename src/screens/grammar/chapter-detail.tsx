@@ -64,7 +64,7 @@ export default function GrammarChapterDetailScreen() {
               <Text className="text-xs font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
                 Grammar Pattern
               </Text>
-              <Text className="text-base font-semibold text-emerald-900 dark:text-emerald-100">
+              <Text className="text-lg font-semibold text-emerald-900 dark:text-emerald-100">
                 {point.title}
               </Text>
             </View>
@@ -72,7 +72,7 @@ export default function GrammarChapterDetailScreen() {
               <Text className="text-xs font-semibold uppercase tracking-wide text-sky-700 dark:text-sky-300">
                 Meaning / Note
               </Text>
-              <Text className="text-sm leading-6 text-sky-900 dark:text-sky-100">
+              <Text className="text-base leading-7 text-sky-900 dark:text-sky-100">
                 {point.detailNote}
               </Text>
             </View>
@@ -85,15 +85,15 @@ export default function GrammarChapterDetailScreen() {
                 <Text className="text-xs font-semibold uppercase tracking-wide text-amber-700 dark:text-amber-300">
                   Usage
                 </Text>
-                <Text className="mt-1 text-sm font-semibold text-slate-900 dark:text-slate-100">
+                <Text className="mt-1 text-lg font-semibold text-slate-900 dark:text-slate-100">
                   {usage.japanese}
                 </Text>
                 {usage.romaji ? (
-                  <Text className="text-xs text-slate-500 dark:text-slate-400">
+                  <Text className="text-sm text-slate-500 dark:text-slate-400">
                     {usage.romaji}
                   </Text>
                 ) : null}
-                <Text className="mt-1 text-sm text-slate-700 dark:text-slate-300">
+                <Text className="mt-1 text-base text-slate-700 dark:text-slate-300">
                   {usage.burmese}
                 </Text>
                 <Pressable

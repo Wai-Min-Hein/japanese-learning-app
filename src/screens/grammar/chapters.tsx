@@ -38,10 +38,10 @@ export default function GrammarChaptersScreen() {
             className="rounded-2xl bg-white p-4 dark:bg-slate-900"
             onPress={() => router.push(`/grammar/chapter/${chapter.chapterId}`)}
           >
-            <Text className="text-base font-semibold text-slate-900 dark:text-slate-100">
+            <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">
               {chapter.title}
             </Text>
-            <Text className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+            <Text className="mt-1 text-base text-slate-600 dark:text-slate-300">
               Grammar points: {chapter.points.length}
             </Text>
           </Pressable>

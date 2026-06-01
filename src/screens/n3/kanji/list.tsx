@@ -57,8 +57,16 @@ export default function N3KanjiListScreen() {
 
     return kanjiList.filter((item) => {
       const meanings = item.meanings.join(" ").toLowerCase();
+      const burmeseMeanings = (item.burmeseMeanings ?? [])
+        .join(" ")
+        .toLowerCase();
       const vocab = item.vocab
-        .map((entry) => `${entry.word} ${entry.reading} ${entry.meaning}`)
+        .map(
+          (entry) =>
+            `${entry.word} ${entry.reading} ${entry.meaning} ${
+              entry.burmeseMeaning ?? ""
+            }`,
+        )
         .join(" ")
         .toLowerCase();
 
@@ -67,6 +75,7 @@ export default function N3KanjiListScreen() {
         item.onyomi.toLowerCase().includes(normalized) ||
         item.kunyomi.toLowerCase().includes(normalized) ||
         meanings.includes(normalized) ||
+        burmeseMeanings.includes(normalized) ||
         vocab.includes(normalized)
       );
     });
@@ -104,7 +113,7 @@ export default function N3KanjiListScreen() {
 
       <View className="gap-3 rounded-2xl bg-white p-4 dark:bg-slate-900">
         <View className="flex-row items-center justify-between gap-3">
-          <Text className="flex-1 text-sm font-semibold text-slate-900 dark:text-slate-100">
+          <Text className="flex-1 text-base font-semibold text-slate-900 dark:text-slate-100">
             Search kanji / reading / meaning / vocab
           </Text>
           <Pressable
@@ -154,7 +163,12 @@ export default function N3KanjiListScreen() {
                   {[item.onyomi, item.kunyomi].filter(Boolean).join(" / ")}
                 </Text>
                 <Text style={styles.meaning}>
-                  {item.meanings.slice(0, 3).join(", ")}
+                  {(item.burmeseMeanings?.length
+                    ? item.burmeseMeanings
+                    : item.meanings
+                  )
+                    .slice(0, 3)
+                    .join(", ")}
                 </Text>
               </>
             ) : null}
@@ -193,25 +207,25 @@ const styles = StyleSheet.create({
   kanji: {
     marginTop: 4,
     color: "#f8fafc",
-    fontSize: 42,
+    fontSize: 48,
     fontWeight: "700",
-    lineHeight: 52,
+    lineHeight: 58,
   },
   kanjiOnly: {
-    fontSize: 56,
-    lineHeight: 68,
+    fontSize: 64,
+    lineHeight: 76,
   },
   reading: {
     marginTop: 10,
     color: "#ff6d96",
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: "800",
     textAlign: "center",
   },
   meaning: {
     marginTop: 8,
     color: "#cbd5e1",
-    fontSize: 13,
+    fontSize: 15,
     fontWeight: "600",
     textAlign: "center",
   },

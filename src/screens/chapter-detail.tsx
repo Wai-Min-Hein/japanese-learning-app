@@ -83,12 +83,12 @@ export default function ChapterDetailScreen() {
 
       <View className="rounded-2xl bg-white dark:bg-slate-900 p-4">
         <Text className="text-2xl font-bold text-slate-900 dark:text-slate-100">{chapter.title}</Text>
-        <Text className="mt-1 text-sm text-slate-600 dark:text-slate-300">{chapter.focus}</Text>
+        <Text className="mt-1 text-base text-slate-600 dark:text-slate-300">{chapter.focus}</Text>
       </View>
 
       {chapter.scriptTable?.length ? (
         <View className="gap-2 rounded-2xl bg-white dark:bg-slate-900 p-4">
-          <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">Hiragana / Katakana / Romaji</Text>
+          <Text className="text-xl font-semibold text-slate-900 dark:text-slate-100">Hiragana / Katakana / Romaji</Text>
           <View className="rounded-lg border border-slate-200 dark:border-slate-700">
             <View className="flex-row border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-2 py-2">
               <Text className="flex-1 text-xs font-semibold text-slate-700 dark:text-slate-300">Hiragana</Text>
@@ -98,9 +98,9 @@ export default function ChapterDetailScreen() {
             {chapter.scriptTable.map((row) => (
               <View key={row.id} className="border-b border-slate-100 dark:border-slate-800 px-2 py-2">
                 <View className="flex-row">
-                  <Text className="flex-1 text-sm text-slate-900 dark:text-slate-100">{row.hiragana}</Text>
-                  <Text className="flex-1 text-sm text-slate-900 dark:text-slate-100">{row.katakana}</Text>
-                  <Text className="flex-1 text-sm text-slate-700 dark:text-slate-300">{row.romaji}</Text>
+                  <Text className="flex-1 text-base text-slate-900 dark:text-slate-100">{row.hiragana}</Text>
+                  <Text className="flex-1 text-base text-slate-900 dark:text-slate-100">{row.katakana}</Text>
+                  <Text className="flex-1 text-base text-slate-700 dark:text-slate-300">{row.romaji}</Text>
                 </View>
                 <Pressable
                   className="mt-2 rounded-md border border-sakura-700 px-2 py-1"
@@ -135,16 +135,16 @@ export default function ChapterDetailScreen() {
         </Pressable>
       </View>
 
-      <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">Vocabulary</Text>
+      <Text className="text-xl font-semibold text-slate-900 dark:text-slate-100">Vocabulary</Text>
       {chapter.vocabulary.map((item) => (
         <View key={item.id} className="gap-2 rounded-2xl bg-white dark:bg-slate-900 p-4">
-          <Text className="text-xl font-bold text-slate-900 dark:text-slate-100">{item.japanese}</Text>
-          <Text className="text-sm text-slate-700 dark:text-slate-300">Hiragana: {item.hiragana}</Text>
+          <Text className="text-2xl font-bold text-slate-900 dark:text-slate-100">{item.japanese}</Text>
+          <Text className="text-base text-slate-700 dark:text-slate-300">Hiragana: {item.hiragana}</Text>
           {item.katakana ? (
-            <Text className="text-sm text-slate-700 dark:text-slate-300">Katakana: {item.katakana}</Text>
+            <Text className="text-base text-slate-700 dark:text-slate-300">Katakana: {item.katakana}</Text>
           ) : null}
-          <Text className="text-sm text-slate-700 dark:text-slate-300">Romaji: {item.romaji}</Text>
-          <Text className="text-sm font-semibold text-slate-900 dark:text-slate-100">Meaning: {item.meaning}</Text>
+          <Text className="text-base text-slate-700 dark:text-slate-300">Romaji: {item.romaji}</Text>
+          <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">Meaning: {item.meaning}</Text>
 
           <Pressable
             className="mt-1 rounded-lg border border-sakura-700 px-3 py-2"
@@ -157,12 +157,12 @@ export default function ChapterDetailScreen() {
 
        {chapter.greetingPhrases?.length ? (
         <View className="gap-2 rounded-2xl bg-white dark:bg-slate-900 p-4">
-          <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">Greeting & Intro Phrases</Text>
+          <Text className="text-xl font-semibold text-slate-900 dark:text-slate-100">Greeting & Intro Phrases</Text>
           {chapter.greetingPhrases.map((item) => (
             <View key={item.id} className="rounded-lg bg-slate-50 dark:bg-slate-800 p-3">
-              <Text className="text-sm font-semibold text-slate-900 dark:text-slate-100">{item.japanese}</Text>
-              <Text className="text-xs text-slate-500 dark:text-slate-400">{item.romaji}</Text>
-              <Text className="mt-1 text-sm text-slate-700 dark:text-slate-300">{item.burmese}</Text>
+              <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">{item.japanese}</Text>
+              <Text className="text-sm text-slate-500 dark:text-slate-400">{item.romaji}</Text>
+              <Text className="mt-1 text-base text-slate-700 dark:text-slate-300">{item.burmese}</Text>
               <Pressable
                 className="mt-2 rounded-lg border border-sakura-700 px-3 py-2"
                 onPress={() => void playJapaneseText(item.japanese)}
@@ -176,12 +176,12 @@ export default function ChapterDetailScreen() {
 
       {chapter.translations?.length ? (
         <View className="gap-2 rounded-2xl bg-white dark:bg-slate-900 p-4">
-          <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">Translations</Text>
+          <Text className="text-xl font-semibold text-slate-900 dark:text-slate-100">Translations</Text>
           {chapter.translations.map((line) => (
             <View key={line.id} className="rounded-lg bg-slate-50 dark:bg-slate-800 p-3">
-              <Text className="text-sm font-semibold text-slate-900 dark:text-slate-100">{line.japanese}</Text>
-              {line.romaji ? <Text className="text-xs text-slate-500 dark:text-slate-400">{line.romaji}</Text> : null}
-              <Text className="mt-1 text-sm text-slate-700 dark:text-slate-300">{line.burmese}</Text>
+              <Text className="text-lg font-semibold text-slate-900 dark:text-slate-100">{line.japanese}</Text>
+              {line.romaji ? <Text className="text-sm text-slate-500 dark:text-slate-400">{line.romaji}</Text> : null}
+              <Text className="mt-1 text-base text-slate-700 dark:text-slate-300">{line.burmese}</Text>
               {line.beginnerTip ? (
                 <Text className="mt-1 text-xs text-emerald-700">Beginner note: {line.beginnerTip}</Text>
               ) : null}

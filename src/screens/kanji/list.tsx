@@ -89,7 +89,7 @@ export default function KanjiListScreen() {
 
       <View className="gap-3 rounded-2xl bg-white p-4 dark:bg-slate-900">
         <View className="flex-row items-center justify-between gap-3">
-          <Text className="flex-1 text-sm font-semibold text-slate-900 dark:text-slate-100">
+          <Text className="flex-1 text-base font-semibold text-slate-900 dark:text-slate-100">
             Search kanji / reading / meaning
           </Text>
           <Pressable
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
   },
   card: {
     width: "48%",
-    minHeight: 166,
+    minHeight: 184,
     alignItems: "center",
     justifyContent: "flex-start",
     borderWidth: 1,
@@ -169,25 +169,25 @@ const styles = StyleSheet.create({
   kanji: {
     marginTop: 4,
     color: "#f8fafc",
-    fontSize: 42,
+    fontSize: 48,
     fontWeight: "700",
-    lineHeight: 52,
+    lineHeight: 58,
   },
   kanjiOnly: {
-    fontSize: 56,
-    lineHeight: 68,
+    fontSize: 64,
+    lineHeight: 76,
   },
   reading: {
     marginTop: 10,
     color: "#ff6d96",
-    fontSize: 15,
+    fontSize: 17,
     fontWeight: "800",
     textAlign: "center",
   },
   meaning: {
     marginTop: 8,
     color: "#cbd5e1",
-    fontSize: 13,
+    fontSize: 15,
     fontWeight: "600",
     textAlign: "center",
   },
