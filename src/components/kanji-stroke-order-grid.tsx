@@ -46,7 +46,7 @@ type Point = {
 
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 const ANIMATION_STROKE_LENGTH = 1000;
-const STROKE_DURATION_MS = 950;
+const STROKE_DURATION_MS = 1350;
 const PRACTICE_CANVAS_SIZE = 109;
 const PRACTICE_STROKE_ANIMATION_MS = 520;
 
