@@ -61,16 +61,24 @@ function getKanjiVgSvgUrl(kanji: string): string {
 }
 
 function parseKanjiVgPaths(svgText: string): ParsedKanjiSvg {
-  const allStrokes: string[] = [];
-  const regex = /<path[^>]*id="[^"]*-s\d+"[^>]*d="([^"]+)"[^>]*>/g;
+  const strokesByNumber = new Map<number, string[]>();
+  const regex = /<path[^>]*id="[^"]*-s(\d+)"[^>]*d="([^"]+)"[^>]*>/g;
 
   let match = regex.exec(svgText);
   while (match) {
-    if (match[1]) {
-      allStrokes.push(match[1]);
+    const strokeNumber = Number(match[1]);
+    const pathData = match[2];
+    if (Number.isFinite(strokeNumber) && pathData) {
+      const paths = strokesByNumber.get(strokeNumber) ?? [];
+      paths.push(pathData);
+      strokesByNumber.set(strokeNumber, paths);
     }
     match = regex.exec(svgText);
   }
+
+  const allStrokes = [...strokesByNumber.entries()]
+    .sort(([a], [b]) => a - b)
+    .map(([, paths]) => paths.join(" "));
 
   return { allStrokes };
 }
@@ -197,10 +205,10 @@ function WordStrokePanel({
         title="Practice writing"
         detail={
           activeCharacter
-            ? `${activeCharacter.character} stroke ${activeStrokeNumber} / ${activeCharacter.strokes.length}`
+            ? `Stroke ${activeStrokeNumber}/${activeCharacter.strokes.length}`
             : "Playing stroke order"
         }
-        meta="Playing"
+        meta={activeCharacter?.character ?? "Playing"}
       />
       <View className="overflow-hidden rounded-xl border border-slate-700 bg-slate-900" style={{ aspectRatio: 1 }}>
         <Svg width="100%" height="100%" viewBox={`0 0 ${canvasWidth} 109`}>
@@ -692,15 +700,18 @@ function PracticeCanvas({
   };
 
   useEffect(() => {
-    if (
-      isCharacterComplete &&
-      activeCharacterIndex < characterStrokes.length - 1
-    ) {
+    if (isCharacterComplete) {
       const timeout = setTimeout(() => {
         setDraftStroke(null);
         setRejectedStroke(null);
         setShowCorrectionHint(false);
-        setActiveCharacterIndex((index) => index + 1);
+        if (activeCharacterIndex < characterStrokes.length - 1) {
+          setActiveCharacterIndex((index) => index + 1);
+          return;
+        }
+
+        setCompletedStrokes([]);
+        setActiveCharacterIndex(0);
       }, PRACTICE_STROKE_ANIMATION_MS + 120);
 
       return () => clearTimeout(timeout);
@@ -728,12 +739,10 @@ function PracticeCanvas({
         <StrokeContextHeader
           title="Practice writing"
           detail={
-            isCharacterComplete
-              ? `${activeCharacter.character} complete`
-              : `${activeCharacter.character} stroke ${Math.min(
-                  activeCompletedStrokes.length + 1,
-                  activeCharacter.strokes.length,
-                )} / ${activeCharacter.strokes.length}`
+            `${activeCharacter.character} stroke ${Math.min(
+              activeCompletedStrokes.length + 1,
+              activeCharacter.strokes.length,
+            )} / ${activeCharacter.strokes.length}`
           }
           meta={`${activeCharacterIndex + 1} / ${characterStrokes.length}`}
         />
