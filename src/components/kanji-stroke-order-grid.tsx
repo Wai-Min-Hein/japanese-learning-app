@@ -26,13 +26,6 @@ type CharacterStrokes = {
   strokes: string[];
 };
 
-type StrokeRecord = {
-  character: string;
-  characterIndex: number;
-  strokeIndex: number;
-  globalIndex: number;
-};
-
 type PracticeStroke = {
   id: number;
   characterIndex: number;
@@ -144,6 +137,32 @@ function PracticeGrid() {
   );
 }
 
+function StrokeContextHeader({
+  title,
+  detail,
+  meta,
+}: {
+  title: string;
+  detail: string;
+  meta: string;
+}) {
+  return (
+    <View className="flex-row items-center justify-between gap-3 px-1">
+      <View className="min-w-0 flex-1">
+        <Text className="text-sm font-semibold text-rose-600 dark:text-rose-300">
+          {title}
+        </Text>
+        <Text className="text-base font-bold text-slate-900 dark:text-slate-100">
+          {detail}
+        </Text>
+      </View>
+      <Text className="text-sm font-semibold text-slate-500 dark:text-slate-300">
+        {meta}
+      </Text>
+    </View>
+  );
+}
+
 function WordStrokePanel({
   characterStrokes,
   progress,
@@ -157,197 +176,96 @@ function WordStrokePanel({
 }) {
   const characterWidth = 109;
   const canvasWidth = Math.max(characterWidth, characterStrokes.length * characterWidth);
+  const activeCharacterIndex = characterOffsets.findLastIndex(
+    (offset) => offset <= activeGlobalIndex,
+  );
+  const activeCharacter =
+    characterStrokes[Math.max(0, activeCharacterIndex)] ?? characterStrokes[0];
+  const activeCharacterOffset =
+    characterOffsets[Math.max(0, activeCharacterIndex)] ?? 0;
+  const activeStrokeNumber =
+    activeCharacter && activeGlobalIndex >= activeCharacterOffset
+      ? Math.min(
+          activeCharacter.strokes.length,
+          activeGlobalIndex - activeCharacterOffset + 1,
+        )
+      : 1;
 
   return (
-    <View className="rounded-2xl border border-slate-800 bg-slate-950 p-3">
-      <Svg width="100%" height={characterStrokes.length > 1 ? 190 : 250} viewBox={`0 0 ${canvasWidth} 109`}>
-        {characterStrokes.map((entry, characterIndex) => (
-          <G
-            key={`grid-${entry.character}-${characterIndex}`}
-            x={characterIndex * characterWidth}
-          >
-            <PracticeGrid />
-          </G>
-        ))}
-
-        {characterStrokes.map((entry, characterIndex) => (
-          <G
-            key={`base-${entry.character}-${characterIndex}`}
-            x={characterIndex * characterWidth}
-          >
-            {entry.strokes.map((d, strokeIndex) => (
-              <Path
-                key={`base-${characterIndex}-${strokeIndex}`}
-                d={d}
-                stroke="#263142"
-                strokeWidth={6}
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            ))}
-          </G>
-        ))}
-
-        {characterStrokes.map((entry, characterIndex) => {
-          const offset = characterOffsets[characterIndex] ?? 0;
-
-          return (
+    <View className="gap-2">
+      <StrokeContextHeader
+        title="Practice writing"
+        detail={
+          activeCharacter
+            ? `${activeCharacter.character} stroke ${activeStrokeNumber} / ${activeCharacter.strokes.length}`
+            : "Playing stroke order"
+        }
+        meta="Playing"
+      />
+      <View className="overflow-hidden rounded-xl border border-slate-700 bg-slate-900" style={{ aspectRatio: 1 }}>
+        <Svg width="100%" height="100%" viewBox={`0 0 ${canvasWidth} 109`}>
+          {characterStrokes.map((entry, characterIndex) => (
             <G
-              key={`animated-${entry.character}-${characterIndex}`}
+              key={`grid-${entry.character}-${characterIndex}`}
               x={characterIndex * characterWidth}
             >
-              {entry.strokes.map((d, strokeIndex) => {
-                const globalIndex = offset + strokeIndex;
-                const strokeDashoffset = progress.interpolate({
-                  inputRange: [globalIndex, globalIndex + 0.88],
-                  outputRange: [ANIMATION_STROKE_LENGTH, 0],
-                  extrapolate: "clamp",
-                });
-
-                return (
-                  <AnimatedPath
-                    key={`animated-${characterIndex}-${strokeIndex}`}
-                    d={d}
-                    stroke={globalIndex <= activeGlobalIndex ? "#ff6d96" : "#f8fafc"}
-                    strokeWidth={6.8}
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeDasharray={ANIMATION_STROKE_LENGTH}
-                    strokeDashoffset={strokeDashoffset}
-                  />
-                );
-              })}
+              <PracticeGrid />
             </G>
-          );
-        })}
-      </Svg>
-    </View>
-  );
-}
+          ))}
 
-function StrokeAnimator({
-  characterStrokes,
-}: {
-  characterStrokes: CharacterStrokes[];
-}) {
-  const progress = useRef(new Animated.Value(0)).current;
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [activeGlobalIndex, setActiveGlobalIndex] = useState(0);
-  const strokeRecords = useMemo<StrokeRecord[]>(() => {
-    let globalIndex = 0;
+          {characterStrokes.map((entry, characterIndex) => (
+            <G
+              key={`base-${entry.character}-${characterIndex}`}
+              x={characterIndex * characterWidth}
+            >
+              {entry.strokes.map((d, strokeIndex) => (
+                <Path
+                  key={`base-${characterIndex}-${strokeIndex}`}
+                  d={d}
+                  stroke="#263142"
+                  strokeWidth={6}
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              ))}
+            </G>
+          ))}
 
-    return characterStrokes.flatMap((entry, characterIndex) =>
-      entry.strokes.map((_, strokeIndex) => ({
-        character: entry.character,
-        characterIndex,
-        strokeIndex,
-        globalIndex: globalIndex++,
-      })),
-    );
-  }, [characterStrokes]);
+          {characterStrokes.map((entry, characterIndex) => {
+            const offset = characterOffsets[characterIndex] ?? 0;
 
-  const totalStrokes = strokeRecords.length;
-  const activeStroke = strokeRecords[activeGlobalIndex];
-  const characterOffsets = useMemo(() => {
-    let offset = 0;
-    return characterStrokes.map((entry) => {
-      const start = offset;
-      offset += entry.strokes.length;
-      return start;
-    });
-  }, [characterStrokes]);
+            return (
+              <G
+                key={`animated-${entry.character}-${characterIndex}`}
+                x={characterIndex * characterWidth}
+              >
+                {entry.strokes.map((d, strokeIndex) => {
+                  const globalIndex = offset + strokeIndex;
+                  const strokeDashoffset = progress.interpolate({
+                    inputRange: [globalIndex, globalIndex + 0.88],
+                    outputRange: [ANIMATION_STROKE_LENGTH, 0],
+                    extrapolate: "clamp",
+                  });
 
-  const stop = useCallback(() => {
-    progress.stopAnimation(() => {
-      setIsPlaying(false);
-    });
-  }, [progress]);
-
-  const play = useCallback(
-    (fromStart = false) => {
-      progress.stopAnimation((value) => {
-        const startValue = fromStart || value >= totalStrokes ? 0 : value;
-        progress.setValue(startValue);
-        setIsPlaying(true);
-        Animated.timing(progress, {
-          toValue: totalStrokes,
-          duration: Math.max(1, totalStrokes - startValue) * STROKE_DURATION_MS,
-          easing: Easing.linear,
-          useNativeDriver: false,
-        }).start(({ finished }) => {
-          if (finished) {
-            setIsPlaying(false);
-            setActiveGlobalIndex(Math.max(0, totalStrokes - 1));
-          }
-        });
-      });
-    },
-    [progress, totalStrokes],
-  );
-
-  useEffect(() => {
-    progress.setValue(0);
-    setActiveGlobalIndex(0);
-    play(true);
-
-    const listener = progress.addListener(({ value }) => {
-      setActiveGlobalIndex(
-        Math.min(Math.max(0, totalStrokes - 1), Math.max(0, Math.floor(value))),
-      );
-    });
-
-    return () => {
-      progress.removeListener(listener);
-      progress.stopAnimation();
-    };
-  }, [play, progress, totalStrokes]);
-
-  return (
-    <View className="gap-4">
-      <WordStrokePanel
-        characterStrokes={characterStrokes}
-        progress={progress}
-        characterOffsets={characterOffsets}
-        activeGlobalIndex={activeGlobalIndex}
-      />
-
-      <View className="flex-row items-center justify-between rounded-2xl bg-slate-100 p-3 dark:bg-slate-800">
-        <View>
-          <Text className="text-xs font-semibold text-slate-500 dark:text-slate-400">
-            Animated stroke order
-          </Text>
-          <Text className="text-sm font-bold text-slate-900 dark:text-slate-100">
-            {activeStroke
-              ? `${activeStroke.character} stroke ${activeStroke.strokeIndex + 1} / ${
-                  characterStrokes[activeStroke.characterIndex]?.strokes.length ?? 0
-                }`
-              : "Complete"}
-          </Text>
-          <Text className="mt-0.5 text-xs font-semibold text-slate-500 dark:text-slate-400">
-            Total{" "}
-            {Math.min(activeStroke ? activeGlobalIndex + 1 : activeGlobalIndex, totalStrokes)} /{" "}
-            {totalStrokes}
-          </Text>
-        </View>
-
-        <View className="flex-row gap-2">
-          
-          <Pressable
-            className="h-10 flex-row items-center justify-center gap-2 rounded-full bg-sakura-700 px-4"
-            onPress={isPlaying ? stop : () => play(false)}
-          >
-            <Ionicons
-              name={isPlaying ? "pause" : "play"}
-              size={19}
-              color="#fff"
-            />
-            <Text className="text-sm font-bold text-white">
-              {isPlaying ? "Stop" : "Play"}
-            </Text>
-          </Pressable>
-        </View>
+                  return (
+                    <AnimatedPath
+                      key={`animated-${characterIndex}-${strokeIndex}`}
+                      d={d}
+                      stroke="#ff6d96"
+                      strokeWidth={6.8}
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeDasharray={ANIMATION_STROKE_LENGTH}
+                      strokeDashoffset={strokeDashoffset}
+                    />
+                  );
+                })}
+              </G>
+            );
+          })}
+        </Svg>
       </View>
     </View>
   );
@@ -643,10 +561,9 @@ function PracticeCanvas({
   const [completedStrokes, setCompletedStrokes] = useState<CompletedPracticeStroke[]>([]);
   const [draftStroke, setDraftStroke] = useState<PracticeStroke | null>(null);
   const [rejectedStroke, setRejectedStroke] = useState<PracticeStroke | null>(null);
-  const [feedback, setFeedback] = useState("");
-  const [showTrace, setShowTrace] = useState(true);
-  const [showNextStroke, setShowNextStroke] = useState(true);
+  const [showCorrectionHint, setShowCorrectionHint] = useState(false);
   const [canvasSize, setCanvasSize] = useState(PRACTICE_CANVAS_SIZE);
+  const rejectionTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const activeCharacter =
     characterStrokes[activeCharacterIndex] ?? characterStrokes[0];
   const activeCompletedStrokes = completedStrokes.filter(
@@ -658,7 +575,6 @@ function PracticeCanvas({
   );
   const isCharacterComplete =
     activeCharacter && activeCompletedStrokes.length >= activeCharacter.strokes.length;
-  const isLastCharacter = activeCharacterIndex >= characterStrokes.length - 1;
 
   const getPoint = useCallback(
     (event: GestureResponderEvent) => {
@@ -684,7 +600,7 @@ function PracticeCanvas({
         points: [getPoint(event)],
       });
       setRejectedStroke(null);
-      setFeedback("");
+      setShowCorrectionHint(false);
     },
     [activeCharacter, activeCharacterIndex, getPoint, isCharacterComplete],
   );
@@ -728,7 +644,13 @@ function PracticeCanvas({
       const expectedPath = activeCharacter?.strokes[currentStrokeIndex];
       if (!expectedPath || !validatePracticeStroke(current.points, expectedPath)) {
         setRejectedStroke(current);
-        setFeedback("Try that stroke again. Match the highlighted stroke direction.");
+        setShowCorrectionHint(true);
+        if (rejectionTimeout.current) {
+          clearTimeout(rejectionTimeout.current);
+        }
+        rejectionTimeout.current = setTimeout(() => {
+          setRejectedStroke(null);
+        }, 500);
         return null;
       }
 
@@ -740,7 +662,7 @@ function PracticeCanvas({
         progress,
       };
       setCompletedStrokes((strokes) => [...strokes, completedStroke]);
-      setFeedback("Good stroke.");
+      setShowCorrectionHint(false);
       Animated.timing(progress, {
         toValue: 0,
         duration: PRACTICE_STROKE_ANIMATION_MS,
@@ -769,44 +691,32 @@ function PracticeCanvas({
     setCanvasSize(Math.max(1, Math.min(width, height)));
   };
 
-  const undo = () => {
-    setRejectedStroke(null);
-    setFeedback("");
-    setCompletedStrokes((strokes) => {
-      const index = strokes
-        .map((stroke) => stroke.characterIndex)
-        .lastIndexOf(activeCharacterIndex);
-      if (index < 0) {
-        return strokes;
+  useEffect(() => {
+    if (
+      isCharacterComplete &&
+      activeCharacterIndex < characterStrokes.length - 1
+    ) {
+      const timeout = setTimeout(() => {
+        setDraftStroke(null);
+        setRejectedStroke(null);
+        setShowCorrectionHint(false);
+        setActiveCharacterIndex((index) => index + 1);
+      }, PRACTICE_STROKE_ANIMATION_MS + 120);
+
+      return () => clearTimeout(timeout);
+    }
+
+    return undefined;
+  }, [activeCharacterIndex, characterStrokes.length, isCharacterComplete]);
+
+  useEffect(
+    () => () => {
+      if (rejectionTimeout.current) {
+        clearTimeout(rejectionTimeout.current);
       }
-
-      return strokes.filter((_, strokeIndex) => strokeIndex !== index);
-    });
-  };
-
-  const clearCharacter = () => {
-    setDraftStroke(null);
-    setRejectedStroke(null);
-    setFeedback("");
-    setCompletedStrokes((strokes) =>
-      strokes.filter((stroke) => stroke.characterIndex !== activeCharacterIndex),
-    );
-  };
-
-  const clearAll = () => {
-    setDraftStroke(null);
-    setRejectedStroke(null);
-    setFeedback("");
-    setCompletedStrokes([]);
-    setActiveCharacterIndex(0);
-  };
-
-  const goToCharacter = (index: number) => {
-    setDraftStroke(null);
-    setRejectedStroke(null);
-    setFeedback("");
-    setActiveCharacterIndex(index);
-  };
+    },
+    [],
+  );
 
   if (!activeCharacter) {
     return null;
@@ -814,32 +724,19 @@ function PracticeCanvas({
 
   return (
     <View className="gap-4">
-      <View className="rounded-2xl border border-slate-800 bg-slate-950 p-3">
-        <View className="mb-3 flex-row items-center justify-between gap-3">
-          <View>
-            <Text className="text-sm font-semibold text-rose-300">
-              Practice writing
-            </Text>
-            <Text className="text-base font-bold text-white">
-              {activeCharacter.character} stroke{" "}
-              {Math.min(activeCompletedStrokes.length + 1, activeCharacter.strokes.length)} /{" "}
-              {activeCharacter.strokes.length}
-            </Text>
-            {/* {feedback ? (
-              <Text
-                className={`mt-1 text-sm font-semibold ${
-                  rejectedStroke ? "text-rose-300" : "text-emerald-300"
-                }`}
-              >
-                {feedback}
-              </Text>
-            ) : null} */}
-          </View>
-          <Text className="text-sm font-semibold text-slate-300">
-            {activeCharacterIndex + 1} / {characterStrokes.length}
-          </Text>
-        </View>
-
+      <View className="gap-2">
+        <StrokeContextHeader
+          title="Practice writing"
+          detail={
+            isCharacterComplete
+              ? `${activeCharacter.character} complete`
+              : `${activeCharacter.character} stroke ${Math.min(
+                  activeCompletedStrokes.length + 1,
+                  activeCharacter.strokes.length,
+                )} / ${activeCharacter.strokes.length}`
+          }
+          meta={`${activeCharacterIndex + 1} / ${characterStrokes.length}`}
+        />
         <View
           className="overflow-hidden rounded-xl border border-slate-700 bg-slate-900"
           onLayout={handleLayout}
@@ -852,21 +749,19 @@ function PracticeCanvas({
             viewBox={`0 0 ${PRACTICE_CANVAS_SIZE} ${PRACTICE_CANVAS_SIZE}`}
           >
             <PracticeGrid />
-            {showTrace
-              ? activeCharacter.strokes.map((d, index) => (
-                  <Path
-                    key={`trace-${index}`}
-                    d={d}
-                    stroke="#475569"
-                    strokeWidth={6}
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    opacity={0.45}
-                  />
-                ))
-              : null}
-            {showNextStroke && !isCharacterComplete ? (
+            {activeCharacter.strokes.map((d, index) => (
+              <Path
+                key={`trace-${index}`}
+                d={d}
+                stroke="#475569"
+                strokeWidth={6}
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                opacity={0.35}
+              />
+            ))}
+            {showCorrectionHint && !isCharacterComplete ? (
               <Path
                 d={activeCharacter.strokes[currentStrokeIndex]}
                 stroke="#ff6d96"
@@ -914,145 +809,100 @@ function PracticeCanvas({
           </Svg>
         </View>
       </View>
-
-      <View className="gap-3 rounded-2xl bg-slate-100 p-3 dark:bg-slate-800">
-        <View className="flex-row flex-wrap gap-2">
-          <Pressable
-            className={`rounded-full px-4 py-2 ${
-              showTrace ? "bg-sakura-700" : "bg-white dark:bg-slate-900"
-            }`}
-            onPress={() => setShowTrace((value) => !value)}
-          >
-            <Text
-              className={`text-sm font-bold ${
-                showTrace
-                  ? "text-white"
-                  : "text-slate-700 dark:text-slate-200"
-              }`}
-            >
-              Trace
-            </Text>
-          </Pressable>
-          <Pressable
-            className={`rounded-full px-4 py-2 ${
-              showNextStroke ? "bg-sakura-700" : "bg-white dark:bg-slate-900"
-            }`}
-            onPress={() => setShowNextStroke((value) => !value)}
-          >
-            <Text
-              className={`text-sm font-bold ${
-                showNextStroke
-                  ? "text-white"
-                  : "text-slate-700 dark:text-slate-200"
-              }`}
-            >
-              Hint
-            </Text>
-          </Pressable>
-          <Pressable
-            className="rounded-full bg-white px-4 py-2 dark:bg-slate-900"
-            onPress={undo}
-          >
-            <Text className="text-sm font-bold text-slate-700 dark:text-slate-200">
-              Undo
-            </Text>
-          </Pressable>
-          <Pressable
-            className="rounded-full bg-white px-4 py-2 dark:bg-slate-900"
-            onPress={clearCharacter}
-          >
-            <Text className="text-sm font-bold text-slate-700 dark:text-slate-200">
-              Clear
-            </Text>
-          </Pressable>
-        </View>
-
-        <View className="flex-row items-center justify-between gap-3">
-          <Pressable
-            className="rounded-full bg-slate-700 px-4 py-2"
-            onPress={clearAll}
-          >
-            <Text className="text-sm font-bold text-white">Reset all</Text>
-          </Pressable>
-          <Pressable
-            className={`rounded-full px-4 py-2 ${
-              isCharacterComplete && !isLastCharacter
-                ? "bg-sakura-700"
-                : "bg-slate-300 dark:bg-slate-700"
-            }`}
-            disabled={!isCharacterComplete || isLastCharacter}
-            onPress={() => goToCharacter(activeCharacterIndex + 1)}
-          >
-            <Text className="text-sm font-bold text-white">Next kanji</Text>
-          </Pressable>
-        </View>
-
-        {characterStrokes.length > 1 ? (
-          <View className="flex-row flex-wrap gap-2">
-            {characterStrokes.map((entry, index) => (
-              <Pressable
-                key={`${entry.character}-${index}`}
-                className={`h-10 w-10 items-center justify-center rounded-full ${
-                  index === activeCharacterIndex
-                    ? "bg-sakura-700"
-                    : "bg-white dark:bg-slate-900"
-                }`}
-                onPress={() => goToCharacter(index)}
-              >
-                <Text
-                  className={`text-lg font-bold ${
-                    index === activeCharacterIndex
-                      ? "text-white"
-                      : "text-slate-900 dark:text-slate-100"
-                  }`}
-                >
-                  {entry.character}
-                </Text>
-              </Pressable>
-            ))}
-          </View>
-        ) : null}
-      </View>
     </View>
   );
 }
 
-function StrokePracticeTabs({
+function StrokePracticePlayer({
   characterStrokes,
 }: {
   characterStrokes: CharacterStrokes[];
 }) {
-  const [mode, setMode] = useState<"watch" | "practice">("watch");
+  const progress = useRef(new Animated.Value(0)).current;
+  const isPlayingRef = useRef(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [activeGlobalIndex, setActiveGlobalIndex] = useState(0);
+  const totalStrokes = useMemo(
+    () => characterStrokes.reduce((sum, entry) => sum + entry.strokes.length, 0),
+    [characterStrokes],
+  );
+  const characterOffsets = useMemo(() => {
+    let offset = 0;
+    return characterStrokes.map((entry) => {
+      const start = offset;
+      offset += entry.strokes.length;
+      return start;
+    });
+  }, [characterStrokes]);
+
+  const runLoop = useCallback(() => {
+    progress.setValue(0);
+    Animated.timing(progress, {
+      toValue: totalStrokes,
+      duration: Math.max(1, totalStrokes) * STROKE_DURATION_MS,
+      easing: Easing.linear,
+      useNativeDriver: false,
+    }).start(({ finished }) => {
+      if (finished && isPlayingRef.current) {
+        runLoop();
+      }
+    });
+  }, [progress, totalStrokes]);
+
+  const stopPlay = useCallback(() => {
+    isPlayingRef.current = false;
+    progress.stopAnimation(() => {
+      progress.setValue(0);
+      setActiveGlobalIndex(0);
+      setIsPlaying(false);
+    });
+  }, [progress]);
+
+  const startPlay = useCallback(() => {
+    progress.stopAnimation();
+    progress.setValue(0);
+    setActiveGlobalIndex(0);
+    isPlayingRef.current = true;
+    setIsPlaying(true);
+    runLoop();
+  }, [progress, runLoop]);
+
+  useEffect(() => {
+    const listener = progress.addListener(({ value }) => {
+      setActiveGlobalIndex(
+        Math.min(Math.max(0, totalStrokes - 1), Math.max(0, Math.floor(value))),
+      );
+    });
+
+    return () => {
+      progress.removeListener(listener);
+      isPlayingRef.current = false;
+      progress.stopAnimation();
+    };
+  }, [progress, totalStrokes]);
 
   return (
     <View className="gap-4">
-      <View className="flex-row rounded-full bg-slate-100 p-1 dark:bg-slate-800">
-        {(["watch", "practice"] as const).map((item) => (
-          <Pressable
-            key={item}
-            className={`flex-1 rounded-full px-4 py-2 ${
-              mode === item ? "bg-sakura-700" : ""
-            }`}
-            onPress={() => setMode(item)}
-          >
-            <Text
-              className={`text-center text-sm font-bold ${
-                mode === item
-                  ? "text-white"
-                  : "text-slate-700 dark:text-slate-200"
-              }`}
-            >
-              {item === "watch" ? "Watch" : "Practice"}
-            </Text>
-          </Pressable>
-        ))}
-      </View>
-
-      {mode === "watch" ? (
-        <StrokeAnimator characterStrokes={characterStrokes} />
+      {isPlaying ? (
+        <WordStrokePanel
+          characterStrokes={characterStrokes}
+          progress={progress}
+          characterOffsets={characterOffsets}
+          activeGlobalIndex={activeGlobalIndex}
+        />
       ) : (
         <PracticeCanvas characterStrokes={characterStrokes} />
       )}
+
+      <Pressable
+        className="h-12 flex-row items-center justify-center gap-2 rounded-full bg-sakura-700 px-4"
+        onPress={isPlaying ? stopPlay : startPlay}
+      >
+        <Ionicons name={isPlaying ? "pause" : "play"} size={20} color="#fff" />
+        <Text className="text-base font-bold text-white">
+          {isPlaying ? "Stop" : "Play"}
+        </Text>
+      </Pressable>
     </View>
   );
 }
@@ -1132,5 +982,5 @@ export function KanjiStrokeOrderGrid({ kanji }: KanjiStrokeOrderGridProps) {
     );
   }
 
-  return <StrokePracticeTabs characterStrokes={characterStrokes} />;
+  return <StrokePracticePlayer characterStrokes={characterStrokes} />;
 }
