@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const root = process.cwd();
 const inputPath = path.join(root, 'pdf-text/n5/grammar/updated-grammar.txt');
-const outputPath = path.join(root, 'src/server/generated-grammar.ts');
+const outputPath = path.join(root, 'src/data/n5/grammar.json');
 
 const raw = fs.readFileSync(inputPath, 'utf8');
 const chapterRegex = /(?:\*\*)?第\s*(\d+)\s*回(?:\*\*)?/g;
@@ -56,6 +56,7 @@ function parseExampleSegments(line) {
       if (!japanese) return null;
       return {
         japanese,
+        romaji: '',
         burmese: burmese || 'ဥပမာဝါကျ',
       };
     })
@@ -141,8 +142,6 @@ for (let i = 0; i < chapterMatches.length; i += 1) {
 
 chapters.sort((a, b) => a.chapterId - b.chapterId);
 
-const out = `/* Auto-generated from pdf-text/n5/grammar/updated-grammar.txt by scripts/generate-n5-grammar-from-updated.mjs */\n\nexport const GENERATED_N5_GRAMMAR = ${JSON.stringify(chapters, null, 2)} as const;\n`;
-
-fs.writeFileSync(outputPath, out, 'utf8');
+fs.writeFileSync(outputPath, `${JSON.stringify(chapters, null, 2)}\n`, 'utf8');
 console.log(`Generated ${chapters.length} chapters to ${outputPath}`);
 console.log(chapters.slice(0, 5).map((c) => `${c.chapterId}:${c.points.length}p/${c.context.length}ctx`).join(', '));

@@ -1,5 +1,5 @@
 import type { VocabularyItem } from './db';
-import { GENERATED_N3_UNITS } from './generated-n3-units';
+import n3UnitsSource from '../data/n3/units.json';
 
 export type N3Unit = {
   id: string;
@@ -9,7 +9,7 @@ export type N3Unit = {
   vocabulary: VocabularyItem[];
 };
 
-const N3_UNITS: N3Unit[] = GENERATED_N3_UNITS.map((unit) => ({
+const N3_UNITS: N3Unit[] = (n3UnitsSource as N3Unit[]).map((unit) => ({
   id: unit.id,
   unitNumber: unit.unitNumber,
   title: unit.title,
@@ -17,7 +17,8 @@ const N3_UNITS: N3Unit[] = GENERATED_N3_UNITS.map((unit) => ({
   vocabulary: unit.vocabulary.map((item) => ({
     id: item.id,
     japanese: item.japanese,
-    hiragana: 'hiragana' in item ? item.hiragana : '',
+    hiragana: item.hiragana,
+    katakana: item.katakana,
     romaji: item.romaji,
     burmesePronunciation: item.burmesePronunciation,
     meaning: item.meaning,

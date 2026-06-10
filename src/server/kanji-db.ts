@@ -1,4 +1,4 @@
-import { GENERATED_N5_KANJI } from './generated-kanji';
+import n5KanjiSource from '../data/n5/kanji.json';
 
 export type N5KanjiCompound = {
   id: string;
@@ -16,7 +16,7 @@ export type N5Kanji = {
   compounds: N5KanjiCompound[];
 };
 
-const N5_KANJI: N5Kanji[] = GENERATED_N5_KANJI.map((item) => ({
+const N5_KANJI: N5Kanji[] = (n5KanjiSource as N5Kanji[]).map((item) => ({
   id: item.id,
   index: item.index,
   kanji: item.kanji,

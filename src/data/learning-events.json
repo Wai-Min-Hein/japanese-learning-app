@@ -1,0 +1,20 @@
+[
+  {
+    "id": "e1",
+    "title": "Chapter 1 Listening Practice",
+    "dateISO": "2026-02-21T19:00:00+06:30",
+    "type": "lesson"
+  },
+  {
+    "id": "e2",
+    "title": "Chapter 10 Vocabulary Review",
+    "dateISO": "2026-02-22T20:30:00+06:30",
+    "type": "review"
+  },
+  {
+    "id": "e3",
+    "title": "Chapter 25 Mock Conversation",
+    "dateISO": "2026-02-24T19:30:00+06:30",
+    "type": "lesson"
+  }
+]

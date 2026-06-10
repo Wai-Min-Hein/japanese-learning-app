@@ -4,7 +4,6 @@ import { useMemo, useState } from "react";
 import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
 
 import { useVocabularyAudio } from "@/hooks/use-vocabulary-audio";
-import { GENERATED_N3_UNITS } from "@/server/generated-n3-units";
 import { getN3Units } from "@/server/n3-units-db";
 
 export default function N3UnitsScreen() {
@@ -17,19 +16,19 @@ export default function N3UnitsScreen() {
   const { isPlaying, playTextSequence, stop } = useVocabularyAudio();
   const allN3SegmentsFromGenerated = useMemo(
     () =>
-      [...GENERATED_N3_UNITS]
+      units
         .sort((a, b) => a.unitNumber - b.unitNumber)
         .flatMap((unit) =>
           unit.vocabulary.map((item) => ({
             text:
-              ("hiragana" in item && item.hiragana?.trim()
+              (item.hiragana?.trim()
                 ? item.hiragana
                 : item.japanese) ?? "",
             language: "ja-JP" as const,
             rate: 0.9,
           })),
         ),
-    [],
+    [units],
   );
   const allN3Vocab = useMemo(
     () =>

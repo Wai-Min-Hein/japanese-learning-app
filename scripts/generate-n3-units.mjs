@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const root = process.cwd();
 const inputPath = path.join(root, 'pdf-text/n3/vocabs.txt');
-const outputPath = path.join(root, 'src/server/generated-n3-units.ts');
+const outputPath = path.join(root, 'src/data/n3/units.json');
 
 const raw = fs.readFileSync(inputPath, 'utf8');
 const lines = raw.split(/\r?\n/);
@@ -73,16 +73,15 @@ for (const rawLine of lines) {
   currentUnit.vocabulary.push({
     id: `n3-u${currentUnit.unitNumber}-v${itemIndex}`,
     japanese,
-    ...(hiragana && hiragana !== '-' ? { hiragana } : {}),
+    hiragana: hiragana && hiragana !== '-' ? hiragana : '',
+    katakana: '',
     romaji: '',
     burmesePronunciation: '',
     meaning: meaning || '(from vocabs.txt)',
   });
 }
 
-const header = '/* Auto-generated from pdf-text/n3/vocabs.txt by scripts/generate-n3-units.mjs */\n\n';
-const body = `export const GENERATED_N3_UNITS = ${JSON.stringify(units, null, 2)} as const;\n`;
-fs.writeFileSync(outputPath, header + body, 'utf8');
+fs.writeFileSync(outputPath, `${JSON.stringify(units, null, 2)}\n`, 'utf8');
 
 console.log(`Generated ${units.length} N3 units at ${outputPath}`);
 console.log(units.slice(0, 5).map((u) => `${u.unitNumber}:${u.vocabulary.length}`).join(', '));

@@ -1,4 +1,4 @@
-import { GENERATED_N5_GRAMMAR } from './generated-grammar';
+import n5GrammarSource from '../data/n5/grammar.json';
 
 export type GrammarUsage = {
   japanese: string;
@@ -112,7 +112,7 @@ function fallbackBurmese(title: string, detail: string, japanese: string): strin
 
 export function getGrammarChapters(): GrammarChapter[] {
   const chapterMap = new Map<number, GrammarChapter>();
-  const sourceChapters = GENERATED_N5_GRAMMAR as readonly SourceChapter[];
+  const sourceChapters = n5GrammarSource as readonly SourceChapter[];
 
   for (let i = 1; i <= 25; i += 1) {
     chapterMap.set(i, {

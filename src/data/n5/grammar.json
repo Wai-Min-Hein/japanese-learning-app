@@ -1,6 +1,4 @@
-/* Auto-generated from pdf-text/n5/grammar/updated-grammar.txt by scripts/generate-n5-grammar-from-updated.mjs */
-
-export const GENERATED_N5_GRAMMAR = [
+[
   {
     "chapterId": 1,
     "chapterTitle": "Chapter 1",
@@ -15,10 +13,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしははるです。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည် ဟာရူဖြစ်ပါသည်။"
           },
           {
             "japanese": "わたしはがくせいです。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည် ကျောင်းသားဖြစ်ပါသည်။"
           }
         ]
@@ -30,10 +30,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしははるじゃありません。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည် ဟာရူမဟုတ်ပါဘူး။"
           },
           {
             "japanese": "わたしはがくせいじゃありません。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည် ကျောင်းသားမဟုတ်ပါဘူး။"
           }
         ]
@@ -45,14 +47,17 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "あなたははるですか。",
+            "romaji": "",
             "burmese": "သင်က ဟာရူဖြစ်ပါသလား?"
           },
           {
             "japanese": "あなたはがくせいですか。",
+            "romaji": "",
             "burmese": "သင်က ကျောင်းသားဖြစ်ပါသလား?"
           },
           {
             "japanese": "あのひとはだれですか。",
+            "romaji": "",
             "burmese": "ဟိုးကလူက ဘယ်သူလဲ?"
           }
         ]
@@ -64,10 +69,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしはさくらかいしゃのしゃいんです。",
+            "romaji": "",
             "burmese": "ကျွန်တော်က ဆာကူရာကုမ္ပဏီရဲ့ဝန်ထမ်းဖြစ်ပါတယ်။"
           },
           {
             "japanese": "リさんはふじだいがくのせんせいです。",
+            "romaji": "",
             "burmese": "ရီစံက ဖူဂျီတက္ကသိုလ်ရဲ့ဆရာဖြစ်ပါတယ်။"
           }
         ]
@@ -79,6 +86,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしはいしゃです。",
+            "romaji": "",
             "burmese": "ကျွန်တော်က ဆရာဝန်ဖြစ်ပါတယ်။"
           }
         ]
@@ -108,6 +116,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "これはほんです。",
+            "romaji": "",
             "burmese": "ဒီဟာက စာအုပ်ဖြစ်ပါတယ်။"
           }
         ]
@@ -119,6 +128,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "それ は ほん ですか、かみ ですか。",
+            "romaji": "",
             "burmese": "ဟိုဟာက စာအုပ်လား? စာရွက်လား? (ဆိုပြီးလည်းနှစ်ခုယှဉ်ပြီးမေးလို့ရ)"
           }
         ]
@@ -130,10 +140,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "これ は くるま の ざっすし です。",
+            "romaji": "",
             "burmese": "ဒီဟာက ကားရဲ့မဂ္ဂဇင်းဖြစ်ပါတယ်။ (တစ်နည်းအားဖြင့် ကားအကြောင်းမဂ္ဂဇင်း)"
           },
           {
             "japanese": "これはなんのざっすしですか。",
+            "romaji": "",
             "burmese": "ဒီဟာက ဘာရဲ့(ဘာနဲ့ပတ်သက်တဲ့)မဂ္ဂဇင်းလဲ?"
           }
         ]
@@ -145,6 +157,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "それ は さとう の かさ です。",
+            "romaji": "",
             "burmese": "အဲဒါက ဆာတိုးရဲ့ထီးဖြစ်ပါတယ်။"
           }
         ]
@@ -156,6 +169,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "あれ は せんせい の です。",
+            "romaji": "",
             "burmese": "ဟိုးကဟာက ဆရာ့ရဲ့ဟာဖြစ်ပါတယ်။"
           }
         ]
@@ -167,6 +181,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "この ほん は わたし の です。",
+            "romaji": "",
             "burmese": "ဒီစာအုပ်သည် ကျွန်တော့်ရဲ့ဟာဖြစ်ပါတယ်။"
           }
         ]
@@ -190,10 +205,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "ここ は じむしょ です。",
+            "romaji": "",
             "burmese": "ဒီနေရာက ရုံးခန်းဖြစ်ပါသည်။"
           },
           {
             "japanese": "そこ は だいがく です。",
+            "romaji": "",
             "burmese": "ဟိုနေရာက တက္ကသိုလ်ဖြစ်ပါသည်။"
           }
         ]
@@ -205,10 +222,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "ロビー は ここです。",
+            "romaji": "",
             "burmese": "နားနေခန်းက ဒီနေရာဖြစ်ပါသည်။"
           },
           {
             "japanese": "じどうはんばいき は あそこです。",
+            "romaji": "",
             "burmese": "အလိုအလျောက်ဈေးရောင်းစက်က ဟိုနေရာဖြစ်ပါသည်။"
           }
         ]
@@ -220,10 +239,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "うけつけ は 1かい です。",
+            "romaji": "",
             "burmese": "ကောင်တာသည် 1လွှာမှာပါ။"
           },
           {
             "japanese": "せんせい は きょうしつ です。",
+            "romaji": "",
             "burmese": "ဆရာသည် ရုံးခန်းမှာပါ။"
           }
         ]
@@ -235,10 +256,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "かいだん は こちら です。",
+            "romaji": "",
             "burmese": "လှေကားသည် ဒီဘက်မှာပါ။"
           },
           {
             "japanese": "トイレ は あちら です。",
+            "romaji": "",
             "burmese": "အိမ်သာသည် ဟိုးဘက်မှာပါ။"
           }
         ]
@@ -250,10 +273,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "くに は ミヤンーマ です。",
+            "romaji": "",
             "burmese": "တိုင်းပြည်သည် မြန်မာမှာပါ။"
           },
           {
             "japanese": "かいしゃ は ABC です。",
+            "romaji": "",
             "burmese": "ကုမ္ပဏီသည် ABC မှာပါ။"
           }
         ]
@@ -265,6 +290,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "これ は アメリカ の くるま です。",
+            "romaji": "",
             "burmese": "ဒီဟာသည် အမေရိကန်ရဲ့(ထုတ်တဲ့)ကားဖြစ်ပါသည်။"
           }
         ]
@@ -276,6 +302,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "このほんは１，６００えんです。",
+            "romaji": "",
             "burmese": "ဒီစာအုပ်က ယန်း ၁၆၀၀ ဖြစ်ပါတယ်။"
           }
         ]
@@ -318,18 +345,22 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "いま７じです。",
+            "romaji": "",
             "burmese": "အခု 7နာရီဖြစ်ပါတယ်။"
           },
           {
             "japanese": "いま７じはんです。",
+            "romaji": "",
             "burmese": "အခု 7နာရီခွဲဖြစ်ပါတယ်။"
           },
           {
             "japanese": "いま７じ８ふんです。",
+            "romaji": "",
             "burmese": "အခု 7နာရီ 8မိနစ်ဖြစ်ပါတယ်။"
           },
           {
             "japanese": "いまなんじですか。",
+            "romaji": "",
             "burmese": "အခု ဘယ်နှစ်နာရီလဲ?"
           }
         ]
@@ -347,14 +378,17 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "やすみは１０じから１２じまでです。",
+            "romaji": "",
             "burmese": "နားချိန်က 10နာရီကနေ 12နာရီအထိ ဖြစ်ပါတယ်။"
           },
           {
             "japanese": "わたしは７じから９じまでべんきょうします。",
+            "romaji": "",
             "burmese": "ကျွန်တော် 7နာရီကနေ 9နာရီအထိ စာလေ့လာပါတယ်။"
           },
           {
             "japanese": "なんじからなんじまでですか。",
+            "romaji": "",
             "burmese": "ဘယ်အချိန်ကနေ ဘယ်အချိန်အထိလဲ?"
           }
         ]
@@ -379,10 +413,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしはとしょかんへいきます。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်စာကြည့်တိုက်သို့သွားပါသည်။"
           },
           {
             "japanese": "どこへいきますか。",
+            "romaji": "",
             "burmese": "ဘယ်နေရာသို့သွားမလဲ?"
           }
         ]
@@ -394,10 +430,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしはくるまでかいしゃへいきます。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်ကားဖြင့်ကုမ္ပဏီသို့သွားပါသည်။"
           },
           {
             "japanese": "あなたはなんで placeへいきますか。",
+            "romaji": "",
             "burmese": "သင်သည်ဘာဖြင့် placeသို့သွားခဲ့ပါသလဲ။"
           }
         ]
@@ -409,14 +447,17 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしはやまださんとときょうへいきます。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်ယာမာဒါစံနဲ့တိုကျိုသို့သွားပါသည်။"
           },
           {
             "japanese": "わたしはともだちとアメリカへきました。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်သူငယ်ချင်းနဲ့အမေရိကသို့သွားခဲ့ပါသည်။"
           },
           {
             "japanese": "あなたはだれとplaceへ～ますか。",
+            "romaji": "",
             "burmese": "သင်သည်ဘယ်သူနဲ့ placeသို့သွား/လာပါသလဲ?"
           }
         ]
@@ -428,14 +469,17 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしは６がつ８にちににほんへきました。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်၆လပိုင်း၈ရက်နေ့မှာ ဂျပန်သို့လာခဲ့ပါတယ်။"
           },
           {
             "japanese": "わたしはらいげつくにへかえります。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်နောက်လတိုင်းပြည်သို့ပြန်ပါမည်။"
           },
           {
             "japanese": "あなたはいつ placeへ～ますか。",
+            "romaji": "",
             "burmese": "သင်သည်ဘယ်တော့ placeသို့သွား/လာ/ပြန်မလဲ?"
           }
         ]
@@ -456,14 +500,17 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしはごはんをたべます。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်ထမင်းကိုစားပါသည်။"
           },
           {
             "japanese": "わたしは みずをのみます。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်ရေကိုသောက်ပါသည်။"
           },
           {
             "japanese": "なにを～ますか。",
+            "romaji": "",
             "burmese": "ဘာကို～မလဲ?"
           }
         ]
@@ -475,14 +522,17 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしは サッカーをします。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်ဘောလုံးကိုကန်သည်။"
           },
           {
             "japanese": "わたしは テレビをみます。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည် တီဗွီကိုကြည့်သည်။"
           },
           {
             "japanese": "なにをしますか。",
+            "romaji": "",
             "burmese": "ဘာကိုလုပ်ပါသလဲ?"
           }
         ]
@@ -494,6 +544,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしは スーパーでパンをかいました。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်စူပါမားကတ်မှာပေါင်မုန့်ကိုဝယ်ခဲ့ပါသည်။"
           }
         ]
@@ -505,6 +556,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "いっしょにはなびをみにいきますか。",
+            "romaji": "",
             "burmese": "အတူတူမီးပန်းကို ကြည့်ဖို့သွားကြရအောင်လား?"
           }
         ]
@@ -516,10 +568,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "あそこでやすみましょうか。",
+            "romaji": "",
             "burmese": "ဟိုးကနေရာမှာ နားကြရအောင်လား?"
           },
           {
             "japanese": "きょうとへいきましょう。",
+            "romaji": "",
             "burmese": "ကျိုတိုသို့သွားကြရအောင်လား/မသွားဘူးလား?"
           }
         ]
@@ -538,14 +592,17 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしはてでごはんをたべます。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်လက်ဖြင့်ထမင်းကိုစားပါသည်။"
           },
           {
             "japanese": "なんで～ますか。",
+            "romaji": "",
             "burmese": "ဘာဖြင့်စားပါသလဲ, သောက်ပါသလဲ။"
           },
           {
             "japanese": "わたしはえいごでレポートをかきます。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည် Englishစာဖြင့်အစီရင်ခံစာကိုရေးသည်။"
           }
         ]
@@ -563,6 +620,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしはははにはなをあげました。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်အမေ့ထံသို့ပန်းကိုပေးပါသည်။"
           }
         ]
@@ -574,6 +632,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしはともだちにほんをもらいました。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်သူငယ်ချင်းထံမှစာအုပ်ကိုလက်ခံရရှိခဲ့ပါသည်။"
           }
         ]
@@ -591,6 +650,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "もうしゅくだいをかきましたか。",
+            "romaji": "",
             "burmese": "အိမ်စာကိုရေးခဲ့ပြီးပြီလား?"
           }
         ]
@@ -628,10 +688,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "このりょうりはおいしいです。",
+            "romaji": "",
             "burmese": "ဒီဟင်းလျာသည်အရသာရှိသည်။"
           },
           {
             "japanese": "このまちはにぎやかです。",
+            "romaji": "",
             "burmese": "ဒီမြို့သည်စည်ကားသည်။"
           }
         ]
@@ -643,10 +705,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "このもんだいはむずかしくないです。",
+            "romaji": "",
             "burmese": "ဒီပုစ္ဆာသည်မခက်ခဲပါဘူး။"
           },
           {
             "japanese": "きょうはひまじゃありません。",
+            "romaji": "",
             "burmese": "ဒီနေ့မအားပါဘူး။"
           }
         ]
@@ -658,10 +722,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "やまださんはゆめいなひとです。",
+            "romaji": "",
             "burmese": "ယာမာဒါစံသည်နာမည်ကြီးသောလူဖြစ်ပါသည်။"
           },
           {
             "japanese": "ならはふるいまちです。",
+            "romaji": "",
             "burmese": "နာရာသည်ဟောင်းနွမ်းသောမြို့ဖြစ်ပါသည်။"
           }
         ]
@@ -685,6 +751,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしはにほんごがすきです。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်ဂျပန်စာကိုကြိုက်သည်။"
           }
         ]
@@ -696,10 +763,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "ちちはくるまがあります。",
+            "romaji": "",
             "burmese": "အဖေသည်ကားရှိပါသည်။"
           },
           {
             "japanese": "わたしはサッカーができます。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်ဘောလုံးကန်နိုင်ပါသည်။"
           }
         ]
@@ -711,10 +780,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "いそがしいですから、テレビをみません。",
+            "romaji": "",
             "burmese": "အလုပ်များသောကြောင့်, တီဗွီမကြည့်ဘူး။"
           },
           {
             "japanese": "ははのたんじょうびですから、はなをあげます。",
+            "romaji": "",
             "burmese": "အမေ့ရဲ့မွေးနေ့ဖြစ်သောကြောင့်ပန်းကိုပေးမယ်။"
           }
         ]
@@ -736,18 +807,22 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "そこにスーパーがあります。",
+            "romaji": "",
             "burmese": "အဲဒီနေရာမှာစူပါမားကတ်ရှိပါသည်။"
           },
           {
             "japanese": "あそこにやまださんがいます。",
+            "romaji": "",
             "burmese": "ဟိုးကနေရာမှာယာမာဒါစံရှိပါသည်။"
           },
           {
             "japanese": "なにがありますか。(",
+            "romaji": "",
             "burmese": "သက်မဲ့) ဘာကရှိပါသလဲ?"
           },
           {
             "japanese": "だれがいますか。(",
+            "romaji": "",
             "burmese": "သက်ရှိ) ဘယ်သူကရှိပါသလဲ?"
           }
         ]
@@ -759,10 +834,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "スーパーのとなりにきっさてんがあります。",
+            "romaji": "",
             "burmese": "စူပါမားကတ်ရဲ့ဘေးနားမှာလက်ဖက်ရည်ဆိုင်ရှိပါသည်။"
           },
           {
             "japanese": "つくえのしたにねこがいます。",
+            "romaji": "",
             "burmese": "စားပွဲခုံရဲ့အောက်မှာကြောင်ရှိပါသည်။"
           }
         ]
@@ -774,6 +851,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "やまださんのうちはきょうとにあります。",
+            "romaji": "",
             "burmese": "ယာမာဒါစံရဲ့အိမ်သည်ကျိုတိုမှာရှိပါသည်။"
           }
         ]
@@ -785,6 +863,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "やまださんはかいぎしつにいます。",
+            "romaji": "",
             "burmese": "ယာမာဒါစံသည်အစည်းအဝေးခန်းမှာရှိပါသည်။"
           }
         ]
@@ -803,6 +882,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "みかんがごつあります。",
+            "romaji": "",
             "burmese": "လိမ္မော်သီး 5လုံးရှိပါသည်။"
           }
         ]
@@ -814,6 +894,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "60えんのきってを９まいかいました。",
+            "romaji": "",
             "burmese": "ယန်း 60 တန်တံဆိပ်ခေါင်းကို 9ရွက်ဝယ်ခဲ့ပါသည်။"
           }
         ]
@@ -825,6 +906,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "このクラスにりゅうがくせいが５にんいます。",
+            "romaji": "",
             "burmese": "ဒီအတန်းမှာ ပညာတော်သင်ကျောင်းသား 5ယောက်ရှိပါသည်။"
           }
         ]
@@ -836,6 +918,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "1しゅうかんになんかいえいがをみますか。 1",
+            "romaji": "",
             "burmese": "ပတ်မှာ ဘယ်နှစ်ကြိမ် ရုပ်ရှင်ကိုကြည့်ပါသလဲ?"
           }
         ]
@@ -847,6 +930,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "くにでどのくらいにほんごをべんきょうしましたか。",
+            "romaji": "",
             "burmese": "တိုင်းပြည်မှာ ဘယ်လောက်ကြာကြာ ဂျပန်စာကို လေ့လာခဲ့ပါသလဲ?"
           }
         ]
@@ -885,6 +969,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "きょうとはゆきでした。",
+            "romaji": "",
             "burmese": "ကျိုတိုမြို့သည် နှင်းကျခဲ့ပါသည်။"
           }
         ]
@@ -902,6 +987,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "ときょうはおおさかよりおおきいです。",
+            "romaji": "",
             "burmese": "တိုကျိုသည် အိုဆာကာထက် ကြီးမားသည်။"
           }
         ]
@@ -913,6 +999,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "ほんとゲームとどちらがおもしろいですか。",
+            "romaji": "",
             "burmese": "စာအုပ်နဲ့ဂိမ်းနဲ့ ဘယ်ဟာက ပိုစိတ်ဝင်စားဖို့ကောင်းပါသလဲ?"
           }
         ]
@@ -930,6 +1017,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "アニメでなにがいちばんすきですか。 Anime",
+            "romaji": "",
             "burmese": "ထဲမှာ ဘာကအကြိုက်ဆုံးလဲ?"
           }
         ]
@@ -956,6 +1044,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしはじてんしゃがほしいです。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည် စက်ဘီးကို လိုချင်ပါသည်။"
           }
         ]
@@ -967,10 +1056,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしはきょうへあそびにいきます。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည် ကျိုတိုသို့ လည်ပတ်ရန်သွားသည်။"
           },
           {
             "japanese": "あなたはなにをしにいきますか。",
+            "romaji": "",
             "burmese": "သင်သည် ဘာကိုလုပ်ဖို့သွားပါသလဲ?"
           }
         ]
@@ -1020,6 +1111,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "しゅくだいをしてください。",
+            "romaji": "",
             "burmese": "အိမ်စာကိုလုပ်ပေးပါ။"
           }
         ]
@@ -1031,6 +1123,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "てつだいましょうか。",
+            "romaji": "",
             "burmese": "ကူညီပေးရမလား?"
           }
         ]
@@ -1042,10 +1135,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "いまべんきょうしています。",
+            "romaji": "",
             "burmese": "အခု စာလေ့လာနေပါသည်။"
           },
           {
             "japanese": "なにをしていますか。",
+            "romaji": "",
             "burmese": "ဘာကိုလုပ်နေပါသလဲ?"
           }
         ]
@@ -1064,6 +1159,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "あしたやすってもいいですか。",
+            "romaji": "",
             "burmese": "မနက်ဖြန် အနားယူလို့ရပါသလား?"
           }
         ]
@@ -1075,6 +1171,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "ここにすわてはいけません。",
+            "romaji": "",
             "burmese": "ဒီနေရာမှာ ထိုင်လို့မရပါဘူး။"
           }
         ]
@@ -1086,10 +1183,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしはきょうとにすんでいます。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည် ကျိုတိုမှာ နေထိုင်ပါသည်။ (အရင်ထဲကနေထိုင်လာတာဖြစ်ပြီး အခုထိလည်းနေနေတုန်း)"
           },
           {
             "japanese": "わたしはさくらだいがくににほんごをおしえています。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည် ဆာကူရာတက္ကသိုလ်မှာ ဂျပန်စာကို သင်ကြားပေးနေပါသည်။"
           }
         ]
@@ -1114,6 +1213,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "あしたどうぶつえんへいって、かいものをして、いえにかえります。",
+            "romaji": "",
             "burmese": "မနက်ဖြန် တိရစ္ဆာန်ရုံသို့သွားပြီး ဈေးဝယ်ထွက်ပြီး အိမ်သို့ပြန်မယ်။"
           }
         ]
@@ -1125,6 +1225,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "しゅくだいがおわってからねます。",
+            "romaji": "",
             "burmese": "အိမ်စာတွေပြီးဆုံးသွားပြီးမှအိပ်မယ်။"
           }
         ]
@@ -1136,10 +1237,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "せがたかいです。",
+            "romaji": "",
             "burmese": "အရပ်ကမြင့်သည်။"
           },
           {
             "japanese": "あたまがいいです。",
+            "romaji": "",
             "burmese": "ဉာဏ်ကောင်းသည်။"
           }
         ]
@@ -1173,6 +1276,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "ここにくるまをとめないでください。",
+            "romaji": "",
             "burmese": "ဒီနေရာမှာ ကားကိုမရပ်ပါနဲ့။"
           }
         ]
@@ -1184,6 +1288,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "しゅくだいをしないければなりません。",
+            "romaji": "",
             "burmese": "အိမ်စာကိုမလုပ်လို့မရတော့ဘူး။"
           }
         ]
@@ -1195,6 +1300,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "くつをぬがなくてもいいです。",
+            "romaji": "",
             "burmese": "ဖိနပ်ကိုမချွတ်လည်းပဲရပါတယ်။"
           }
         ]
@@ -1220,10 +1326,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "ももさんはにほんごができます。",
+            "romaji": "",
             "burmese": "မိုမိုစံသည်ဂျပန်စာကိုလုပ်နိုင်သည်။"
           },
           {
             "japanese": "ももさんはかんじをよむことができます。",
+            "romaji": "",
             "burmese": "မိုမိုစံသည်ခန်ဂျီကိုဖတ်ခြင်း ကလုပ်နိုင်သည်။"
           }
         ]
@@ -1235,10 +1343,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしのしゅうみはりょこうです。",
+            "romaji": "",
             "burmese": "ကျွန်တော်ရဲ့ဝါသနာသည်ခရီးထွက်ခြင်းဖြစ်သည်။"
           },
           {
             "japanese": "わたしのしゅうみはうまをのることです。",
+            "romaji": "",
             "burmese": "ကျွန်တော်ရဲ့ဝါသနာသည်မြင်းစီးခြင်းဖြစ်သည်။"
           }
         ]
@@ -1250,14 +1360,17 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "ねるまえに、ほんをよみます。",
+            "romaji": "",
             "burmese": "မအိပ်ခင်, စာအုပ်ကိုဖတ်သည်။"
           },
           {
             "japanese": "しょくじのまえに、てをあらいます。",
+            "romaji": "",
             "burmese": "အစားမစားခင်, လက်ကိုဆေးသည်။"
           },
           {
             "japanese": "5ねんまえに、にほんへきました。",
+            "romaji": "",
             "burmese": "လွန်ခဲ့သော 5နှစ်မတိုင်ခင်က ဂျပန်သို့လာခဲ့ပါသည်။"
           }
         ]
@@ -1282,6 +1395,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしはにほんへいったことがあります。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်ဂျပန်သို့သွားဖူးပါသည်။"
           }
         ]
@@ -1293,6 +1407,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "まいばんほんをよんだり、テレビをみたりします。",
+            "romaji": "",
             "burmese": "ညတိုင်းစာအုပ်ဖတ်လိုက်, တီဗွီကြည့်လိုက် လုပ်သည်။"
           }
         ]
@@ -1304,10 +1419,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "せがたかくなりました。",
+            "romaji": "",
             "burmese": "အရပ်ကမြင့်လာခဲ့ပါသည်။"
           },
           {
             "japanese": "げんきになりました。",
+            "romaji": "",
             "burmese": "ကျန်းမာလာခဲ့ပါသည်။"
           }
         ]
@@ -1352,10 +1469,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "あしたいいてんきだとおもいます。",
+            "romaji": "",
             "burmese": "မနက်ဖြန်ရာသီဥတုသာယာမယ်လို့ထင်ပါတယ်။"
           },
           {
             "japanese": "わたしはマンガはおもしろいとおもいます。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်ရုပ်ပြစာအုပ်ကစိတ်ဝင်စားဖို့ကောင်းတယ်လို့ထင်ပါတယ်။"
           }
         ]
@@ -1367,6 +1486,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "はは は はながすきだといいました。",
+            "romaji": "",
             "burmese": "အမေကပန်းကြိုက်တယ်လို့ပြောခဲ့ပါတယ်။"
           }
         ]
@@ -1378,6 +1498,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "あしたパーティーにくるでしょう。",
+            "romaji": "",
             "burmese": "မနက်ဖြန်ပါတီသို့လာမယ်မလား။"
           }
         ]
@@ -1412,10 +1533,12 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしはほんをよむとき、めがねをかけます。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်စာအုပ်ဖတ်တဲ့အချိန်မှာ မျက်မှန်ကိုတပ်ပါသည်။"
           },
           {
             "japanese": "うちへかえるとき、ケーキをかいます。",
+            "romaji": "",
             "burmese": "အိမ်သို့ပြန်တဲ့အခါကိတ်မုန့်ကိုဝယ်ပါသည်။"
           }
         ]
@@ -1427,6 +1550,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "ねむいとき、コーヒーをのみます。",
+            "romaji": "",
             "burmese": "အိပ်ငိုက်တဲ့အခါကော်ဖီသောက်ပါသည်။"
           }
         ]
@@ -1438,6 +1562,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "26さいのとき、けっこんしました。 26",
+            "romaji": "",
             "burmese": "နှစ်‌ရောက်တဲ့အခါလက်ထပ်ခဲ့ပါသည်။"
           }
         ]
@@ -1449,6 +1574,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "これをまわると、おとがおおきくなります。",
+            "romaji": "",
             "burmese": "ဒီဟာကိုလှည့်လိုက်ရင်အသံကကျယ်လာမယ်။"
           }
         ]
@@ -1471,6 +1597,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "ミラーさんはわたしにほんをくれました。",
+            "romaji": "",
             "burmese": "မီလာစံသည်ကျွန်တော့်အားစာအုပ်ကိုပေးခဲ့ပါသည်။"
           }
         ]
@@ -1482,6 +1609,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしはやまださんにりょこうのしゃしんをみせてもらいました。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်ယာမာဒါစံထံမှခရီးသွားဓာတ်ပုံကိုပြသ၍လက်ခံရရှိခဲ့ပါသည်။"
           }
         ]
@@ -1493,6 +1621,7 @@ export const GENERATED_N5_GRAMMAR = [
         "examples": [
           {
             "japanese": "わたしはかりなさんにほんをかしてあげました。",
+            "romaji": "",
             "burmese": "ကျွန်တော်သည်ကာရီနာစံအားစာအုပ်ကိုငှားပေးခဲ့ပါသည်။"
           }
         ]
@@ -1533,4 +1662,4 @@ export const GENERATED_N5_GRAMMAR = [
       }
     ]
   }
-] as const;
+]

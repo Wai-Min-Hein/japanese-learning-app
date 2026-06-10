@@ -1,4 +1,4 @@
-import n3KanjiSource from "./n3-kanji.json";
+import n3KanjiSource from "../data/n3/kanji.json";
 
 export type N3KanjiVocab = {
   word: string;
